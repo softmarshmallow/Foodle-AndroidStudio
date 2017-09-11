@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.softmarshmallow.foodle">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.softmarshmallow.foodle" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
         android:name=".FoodleApp"
@@ -21,62 +21,83 @@
         android:roundIcon="@drawable/app_icon_red_v3"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon">
+        tools:replace="android:icon" >
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/GoogleApiKey"/>
+            android:value="@string/GoogleApiKey" />
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+            android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".Views.Splash.SplashScreenActivity">
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+                   android:value="@string/facebook_app_id"/>
+
+        <activity android:name="com.facebook.FacebookActivity"
+                  android:configChanges=
+                      "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                  android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.Login.LoginActivity">
+
+
+        <activity android:name=".Views.Splash.SplashScreenActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Views.Login.LoginActivity" >
         </activity>
         <activity
             android:name=".Views.Login.SignupActivity"
-            android:label="@string/title_activity_signup">
+            android:label="@string/title_activity_signup" >
         </activity>
-        <activity android:name=".Views.MainTabController.MainTabControllerActivity">
+        <activity android:name=".Views.MainTabController.MainTabControllerActivity" >
         </activity>
-        <activity android:name=".Views.Festival.FestivalCreatorActivity">
+        <activity android:name=".Views.Festival.FestivalCreatorActivity" >
         </activity>
-        <activity android:name=".Views.Mypage.Shared.StoresListViewActivity">
+        <activity android:name=".Views.Mypage.Shared.StoresListViewActivity" >
         </activity>
-        <activity android:name=".Views.StoreDetail.StoreDetailViewActivity">
+        <activity android:name=".Views.StoreDetail.StoreDetailViewActivity" >
         </activity>
-        <activity android:name=".Views.StoreDetail.StoreReview.StoreReviewCreaterActivity">
+        <activity android:name=".Views.StoreDetail.StoreReview.StoreReviewCreaterActivity" >
         </activity>
-        <activity android:name=".Views.Shared.ImageChooserActivity">
+        <activity android:name=".Views.Shared.ImageChooserActivity" >
         </activity>
-        <activity android:name=".Views.StoreCreator.MenuCreatorActivity">
+        <activity android:name=".Views.StoreCreator.MenuCreatorActivity" >
         </activity>
         <activity
             android:name=".Views.StoreCreator.StoreCreatorActivity"
             android:label="@string/title_activity_store_creator_v2"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name=".Views.Test.TestActivity">
+        <activity android:name=".Views.Test.TestActivity" >
         </activity>
         <activity
             android:name=".Views.Test.TestNavigationDrawerActivity"
             android:label="@string/title_activity_test_navigation_drawer"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name=".Views.OrderMenu.OrderMenuActivity">
+        <activity android:name=".Views.OrderMenu.OrderMenuActivity" >
         </activity>
-        <activity android:name=".Views.Festival.FestivalDetailViewActivity">
+        <activity android:name=".Views.Festival.FestivalDetailViewActivity" >
         </activity>
-        <activity android:name=".Views.RequestCatering.RequestCateringActivity">
+        <activity android:name=".Views.RequestCatering.RequestCateringActivity" >
         </activity>
-        <activity android:name=".Views.AppIntro.AppIntroActivity">
+        <activity android:name=".Views.AppIntro.AppIntroActivity" >
         </activity>
-        <activity android:name=".Views.StoreEditor.StoreEditorActivity">
+        <activity android:name=".Views.StoreEditor.StoreEditorActivity" >
+        </activity>
+        <activity android:name=".Views.Mypage.ProfileEditorActivity" >
         </activity>
     </application>
 

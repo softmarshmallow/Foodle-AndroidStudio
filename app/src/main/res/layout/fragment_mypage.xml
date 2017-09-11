@@ -69,7 +69,7 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:id="@+id/imageView1"
+                            android:id="@+id/enterProfileEditButton"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center"

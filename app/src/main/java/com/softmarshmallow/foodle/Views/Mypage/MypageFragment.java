@@ -45,6 +45,12 @@ public class MypageFragment extends Fragment
                 return view;
 
         }
+        
+        @OnClick(R.id.enterProfileEditButton)
+        void OnEnterProfileEditButtonClick(){
+                startActivity(new Intent(getContext(), ProfileEditorActivity.class));
+        }
+        
 
 
         @OnClick(R.id.interstedStoresImageView)
