@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        card_view:cardCornerRadius="@dimen/menu_card_radius"
+        card_view:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="25px"
+            android:minWidth="25px"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="25px"
+                android:minWidth="25px">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="25px"
+                    android:minWidth="25px"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/reviewerThumbnailImageView"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/app_icon_red_v3"/>
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:minHeight="25px"
+                        android:minWidth="25px">
+
+
+                        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                            android:id="@+id/reviewRatingBar"
+                            style="@style/Widget.MaterialRatingBar.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:rating="4.0"
+                            android:stepSize="0.5"
+                            app:mrb_progressTint="@color/colorPrimaryDark"
+                            app:mrb_secondaryProgressTint="@color/colorPrimaryDark"/>
+
+                        <TextView
+                            android:id="@+id/reviewerNameTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/reviewRatingBar"
+                            android:layout_marginLeft="7.7dp"
+                            android:text="reviewerName"
+                            android:textAppearance="@android:style/TextAppearance.Material.Caption"/>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/reviewCreatedTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="7.0dp"
+                    android:layout_marginTop="4.0dp"
+                    android:paddingBottom="@dimen/menu_price_padding_bottom"
+                    android:paddingLeft="@dimen/menu_name_padding"
+                    android:paddingRight="@dimen/menu_name_padding"
+                    android:text="6.15."
+                    android:textSize="@dimen/songs_count"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/reviewContentTextView"
+                android:layout_width="match_parent"
+                android:layout_height="84.0dp"
+                android:paddingLeft="@dimen/menu_name_padding"
+                android:paddingRight="@dimen/menu_name_padding"
+                android:paddingTop="@dimen/menu_name_padding"
+                android:text="Review Content Goes Here..."
+                android:textColor="@color/album_title"
+                android:textSize="@dimen/album_title"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

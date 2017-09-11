@@ -1,0 +1,115 @@
+{
+  "project_info": {
+    "project_number": "445966459312",
+    "firebase_url": "https://foodle-166908.firebaseio.com",
+    "project_id": "foodle-166908",
+    "storage_bucket": "foodle-166908.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445966459312:android:8e8e5cfccc51adc6",
+        "android_client_info": {
+          "package_name": "com.softmarshmallow.foodle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445966459312-6ujkmgsm8hioc8l1v29tk7tjc65sav7a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softmarshmallow.foodle",
+            "certificate_hash": "81ede7662a792490f224844dff27d328d31b5283"
+          }
+        },
+        {
+          "client_id": "445966459312-ah1n7afrn1htjaiis2elohkeid269h2e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softmarshmallow.foodle",
+            "certificate_hash": "d3ca4bc8de01ecba65796e4fa6cf4de256dd06d3"
+          }
+        },
+        {
+          "client_id": "445966459312-cqqm4mn1jk1e894f8uqudmero990i1a3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ7GEKVZTtmnv0Gp0iS2u_4tOvGT_HVOg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445966459312-cqqm4mn1jk1e894f8uqudmero990i1a3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445966459312:android:132225fe975fe073",
+        "android_client_info": {
+          "package_name": "com.softmarshmallow.foodler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445966459312-mks0v2ncs6o71g6e4t9shk261qapmgr2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softmarshmallow.foodler",
+            "certificate_hash": "81ede7662a792490f224844dff27d328d31b5283"
+          }
+        },
+        {
+          "client_id": "445966459312-1dj991bacevc0bv36d30ona7m9c47sio.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softmarshmallow.foodler",
+            "certificate_hash": "d3ca4bc8de01ecba65796e4fa6cf4de256dd06d3"
+          }
+        },
+        {
+          "client_id": "445966459312-cqqm4mn1jk1e894f8uqudmero990i1a3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ7GEKVZTtmnv0Gp0iS2u_4tOvGT_HVOg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445966459312-cqqm4mn1jk1e894f8uqudmero990i1a3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
