@@ -44,7 +44,7 @@ public class ReviewCardViewHolder extends RecyclerView.ViewHolder
         public void BindWithReviewData(ReviewModel reviewData) {
 
                 reviewRatingBar.setRating(reviewData.Rating);
-                reviewerNameTextView.setText("reviewer : " + reviewData.Reviewer);
+                reviewerNameTextView.setText("reviewer : " + reviewData.ReviewerId);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
 
                 reviewCreatedTimeTextView.setText(

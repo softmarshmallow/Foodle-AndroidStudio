@@ -18,11 +18,10 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.softmarshmallow.foodle.R;
-import com.softmarshmallow.foodle.Views.AppIntro.AppIntroActivity;
 import com.softmarshmallow.foodle.Views.Festival.FestivalDetailViewActivity;
-import com.softmarshmallow.foodle.Views.RequestCatering.RequestCateringActivity;
-import com.softmarshmallow.foodle.Views.StoreCreator.MenuCreatorActivity;
-import com.softmarshmallow.foodle.Views.StoreCreator.StoreCreatorActivity;
+import com.softmarshmallow.foodle.Views.StoreCreator_Deprecated.MenuCreatorActivity_Deprecated;
+import com.softmarshmallow.foodle.Views.StoreCreator_Deprecated.StoreCreatorActivity_Deprecated;
+import com.softmarshmallow.foodle.Views.StoreEditor.StoreEditorActivity;
 import com.softmarshmallow.foodle.Views.Test.TestActivity;
 
 
@@ -145,13 +144,13 @@ public class MainNavigationDrawer
                                                         break;
                                                 case StoreCreatorPage:
                                                         intent = new Intent(activity,
-                                                                StoreCreatorActivity.class);
+                                                                StoreCreatorActivity_Deprecated.class);
                                                         activity.startActivity(intent);
                                                         break;
                                         
                                                 case Option1:
                                                         intent = new Intent(activity,
-                                                                MenuCreatorActivity.class);
+                                                                MenuCreatorActivity_Deprecated.class);
                                                         activity.startActivity(intent);
                                                         break;
                                         
@@ -162,7 +161,7 @@ public class MainNavigationDrawer
                                                         break;
                                                 case Option3:
                                                         intent = new Intent(activity,
-                                                                AppIntroActivity.class);
+                                                                StoreEditorActivity.class);
                                                         activity.startActivity(intent);
 
 

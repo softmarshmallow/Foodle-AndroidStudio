@@ -23,6 +23,8 @@ public class MenuModel
         public int MenuCalories;
         
         public int MenuPrice;
+        
+        public  String MenuNutritionInformation;
 
         public MenuModel() {
         }

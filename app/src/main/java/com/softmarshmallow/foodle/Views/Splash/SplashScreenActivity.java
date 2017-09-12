@@ -1,38 +1,19 @@
 package com.softmarshmallow.foodle.Views.Splash;
 
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.animation.DecelerateInterpolator;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.database.DatabaseError;
-import com.google.gson.Gson;
-import com.sdsmdg.harjot.rotatingtext.RotatingTextWrapper;
-import com.sdsmdg.harjot.rotatingtext.models.Rotatable;
 import com.softmarshmallow.foodle.Helpers.LoginPreferences;
-import com.softmarshmallow.foodle.Models.Menus.MenuModel;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.LoginService;
-import com.softmarshmallow.foodle.Services.MenuService;
-import com.softmarshmallow.foodle.Services.StoreService;
 import com.softmarshmallow.foodle.Views.Login.LoginActivity;
-import com.softmarshmallow.foodle.Views.Login.SignupActivity;
 import com.softmarshmallow.foodle.Views.MainTabController.MainTabControllerActivity;
-import com.softmarshmallow.foodle.Views.StoreCreator.MenuCreatorActivity;
-import com.softmarshmallow.foodle.Views.Test.TestActivity;
-
-import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -56,9 +37,11 @@ public class SplashScreenActivity extends AppCompatActivity
         }
         
         void Test() {
+        
 
         }
         
+        /*
         void SetTextEffect(){
                 Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/SignPainter-HouseScript.ttf");
                 Typeface typeface2 = Typeface.createFromAsset(getAssets(), "fonts/AppleSDGothicNeo_Thin.otf");
@@ -73,7 +56,7 @@ public class SplashScreenActivity extends AppCompatActivity
                 rotatable.setTypeface(typeface);
                 rotatable.setInterpolator(new DecelerateInterpolator());
                 rotatingTextWrapper.setContent("for ", rotatable);
-        }
+        }*/
 
 
 

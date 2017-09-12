@@ -19,11 +19,12 @@ public class FoodleApp extends Application
                 FoodleApp.context = getApplicationContext();
 
                 // CalligraphyConfig
+                /*
                 CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                         .setDefaultFontPath("fonts/AppleSDGothicNeo_Thin.otf")
                         .setFontAttrId(R.attr.fontPath)
                         .build()
-                );
+                );*/
 /*
 
                 // LeakCanary

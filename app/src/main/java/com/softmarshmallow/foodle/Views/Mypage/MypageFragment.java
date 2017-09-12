@@ -25,7 +25,7 @@ import butterknife.OnClick;
  */
 public class MypageFragment extends Fragment
 {
-
+        
         static final String TAG = "MypageFragment";
 
         Gson gson = new Gson();

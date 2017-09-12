@@ -18,265 +18,280 @@
             android:orientation="vertical">
 
 
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/LogoutButton"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                android:elevation="24dp"
-                app:fb_defaultColor="#c3c3c3"
-                app:fb_text="로그 아웃"
-                app:fb_textColor="#fff"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
-
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/CreateStoreButton"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                app:fb_defaultColor="#c3c3c3"
-                app:fb_fontIconSize="10dp"
-                app:fb_iconPosition="left"
-                app:fb_text="푸드트럭 등록하기"
-                app:fb_textColor="#fff"
-                app:fb_useSystemFont="true"
-                />
-
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/ContactButton"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                app:fb_defaultColor="#c3c3c3"
-                app:fb_text="연락하기"
-                app:fb_textColor="#fff"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
-
-
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/CreateNewFestivalButton"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                app:fb_defaultColor="#c3c3c3"
-                app:fb_text="행사등록 문의"
-                app:fb_textColor="#fff"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="25dp">
-
-                <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="약관및 정책"
-                    android:textSize="30sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginTop="8dp"
-                    android:orientation="vertical"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23">
-
-                    <mehdi.sakout.fancybuttons.FancyButton
-                        android:id="@+id/ContactButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        app:fb_defaultColor="#c3c3c3"
-                        app:fb_text="연락하기"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView23"/>
-
-                    <mehdi.sakout.fancybuttons.FancyButton
-                        android:id="@+id/ContactButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        app:fb_defaultColor="#c3c3c3"
-                        app:fb_text="연락하기"
-                        app:fb_textColor="#fff"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView23"/>
-
-                    <mehdi.sakout.fancybuttons.FancyButton
-                        android:id="@+id/ContactButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        app:fb_defaultColor="#c3c3c3"
-                        app:fb_text="연락하기"
-                        app:fb_textColor="#fff"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView23"/>
-
-                    <mehdi.sakout.fancybuttons.FancyButton
-                        android:id="@+id/ContactButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        app:fb_defaultColor="#c3c3c3"
-                        app:fb_text="연락하기"
-                        app:fb_textColor="#fff"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView23"/>
-
-                    <mehdi.sakout.fancybuttons.FancyButton
-                        android:id="@+id/ContactButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        app:fb_defaultColor="#c3c3c3"
-                        app:fb_text="연락하기"
-                        app:fb_textColor="#fff"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView23"/>
-                </LinearLayout>
-
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="#ACACAC"/>
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#f0f0f4"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="22dp"
+                        android:paddingTop="10dp"
+                        android:text="고급"
+                        android:textColor="#868686"
+                        android:textSize="16dp"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/view15"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
+
+                <Button
+                    android:id="@+id/CreateStoreButton"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="개인정보 취급 방침"
-                    android:textSize="30sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:background="@android:color/white"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="30dp"
+                    android:text="푸드트럭 등록하기"
+                    android:textAppearance="@android:style/TextAppearance.Material"/>
 
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
+                <View
+                    android:id="@+id/view16"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
+
+                <Button
+                    android:id="@+id/CreateNewFestivalButton"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="v.0.0.0"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23"/>
+                    android:background="@android:color/white"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="30dp"
+                    android:text="행사 등록하기"
+                    android:textAppearance="@android:style/TextAppearance.Material"/>
 
-            </android.support.constraint.ConstraintLayout>
+                <View
+                    android:id="@+id/view18"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
 
-            <android.support.constraint.ConstraintLayout
+                <Button
+                    android:id="@+id/ContactButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="30dp"
+                    android:text="연락 하기"
+                    android:textAppearance="@android:style/TextAppearance.Material"/>
+
+                <View
+                    android:id="@+id/view19"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="#ACACAC"/>
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#f0f0f4"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="22dp"
+                        android:paddingTop="10dp"
+                        android:text="계정"
+                        android:textColor="#868686"
+                        android:textSize="16dp"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/view15"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
+
+                <Button
+                    android:id="@+id/LogoutButton"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="위치기반서비스 이용약관"
-                    android:textSize="30sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:background="@android:color/white"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="30dp"
+                    android:text="로그 아웃"
+                    android:textAppearance="@android:style/TextAppearance.Material"/>
 
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="v.0.0.0"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23"/>
+                <View
+                    android:id="@+id/view16"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
 
-            </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
 
-            <android.support.constraint.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="#ACACAC"/>
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#f0f0f4"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="22dp"
+                        android:paddingTop="10dp"
+                        android:text="약관및 정책"
+                        android:textColor="#868686"
+                        android:textSize="16dp"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/view15"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
+
+                <Button
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="버전 정보"
-                    android:textSize="30sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="16dp"/>
+                    android:background="@android:color/white"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="30dp"
+                    android:text="약관및 정책 확인"
+                    android:textAppearance="@android:style/TextAppearance.Material"/>
 
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
+                <View
+                    android:id="@+id/view16"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
+
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="v.0.0.0"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
+                    android:background="@android:color/white"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="30dp"
+                    android:text="위치기반서비스 이용약관 확인"
+                    android:textAppearance="@android:style/TextAppearance.Material"/>
 
-            </android.support.constraint.ConstraintLayout>
+                <View
+                    android:id="@+id/view20"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
+
+                <Button
+                    android:id="@+id/button10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="30dp"
+                    android:text="개인정보 취급 방침 확인"
+                    android:textAppearance="@android:style/TextAppearance.Material"/>
+
+                <View
+                    android:id="@+id/view21"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="#ACACAC"/>
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#f0f0f4"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="22dp"
+                        android:paddingTop="10dp"
+                        android:text="버전정보"
+                        android:textColor="#868686"
+                        android:textSize="16dp"/>
+
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/view15"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="30dp"
+                    android:text="v.0.6._"
+                    android:textAppearance="@android:style/TextAppearance.Material"/>
+
+                <View
+                    android:id="@+id/view16"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#ACACAC"/>
+
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

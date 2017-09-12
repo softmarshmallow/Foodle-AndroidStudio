@@ -16,6 +16,9 @@ import java.util.List;
 public class MockDataSource
 {
         
+        static String defaultUserID = "DefaultUser";
+        
+        
         public final static StoreModel TestStore_1 = new StoreModel()
                 .setId("Pizza_Planet_MOCK_Key")
                 .setStoreName("Pizza Planet [MOCK]")
@@ -63,20 +66,20 @@ public class MockDataSource
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date())
                                         );
                                         add(
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date()));
                                         add(
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date()));
                                 }
                         }
@@ -130,20 +133,20 @@ public class MockDataSource
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date())
                                         );
                                         add(
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date()));
                                         add(
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date()));
                                 }
                         }
@@ -199,20 +202,20 @@ public class MockDataSource
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date())
                                         );
                                         add(
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date()));
                                         add(
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date()));
                                 }
                         }
@@ -268,20 +271,20 @@ public class MockDataSource
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date())
                                         );
                                         add(
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date()));
                                         add(
                                                 (StoreReviewModel) new StoreReviewModel()
                                                         .setRating(100)
                                                         .setReviewContent("this is soooo cool!!")
-                                                        .setReviewer(0)
+                                                        .setReviewerId(defaultUserID)
                                                         .setCreatedTime(new Date()));
                                 }
                         }

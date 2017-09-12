@@ -33,7 +33,6 @@
 
         <TextView
             android:id="@+id/storeNameTextView"
-            fontPath="Fonts/AppleSDGothicNeo_Thin.otf"
             android:layout_width="0dp"
             android:layout_height="25dp"
             android:layout_below="@id/thumbnail"
@@ -49,7 +48,6 @@
 
         <TextView
             android:id="@+id/storeLocationTextView"
-            fontPath="Fonts/AppleSDGothicNeo_Thin.otf"
             android:layout_width="0dp"
             android:layout_height="16dp"
             android:layout_below="@id/storeNameTextView"

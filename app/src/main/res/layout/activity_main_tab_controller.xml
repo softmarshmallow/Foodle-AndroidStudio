@@ -27,25 +27,48 @@
             android:layout_height="match_parent"
             tools:context=".Views.MainTabController.MainTabControllerActivity">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <RelativeLayout
+                android:id="@+id/toolbarContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:background="@color/colorPrimary"
                 android:elevation="6dp"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                android:minHeight="?attr/actionBarSize">
 
-                <ImageView
-                    android:id="@+id/toolbar_title"
-                    android:layout_width="70dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/foodle_text_logo"/>
-            </android.support.v7.widget.Toolbar>
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/colorPrimary"
+                    android:elevation="6dp"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                    <ImageView
+                        android:id="@+id/toolbar_title"
+                        android:layout_width="70dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/foodle_text_logo"/>
+                </android.support.v7.widget.Toolbar>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@id/toolbar"/>
+
+            </RelativeLayout>
+
+
+
+
 
 
 
@@ -87,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_above="@id/NavigationTabBarContainer"
-                android:layout_below="@+id/toolbar"/>
+                android:layout_below="@+id/toolbarContainer"/>
 
         </RelativeLayout>
 

@@ -12,9 +12,6 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 import io.reactivex.functions.Consumer;
 
-/**
- * Created by uzu on 9/11/17.
- */
 
 public class FirebaseUserService
 {
@@ -27,6 +24,15 @@ public class FirebaseUserService
         static FirebaseUser getCurrentUser(){
                  return FirebaseAuth.getInstance().getCurrentUser();
         }
+        
+        
+        
+        public static String GetUserUID(){
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                return user.getUid();
+        }
+        
+        
         
         //region
         public static String getDisplayName(){
@@ -113,6 +119,7 @@ public class FirebaseUserService
         
         //endregion
         
+        
         //region
         public static String getUserEmail(){
                 return getCurrentUser().getEmail();
@@ -143,6 +150,10 @@ public class FirebaseUserService
                         });
         }
         //endregion
+        
+        public static String getUserPhoneNumber(){
+                return getCurrentUser().getPhoneNumber();
+        }
         
         
 }

@@ -5,7 +5,7 @@ import android.util.Pair;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.PropertyName;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
-import com.softmarshmallow.foodle.Services.UserService;
+import com.softmarshmallow.foodle.Services.FirebaseUserService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,8 +30,8 @@ public class StoreModel
                 return this;
         }
 
-        public boolean getIsOwner(){
-                return StoreOwnerId.equals( UserService.GetUserUID());
+        public boolean isLocalUserIsOwner(){
+                return StoreOwnerId.equals( FirebaseUserService.GetUserUID());
         }
         //endregion
 

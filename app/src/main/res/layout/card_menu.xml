@@ -31,7 +31,7 @@
                 android:paddingTop="@dimen/menu_name_padding"
                 android:textColor="@color/album_title"
                 android:textSize="@dimen/album_title"
-                fontPath="Fonts/AppleSDGothicNeo_Thin.otf" />
+                />
             <TextView
                 android:id="@+id/count"
                 android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 android:paddingLeft="@dimen/menu_name_padding"
                 android:paddingRight="@dimen/menu_name_padding"
                 android:textSize="@dimen/songs_count"
-                fontPath="Fonts/AppleSDGothicNeo_Thin.otf" />
+                 />
             <ImageView
                 android:id="@+id/overflow"
                 android:layout_width="@dimen/ic_album_overflow_width"

@@ -13,8 +13,13 @@ public class ReviewModel
 
         public int Rating;
         public Date CreatedTime;
-        public int Reviewer;
+        public String ReviewerId;
         public String ReviewContent;
+        
+        public ReviewModel setId(String id) {
+                Id = id;
+                return this;
+        }
 
         public  ReviewModel setRating(int rating) {
                 Rating = rating;
@@ -26,13 +31,12 @@ public class ReviewModel
                 return this;
 
         }
-
-        public ReviewModel setReviewer(int reviewer) {
-                Reviewer = reviewer;
+        
+        public ReviewModel setReviewerId(String reviewerId) {
+                ReviewerId = reviewerId;
                 return this;
-
         }
-
+        
         public ReviewModel setReviewContent(String reviewContent) {
                 ReviewContent = reviewContent;
                 return this;

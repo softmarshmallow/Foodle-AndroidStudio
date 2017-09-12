@@ -89,7 +89,6 @@
 
                         <TextView
                             android:id="@+id/storeNameTextView"
-                            fontPath="fonts/AppleSDGothicNeo_Thin.otf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.0dp"
@@ -100,7 +99,6 @@
 
                         <TextView
                             android:id="@+id/storeShortDescriptionTextView"
-                            fontPath="fonts/AppleSDGothicNeo_Thin.otf"
                             android:layout_width="264.0dp"
                             android:layout_height="43.0dp"
                             android:layout_marginLeft="0.0dp"

@@ -5,13 +5,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 
-import com.softmarshmallow.foodle.FoodleApp;
 import com.softmarshmallow.foodle.Models.Store.StoreReviewModel;
 import com.softmarshmallow.foodle.R;
+import com.softmarshmallow.foodle.Services.FirebaseUserService;
 import com.softmarshmallow.foodle.Services.StoreReviewService;
 
 import java.util.Date;
@@ -62,7 +61,7 @@ public class StoreReviewCreaterActivity extends AppCompatActivity
                         .setCreatedTime(new Date())
                         .setReviewContent(reviewContentEditText.getText().toString())
                         .setRating(((int) reviewRatingBar.getRating()))
-                        .setReviewer(0);
+                        .setReviewerId(FirebaseUserService.GetUserUID());
 
 
                 final SweetAlertDialog uploadingDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
