@@ -30,6 +30,7 @@ public class StoreModel
                 return this;
         }
 
+        @Exclude
         public boolean isLocalUserIsOwner(){
                 return StoreOwnerId.equals( FirebaseUserService.GetUserUID());
         }

@@ -84,7 +84,6 @@ public class FestivalCreatorActivity extends AppCompatActivity
         @OnClick(R.id.chooseEventImagesButton)
         void OnChooseEventImagesButtonClick() {
                 // FIXME: 22/08/2017
-                // startActivityForResult(new Intent(this, ImageChooserActivity.class), ChooseEventImagesRequestCode);
         }
 
         private static final int ChooseEventLocationRequestCode = 10000;

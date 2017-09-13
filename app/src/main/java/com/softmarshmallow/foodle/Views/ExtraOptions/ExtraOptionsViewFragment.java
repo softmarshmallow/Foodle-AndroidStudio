@@ -12,7 +12,8 @@ import com.softmarshmallow.foodle.Helpers.LoginPreferences;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.Festival.FestivalCreatorActivity;
 import com.softmarshmallow.foodle.Views.Login.LoginActivity;
-import com.softmarshmallow.foodle.Views.StoreEditor.StoreEditorActivity;
+import com.softmarshmallow.foodle.Views.StoreEditor.StoreCreatorActivity;
+import com.softmarshmallow.foodle.Views.StoreEditor.StoreEditorBaseActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -42,8 +43,8 @@ public class ExtraOptionsViewFragment extends Fragment
         @OnClick(R.id.CreateStoreButton)
         void OnCreateStoreButtonClicked()
         {
-                StoreEditorActivity.SetEditingMode(StoreEditorActivity.EditorType.Create);
-                getActivity().startActivity(new Intent(getContext(), StoreEditorActivity.class));
+                StoreEditorBaseActivity.SetEditingMode(StoreEditorBaseActivity.EditorType.Create);
+                getActivity().startActivity(new Intent(getContext(), StoreCreatorActivity.class));
         }
 
 

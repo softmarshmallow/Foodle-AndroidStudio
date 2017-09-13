@@ -303,7 +303,7 @@
                     android:background="@android:color/black"/>
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/storeFullDescriptionEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
@@ -623,21 +623,16 @@
                     android:textSize="14dp"/>
 
 
-                <mehdi.sakout.fancybuttons.FancyButton
+                <ImageButton
                     android:id="@+id/endterEditMenuPageButton"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_margin="10dp"
-                    android:layout_weight="0.3"
-                    app:fb_borderColor="@color/colorPrimaryDark"
-                    app:fb_borderWidth="1dp"
-                    app:fb_defaultColor="#0000"
-                    app:fb_focusColor="@color/colorPrimaryDark"
-                    app:fb_radius="10dp"
-                    app:fb_text="메뉴 수정"
-                    app:fb_textColor="@color/colorPrimaryDark"/>
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/colorPrimaryDark"
+                    app:srcCompat="@drawable/edit"/>
 
 
             </LinearLayout>

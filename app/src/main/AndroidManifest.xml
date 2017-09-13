@@ -87,10 +87,6 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".Views.Shared.ImageChooserActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".Views.StoreCreator_Deprecated.MenuCreatorActivity_Deprecated"
             android:screenOrientation="portrait">
         </activity>
@@ -124,14 +120,22 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".Views.StoreEditor.StoreEditorActivity"
+            android:name=".Views.StoreEditor.StoreEditorBaseActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Views.Mypage.ProfileEditorActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Views.StoreEditor.MenuCreatorActivityV2">
+        <activity android:name=".Views.MenuEditor.MenuEditorBaseActivity">
+        </activity>
+        <activity android:name=".Views.MenuDetailPage.MenuDetailActivity">
+        </activity>
+        <activity android:name=".Views.StoreEditor.StoreMenusEditorActivity">
+        </activity>
+        <activity android:name=".Views.MenuEditor.MenuCreatorActivity">
+        </activity>
+        <activity android:name=".Views.StoreEditor.StoreCreatorActivity">
         </activity>
     </application>
 

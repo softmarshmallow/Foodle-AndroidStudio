@@ -19,9 +19,8 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.Festival.FestivalDetailViewActivity;
-import com.softmarshmallow.foodle.Views.StoreCreator_Deprecated.MenuCreatorActivity_Deprecated;
-import com.softmarshmallow.foodle.Views.StoreCreator_Deprecated.StoreCreatorActivity_Deprecated;
-import com.softmarshmallow.foodle.Views.StoreEditor.StoreEditorActivity;
+import com.softmarshmallow.foodle.Views.MenuEditor.MenuCreatorActivity;
+import com.softmarshmallow.foodle.Views.StoreEditor.StoreCreatorActivity;
 import com.softmarshmallow.foodle.Views.Test.TestActivity;
 
 
@@ -144,13 +143,13 @@ public class MainNavigationDrawer
                                                         break;
                                                 case StoreCreatorPage:
                                                         intent = new Intent(activity,
-                                                                StoreCreatorActivity_Deprecated.class);
+                                                                StoreCreatorActivity.class);
                                                         activity.startActivity(intent);
                                                         break;
                                         
                                                 case Option1:
                                                         intent = new Intent(activity,
-                                                                MenuCreatorActivity_Deprecated.class);
+                                                                MenuCreatorActivity.class);
                                                         activity.startActivity(intent);
                                                         break;
                                         
@@ -160,9 +159,9 @@ public class MainNavigationDrawer
                                                         activity.startActivity(intent);
                                                         break;
                                                 case Option3:
-                                                        intent = new Intent(activity,
-                                                                StoreEditorActivity.class);
-                                                        activity.startActivity(intent);
+//                                                        intent = new Intent(activity,
+//                                                                StoreEditorBaseActivity.class);
+//                                                        activity.startActivity(intent);
 
 
                                                         break;

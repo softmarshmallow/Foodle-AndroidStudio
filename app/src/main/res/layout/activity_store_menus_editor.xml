@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.softmarshmallow.foodle.Views.StoreCreator_Deprecated.StoreCreator_Form_MenusFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#4dcdcdcd">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/leftarrowarrows"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="bottom"
+            android:text="메뉴리스트"
+            android:textColor="#fff"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/saveTextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:text="저장"
+            android:textColor="#fff"
+            android:textSize="14dp"/>
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:id="@+id/createNewMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="create new menu"
+        android:textAllCaps="false"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/menusRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/card_menu"/>
+
+
+</LinearLayout>

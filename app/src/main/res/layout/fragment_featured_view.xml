@@ -58,8 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="14.7dp"
                     android:text="내주변 푸드트럭"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="30sp"/>
+                    android:textSize="24sp"/>
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
@@ -102,9 +101,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="14.7dp"
-                    android:text="themes"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="30sp"/>
+                    android:text="테마"
+                    android:textSize="24sp"/>
             </LinearLayout>
             <ImageView
                 android:src="@drawable/category1_mockup"
@@ -172,8 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="14.7dp"
                     android:text="Top menus"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="30sp"/>
+                    android:textSize="24sp"/>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -190,8 +187,7 @@
                 android:layout_marginLeft="7.7dp"
                 android:layout_marginTop="14.0dp"
                 android:text="New face"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="30sp"/>
+                android:textSize="24sp"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/newStoresRecyclerView"
                 android:layout_width="match_parent"
@@ -214,8 +210,7 @@
                 android:layout_marginLeft="7.7dp"
                 android:layout_marginTop="14.0dp"
                 android:text="hot places"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="30sp"/>
+                android:textSize="24sp"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/festivalsRecyclerView"
                 android:layout_width="match_parent"
