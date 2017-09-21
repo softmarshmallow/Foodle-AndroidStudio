@@ -126,6 +126,4 @@ public class ProfileEditorActivity extends AppCompatActivity
                                 }
                         });
         }
-        
-        
 }

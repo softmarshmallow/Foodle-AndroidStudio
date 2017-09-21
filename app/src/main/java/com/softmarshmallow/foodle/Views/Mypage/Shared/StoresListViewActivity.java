@@ -11,7 +11,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.Featured.ListStore.StoreRecyclerViewAdapter;
 import com.softmarshmallow.foodle.Views.Search.SearchResultStoresDisplayRecyclerviewAdapter;
@@ -32,7 +32,7 @@ public class StoresListViewActivity extends AppCompatActivity
         // fixme
 
 
-        List<StoreModel> storeDatas;
+        List<StoreContainerModel> storeDatas;
 
 
 
@@ -69,7 +69,7 @@ public class StoresListViewActivity extends AppCompatActivity
                 Log.d(TAG, "LoadStoreDatasInBackground");
                 // Load StoreData
                 Gson gson = new Gson();
-                this.storeDatas = gson.fromJson(getIntent().getStringExtra(StoreDatasKey), new TypeToken<List<StoreModel>>(){}.getType());
+                this.storeDatas = gson.fromJson(getIntent().getStringExtra(StoreDatasKey), new TypeToken<List<StoreContainerModel>>(){}.getType());
 
 
                 runOnUiThread(new Runnable()

@@ -1,6 +1,5 @@
 package com.softmarshmallow.foodle.Models;
 
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
 
 import java.util.Date;
 
@@ -12,7 +11,7 @@ public class CateringRequestModel
 {
         
         
-        public StoreModel CateringStore;
+        public String CateringStoreId;
         public String CateringLocation;
         public Date CateringStartTime;
         public Date CateringEndTime;

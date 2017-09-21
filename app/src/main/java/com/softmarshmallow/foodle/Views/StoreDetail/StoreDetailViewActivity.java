@@ -30,8 +30,10 @@ import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.r0adkll.slidr.Slidr;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.Models.ReviewModel;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
-import com.softmarshmallow.foodle.Models.Store.StoreReviewModel;
+
+import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreDownloadModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreReviewModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.MenuService;
 import com.softmarshmallow.foodle.Services.StoreReviewService;
@@ -106,9 +108,9 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
         MenusAdapter menusAdapter;
         ReviewsAdapter reviewsAdapter;
         
-        static StoreModel storeDataToDisplay;
+        static StoreContainerModel storeDataToDisplay;
         
-        public static void ShowStoreDetailWithData(Context context, StoreModel storeDataToDisplay) {
+        public static void ShowStoreDetailWithData(Context context, StoreContainerModel storeDataToDisplay) {
                 StoreDetailViewActivity.storeDataToDisplay = storeDataToDisplay;
                 context.startActivity(new Intent(context, StoreDetailViewActivity.class));
         }
@@ -119,9 +121,11 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_store_detail_view);
                 ButterKnife.bind(this);
+/*
 
                 //pushable activity
                 Slidr.attach(this);
+*/
 
 
                 toolbar.setTitleTextColor(Color.RED);
@@ -172,7 +176,7 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                 if (storeDataToDisplay == null){
                         Log.e(TAG, "STORE DATA CANNOT BE NULL, this may be caused by using old intend pattern");
                         this.storeDataToDisplay = gson.fromJson(getIntent().getStringExtra(
-                                (StoreModel.class.getName())), StoreModel.class);
+                                (StoreContainerModel.class.getName())), StoreContainerModel.class);
                 }
                 
                 
@@ -189,7 +193,7 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                                 
                                 // Store MainImage
                                 Glide.with(StoreDetailViewActivity.this)
-                                        .load(storeDataToDisplay.GetMainStorePhotoUrl())
+                                        .load(storeDataToDisplay.getMainStorePhotoUrl())
                                         .into(storeFeatureGraphicImageView);
                                 // StoreName
                                 storeNameTextView.setText(storeDataToDisplay.StoreName);
@@ -232,8 +236,8 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                                         public void onMapReady(GoogleMap googleMap) {
                                                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                                         new LatLng(
-                                                                storeDataToDisplay.GetStoreLocation().first,
-                                                                storeDataToDisplay.GetStoreLocation().second),
+                                                                storeDataToDisplay.getStoreLocation().first,
+                                                                storeDataToDisplay.getStoreLocation().second),
                                                         18.5f));
                                         }
                                 });
@@ -343,12 +347,12 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
 
                                 StoreService.GetStore(
                                         storeDataToDisplay.Id,
-                                        new Consumer<StoreModel>()
+                                        new Consumer<StoreContainerModel>()
                                         {
                                                 @Override
-                                                public void accept(StoreModel storeModel) throws Exception {
+                                                public void accept(StoreContainerModel storeModel) throws Exception {
                                                         pullToRefreshView.setRefreshing(false);
-                                                        StoreDetailViewActivity.ShowStoreDetailWithData(StoreDetailViewActivity.this, storeModel);
+                                                        StoreDetailViewActivity.ShowStoreDetailWithData(StoreDetailViewActivity.this,  storeModel);
                                                         finish();
                                                 }
                                         }, new Consumer<String>()

@@ -1,13 +1,16 @@
 package com.softmarshmallow.foodle.Views.RequestCatering;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
 import com.softmarshmallow.foodle.R;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -33,9 +36,18 @@ public class RequestCateringActivity extends AppCompatActivity
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_request_catering);
                 ButterKnife.bind(this);
-
-
+        
+                NotifyUserThatThisFeatureIsNotSupported();
         }
+        
+        
+        void NotifyUserThatThisFeatureIsNotSupported(){
+                new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("지원안함")
+                        .setContentText("이 기능은 아직 지원되지 않습니다. 그냥 둘러볼까요?")
+                        .show();
+        }
+        
 
         // region Time
         Calendar cateringRequestCalendar = Calendar.getInstance();
@@ -88,12 +100,64 @@ public class RequestCateringActivity extends AppCompatActivity
                                         SimpleDateFormat cateringTimeFormatter = new SimpleDateFormat("hh:mm a");
                                         String formatted = cateringTimeFormatter.format(getCateringRequestDateTime());
                                         chooseCateringTimeButton.setText(formatted);
-
                                 }
                         }, false);
                 timePickerDialog.show(getFragmentManager(), "Time Picker");
         }
         // endregion
+        
+        
+        //region
+        
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+                super.onActivityResult(requestCode, resultCode, data);
+        
+                if (requestCode == chooseCateringLocationRequestCode) {
+                        Place place = PlacePicker.getPlace(data, this);
+                        setCateringLoaction(place.getLatLng(), place.getAddress()
+                                .toString());
+                        isCateringLocationSetted = true;
+                }
+        }
+        
+        
+        LatLng storeLatLng;
+        String storeAddress;
+        
+        public void setCateringLoaction(LatLng cateringLatLng, String cateringAddress) {
+                this.storeLatLng = cateringLatLng;
+                this.storeAddress = cateringAddress;
+                chooseCateringLocationButton.setText("위치 : " + cateringLatLng.toString());
+        }
+        
+        final static int chooseCateringLocationRequestCode = 2001;
+        boolean isCateringLocationSetted = false;
+        
+        @BindView(R.id.chooseCateringLocationButton)
+        FancyButton chooseCateringLocationButton;
+        
+        @OnClick(R.id.chooseCateringLocationButton)
+        void OnChooseCateringLocationButtonClick(){
+                OpenPlacePicker();
+        }
+        
+        
+        void OpenPlacePicker() {
+                
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+                
+                try {
+                        startActivityForResult(builder.build(this),
+                                chooseCateringLocationRequestCode);
+                }
+                catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+                        e.printStackTrace();
+                }
+        }
+        
+        
+        //endregion
 
 
         //region AdditionalRequestMessage
@@ -120,9 +184,9 @@ public class RequestCateringActivity extends AppCompatActivity
         @OnClick(R.id.requestCateringButton)
         void OnRequestCateringButtonClick(){
 
-                new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
-                        .setContentText("신청완료")
-                        .setConfirmText("확인")
+                new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("지원안됨")
+                        .setContentText("이 기능은 아직 지원되지 않아요 ㅠ")
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
                         {
                                 @Override

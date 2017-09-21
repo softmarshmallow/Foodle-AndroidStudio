@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingMenuLayout;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import devlight.io.library.ntb.NavigationTabBar;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -38,7 +40,7 @@ public class MainTabControllerActivity extends AppCompatActivity
         
         @BindView(R.id.toolbar)
         Toolbar toolbar;
-        
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
@@ -53,6 +55,19 @@ public class MainTabControllerActivity extends AppCompatActivity
         }
         
         //region InitNavDrawer
+        
+        @BindView(R.id.menulayout)
+        FlowingMenuLayout menulayout;
+        
+        
+        @OnClick(R.id.showSideNavigationButton)
+        void OnShowSideNavigationButtonClick(){
+                drawerlayout.openMenu(true);
+        }
+        
+        
+        
+        
         @BindView(R.id.container_menu)
         ViewGroup containerView;
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.StoreDetail.StoreDetailViewActivity;
 
@@ -27,15 +27,15 @@ public class SearchResultStoresDisplayRecyclerviewAdapter extends RecyclerView.A
         final static String TAG = SearchResultStoresDisplayRecyclerviewAdapter.class.getName();
 
 
-        public List<StoreModel> storeDatas;
+        public List<StoreContainerModel> storeDatas;
         Context context;
 
-        public SearchResultStoresDisplayRecyclerviewAdapter(List<StoreModel> storeDatas, Context context) {
+        public SearchResultStoresDisplayRecyclerviewAdapter(List<StoreContainerModel> storeDatas, Context context) {
                 this.storeDatas = storeDatas;
                 this.context = context;
         }
 
-        public void Update(List<StoreModel> storeDatas){
+        public void Update(List<StoreContainerModel> storeDatas){
                 this.storeDatas = storeDatas;
                 notifyDataSetChanged();
         }
@@ -87,9 +87,9 @@ class SearchResultStoreCardViewHolder extends RecyclerView.ViewHolder
 
         @BindView(R.id.storeShortDescriptionTextView)
          TextView storeShortDescriptionTextView;
-
-
-        StoreModel storeData;
+        
+        
+        StoreContainerModel storeData;
 
         public SearchResultStoreCardViewHolder(View view, final Context context) {
                 super(view);
@@ -104,7 +104,7 @@ class SearchResultStoreCardViewHolder extends RecyclerView.ViewHolder
                         public void onClick(View view) {
                                 Intent intent = new Intent(context,
                                         (StoreDetailViewActivity.class));
-                                intent.putExtra((StoreModel.class.getName()),
+                                intent.putExtra((StoreContainerModel.class.getName()),
                                         gson.toJson(storeData));
                                 context.startActivity(intent);
                         }
@@ -113,14 +113,14 @@ class SearchResultStoreCardViewHolder extends RecyclerView.ViewHolder
         }
 
 
-        public void BindWithStoreData(StoreModel storeData) {
+        public void BindWithStoreData(StoreContainerModel storeData) {
                 this.storeData = storeData;
 
 
                 storeNameTextView.setText(storeData.StoreName);
                 storeShortDescriptionTextView.setText(storeData.StoreShortDescription);
                 // set mainPhoto thumbnail
-                String storeMainPhotoUrl = storeData.GetMainStorePhotoUrl();
+                String storeMainPhotoUrl = storeData.getMainStorePhotoUrl();
                 if (storeMainPhotoUrl != null){
                         Glide.with(context)
                                 .load(storeMainPhotoUrl)

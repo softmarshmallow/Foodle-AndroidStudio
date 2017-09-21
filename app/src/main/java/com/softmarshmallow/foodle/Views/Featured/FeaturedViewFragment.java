@@ -18,7 +18,8 @@ import android.widget.TextView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.google.firebase.database.DatabaseError;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreDownloadModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.StoreService;
 import com.softmarshmallow.foodle.Views.Featured.ListStore.StoreRecyclerViewAdapter;
@@ -52,12 +53,11 @@ public class FeaturedViewFragment extends Fragment
 
         @BindView(R.id.topMenusTextView)
         TextView topMenusTextView;
-
-
-
-        List<StoreModel> storeDatas = new ArrayList<StoreModel>();
-
-
+        
+        
+        
+        List<StoreContainerModel> storeDatas = new ArrayList<StoreContainerModel>();
+        
         public static FeaturedViewFragment instance;
 
 
@@ -87,9 +87,10 @@ public class FeaturedViewFragment extends Fragment
                 LoadNearbyStoresData();
 
                 InitPromotionSlider();
-
+                
+                /*
                 // InitPullToRefresh
-                InitPullToRefresh();
+                InitPullToRefresh();*/
 
                 return view;
 
@@ -117,10 +118,10 @@ public class FeaturedViewFragment extends Fragment
         }
 
         void LoadFeaturedStoresData(){
-                StoreService.GetAllStores(new Consumer<List<StoreModel>>()
+                StoreService.GetAllStores(new Consumer<List<StoreContainerModel>>()
                 {
                         @Override
-                        public void accept(List<StoreModel> storeModels) throws Exception {
+                        public void accept(List<StoreContainerModel> storeModels) throws Exception {
                                 featuredStoresRecyclerViewAdapter.storeDatas = storeModels;
                                 featuredStoresRecyclerViewAdapter.notifyDataSetChanged();
                         }
@@ -168,10 +169,10 @@ public class FeaturedViewFragment extends Fragment
 
         void LoadNearbyStoresData(){
 
-                StoreService.GetAllStores(new Consumer<List<StoreModel>>()
+                StoreService.GetAllStores(new Consumer<List<StoreContainerModel>>()
                 {
                         @Override
-                        public void accept(List<StoreModel> storeModels) throws Exception {
+                        public void accept(List<StoreContainerModel> storeModels) throws Exception {
 
                                 nearbyStoresRecyclerViewAdapter.storeDatas = storeModels;
                                 nearbyStoresRecyclerViewAdapter.notifyDataSetChanged();
@@ -216,6 +217,7 @@ public class FeaturedViewFragment extends Fragment
 
 
         //region InitPullToRefresh
+        /*
         @BindView(R.id.pull_to_refresh)
         PullToRefreshView pullToRefreshView;
         void InitPullToRefresh(){
@@ -228,7 +230,7 @@ public class FeaturedViewFragment extends Fragment
                                 pullToRefreshView.setRefreshing(false);
                         }
                 });
-        }
+        }*/
 
 
 
@@ -256,6 +258,7 @@ public class FeaturedViewFragment extends Fragment
                 promotionImageSlider.stopAutoCycle();
         }
 
+/*
 
         //region Category Mockups
         @OnClick(R.id.categoryItem1)
@@ -278,6 +281,7 @@ public class FeaturedViewFragment extends Fragment
                 MainTabControllerActivity.instance.FocusOnTab(MainTabsType.Search);
         }
         //endregion
+*/
 
 
 }

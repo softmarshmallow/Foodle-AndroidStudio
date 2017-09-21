@@ -41,25 +41,6 @@ public class SplashScreenActivity extends AppCompatActivity
 
         }
         
-        /*
-        void SetTextEffect(){
-                Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/SignPainter-HouseScript.ttf");
-                Typeface typeface2 = Typeface.createFromAsset(getAssets(), "fonts/AppleSDGothicNeo_Thin.otf");
-        
-                RotatingTextWrapper rotatingTextWrapper = (RotatingTextWrapper) findViewById(R.id.custom_switcher);
-                rotatingTextWrapper.setSize(35);
-                rotatingTextWrapper.setTypeface(typeface2);
-        
-                Rotatable rotatable = new Rotatable(ContextCompat.getColor(this, R.color.colorPrimaryDark), 600, "anyone", "everyone", "you");
-                rotatable.setSize(35);
-                rotatable.setAnimationDuration(300);
-                rotatable.setTypeface(typeface);
-                rotatable.setInterpolator(new DecelerateInterpolator());
-                rotatingTextWrapper.setContent("for ", rotatable);
-        }*/
-
-
-
         
         @Override
         protected void onResume() {
@@ -100,13 +81,13 @@ public class SplashScreenActivity extends AppCompatActivity
                         finish();
                 }
                 
-
         }
 
         void MoveToMainAfterAutoLogin(){
                 final SweetAlertDialog autoLoginProgressDialog;
                 autoLoginProgressDialog = new SweetAlertDialog(SplashScreenActivity.this, SweetAlertDialog.PROGRESS_TYPE)
-                        .setTitleText("Logging in..");
+                        .setTitleText("로그인중...");
+                autoLoginProgressDialog.setCancelable(false);
                 autoLoginProgressDialog.show();
 
                 LoginService.AutoLogin(new OnCompleteListener<AuthResult>()
@@ -118,8 +99,8 @@ public class SplashScreenActivity extends AppCompatActivity
                                 if (task.getException() == null){
                                         MoveToMainActivity();
                                 }else {
-                                        new SweetAlertDialog(SplashScreenActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                                .setTitleText("Error while logging in.")
+                                        SweetAlertDialog errorDialog = new SweetAlertDialog(SplashScreenActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                                .setTitleText("로그인 오류!")
                                                 .setContentText(task.getException().getLocalizedMessage())
 
                                                 .setConfirmText("오프라인으로 계속")
@@ -142,8 +123,9 @@ public class SplashScreenActivity extends AppCompatActivity
                                                                         sweetAlertDialog.dismiss();
                                                                         MoveToMainAfterAutoLogin();
                                                                 }
-                                                        })
-                                        .show();
+                                                        });
+                                        errorDialog.setCancelable(false);
+                                        errorDialog.show();
                                 }
                         }
                 });

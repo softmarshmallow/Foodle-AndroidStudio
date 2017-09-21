@@ -49,6 +49,15 @@ public class OrderMenuActivity extends AppCompatActivity
                 
                 LoadOrderringMenuData();
                 InitOrderCountStepperTouch();
+        
+                NotifiyUserThatThisFeatureIsNotImplemented();
+        }
+        
+        void NotifiyUserThatThisFeatureIsNotImplemented(){
+                new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("준비중..")
+                        .setContentText("이 기능은 아직 지원 되지 않습니다.\n구경만 할까요?")
+                        .show();
         }
         
         
@@ -109,19 +118,9 @@ public class OrderMenuActivity extends AppCompatActivity
         void OnOrderButtonClick(){
 
                 new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
-                        .setTitleText("주문할까요?")
-                        .setContentText("취소시 수수료가 발생합니다.")
-                        .setConfirmText("좋아 먹자!!")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sDialog) {
-                                        sDialog.dismissWithAnimation();
-                                        finish();
-
-                                }
-                        })
+                        .setTitleText("죄송합니다ㅠ")
+                        .setContentText("주문 기능은 아직 준비중입니다")
                         .show();
-
         }
 
 

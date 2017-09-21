@@ -2,10 +2,8 @@ package com.softmarshmallow.foodle.Services;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringDef;
 import android.util.Log;
 
-import com.google.android.gms.nearby.connection.Strategy;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -14,7 +12,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreDownloadModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreUploadBundleModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,15 +40,15 @@ public class StoreService
 
         public static class StoreUploader
         {
-                private final StoreModel storeData;
-                private final Consumer<StoreModel> resultCallback;
+                private final StoreUploadBundleModel storeUploadBundleData;
+                private final Consumer<StoreContainerModel> resultCallback;
                 private final Consumer<String> errorCallback;
 
                 final DatabaseReference newStoreDatabaseReference = storesDatabaseReference.push();
                 final String newStoreDatabaseReferenceKey = newStoreDatabaseReference.getKey();
 
-                public StoreUploader(final StoreModel storeData, final Consumer<StoreModel> resultCallback, final Consumer<String> errorCallback) {
-                        this.storeData = storeData;
+                public StoreUploader(final StoreUploadBundleModel storeUploadBundleData, final Consumer<StoreContainerModel> resultCallback, final Consumer<String> errorCallback) {
+                        this.storeUploadBundleData = storeUploadBundleData;
                         this.resultCallback = resultCallback;
                         this.errorCallback = errorCallback;
                 }
@@ -59,11 +59,13 @@ public class StoreService
 
                 void Operation1_UploadStorePhotos(){
 
-                        final int totalPhotosToUploadCount = storeData.StorePhotoLocalUris.size();
+                        final int totalPhotosToUploadCount = storeUploadBundleData.StorePhotoLocalUris.size();
                         Log.d(TAG,  "UploadStorePhotos localPhotos : " +totalPhotosToUploadCount );
                         Log.d(TAG,  "UploadStorePhotos databaseReference : " + newStoreDatabaseReference.getKey());
+                        
+                        final ArrayList<String> storePhotoUrls = new ArrayList<>();
                         int index = 0;
-                        for (String photoUriString : storeData.StorePhotoLocalUris) {
+                        for (String photoUriString : storeUploadBundleData.StorePhotoLocalUris) {
                                 Log.d(TAG,  "UploadStorePhotos, photoUri : "+ photoUriString);
                                 Uri photoUri = Uri.parse(photoUriString);
                                 UploadTask uploadTask = storesStorageReference.child(newStoreDatabaseReferenceKey).child("StorePhotos").child(String.valueOf(index)).putFile(photoUri);
@@ -75,11 +77,11 @@ public class StoreService
                                                         if (task.getException() == null) {
                                                                 Uri uri = task.getResult()
                                                                         .getDownloadUrl();
-                                                                storeData.StorePhotoUrls.add(
+                                                                storePhotoUrls.add(
                                                                         uri.toString());
                                                                 Log.d(TAG,
                                                                         "OnComplete uri : " + uri.toString());
-                                                                if (totalPhotosToUploadCount == storeData.StorePhotoUrls.size()) {
+                                                                if (totalPhotosToUploadCount == storePhotoUrls.size()) {
                                                                         Operation2_UploadStoreInstance_Include_Photos_Download_Urls();
                                                                 }
                                                         } else {
@@ -102,16 +104,34 @@ public class StoreService
                 void Operation2_UploadStoreInstance_Include_Photos_Download_Urls(){
 
                         newStoreDatabaseReference
-                                .setValue(storeData,
+                                .setValue(storeUploadBundleData.storeTransferBaseModel,
                                         new DatabaseReference.CompletionListener()
                                         {
                                                 @Override
                                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                         if (databaseError == null) {
                                                                 Log.d(TAG, "CreateStore, onComplete");
-                                                                storeData.Id = databaseReference.getKey();
+//                                                                storeUploadBundleData.storeTransferBaseModel.Id = databaseReference.getKey();
                                                                 try {
-                                                                        resultCallback.accept(storeData);
+                                                                        // retrieve Created Data
+                                                                        //// FIXME:
+//                                                                        resultCallback.accept(null);
+                                                                        GetStore(
+                                                                                newStoreDatabaseReferenceKey,
+                                                                                new Consumer<StoreContainerModel>()
+                                                                                {
+                                                                                        @Override
+                                                                                        public void accept(StoreContainerModel storeDownloadModel) throws Exception {
+                                                                                                resultCallback.accept(storeDownloadModel);
+                                                                                        }
+                                                                                },
+                                                                                new Consumer<String>()
+                                                                                {
+                                                                                        @Override
+                                                                                        public void accept(String s) throws Exception {
+                                                                                                errorCallback.accept(s);
+                                                                                        }
+                                                                                });
                                                                 }
                                                                 catch (Exception e) {
                                                                         e.printStackTrace();
@@ -135,16 +155,16 @@ public class StoreService
 
 
         
-        public static void GetAllStores(final Consumer<List<StoreModel>> resultCallback, final Consumer<String> errorCallback) {
+        public static void GetAllStores(final Consumer<List<StoreContainerModel>> resultCallback, final Consumer<String> errorCallback) {
                 Log.d(TAG, "GetAllStores");
 
                 storesDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener()
                 {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                                List<StoreModel> allStores = new ArrayList<StoreModel>();
+                                List<StoreContainerModel> allStores = new ArrayList<StoreContainerModel>();
                                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                                        StoreModel value = child.getValue(StoreModel.class);
+                                        StoreContainerModel value = child.getValue(StoreContainerModel.class);
                                         value.Id = child.getKey();
                                         allStores.add(value);
                                 }
@@ -169,7 +189,7 @@ public class StoreService
         }
         
         
-        public static void GetStore(final String storeId, final Consumer<StoreModel> resultCallback, final Consumer<String> errorCallback) {
+        public static void GetStore(final String storeId, final Consumer<StoreContainerModel> resultCallback, final Consumer<String> errorCallback) {
                 Log.d(TAG, "GetStore");
 
                 storesDatabaseReference.child(storeId)
@@ -177,7 +197,7 @@ public class StoreService
                         {
                                 @Override
                                 public void onDataChange(DataSnapshot snapshot) {
-                                        StoreModel value = snapshot.getValue(StoreModel.class);
+                                        StoreContainerModel value = snapshot.getValue(StoreContainerModel.class);
                                         value.Id = storeId;
                                         try {
                                                 resultCallback.accept(value);
@@ -204,14 +224,14 @@ public class StoreService
         public static void Test() {
 
                 StoreService.GetAllStores(
-                        new Consumer<List<StoreModel>>()
+                        new Consumer<List<StoreContainerModel>>()
                         {
                                 @Override
-                                public void accept(List<StoreModel> storeModels) throws Exception {
-                                        for (StoreModel storeModel : storeModels) {
+                                public void accept(List<StoreContainerModel> storeModels) throws Exception {
+                                        for (StoreDownloadModel storeModel : storeModels) {
                                                 Log.d(TAG, "\n\n\n\n");
                                                 Log.d(TAG, storeModel.StoreName);
-                                                Log.d(TAG, storeModel.GetMainStorePhotoUrl());
+                                                Log.d(TAG, storeModel.getMainStorePhotoUrl());
                                         }
                                 }
                         }, new Consumer<String>()

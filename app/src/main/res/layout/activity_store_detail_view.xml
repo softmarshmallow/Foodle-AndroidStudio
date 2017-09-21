@@ -219,6 +219,182 @@
                     </LinearLayout>
 
 
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.1dp"
+                                android:background="#ACACAC"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#f0f0f4"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="22dp"
+                                android:paddingTop="10dp"
+                                android:text="기본정보"
+                                android:textColor="#868686"
+                                android:textSize="16dp"/>
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:background="#ACACAC"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="0.5"
+                                android:padding="20dp"
+                                android:text="전화"
+                                android:textSize="14dp"/>
+
+
+                            <mehdi.sakout.fancybuttons.FancyButton
+                                android:id="@+id/selectStoreLocationButton"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_margin="10dp"
+                                android:layout_weight="0.3"
+                                app:fb_borderColor="@color/colorPrimaryDark"
+                                app:fb_borderWidth="1dp"
+                                app:fb_defaultColor="#0000"
+                                app:fb_focusColor="@color/colorPrimaryDark"
+                                app:fb_radius="10dp"
+                                app:fb_text="010-0000-0000"
+                                app:fb_textColor="@color/colorPrimaryDark"/>
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:background="#ACACAC"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="0.5"
+                                android:padding="20dp"
+                                android:text="위치"
+                                android:textSize="14dp"/>
+
+                            <TextView
+                                android:id="@+id/storeAddressEditText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:background="#00000000"
+                                android:text="제주공항 옆"
+                                android:padding="16dp"/>
+
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:background="#ACACAC"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="0.5"
+                                android:padding="20dp"
+                                android:text="패북"
+                                android:textSize="14dp"/>
+
+                            <TextView
+                                android:id="@+id/storeAddressEditText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:autoLink="web"
+                                android:background="#00000000"
+                                android:padding="16dp"
+                                android:singleLine="true"
+                                android:text="https://facebook.com/username"/>
+
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:background="#ACACAC"/>
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="0.5"
+                                android:padding="20dp"
+                                android:text="인스타"
+                                android:textSize="14dp"/>
+
+                            <TextView
+                                android:id="@+id/storeAddressEditText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:autoLink="web"
+                                android:background="#00000000"
+                                android:padding="16dp"
+                                android:singleLine="true"
+                                android:text="https://instagram.com/username"/>
+
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:background="#ACACAC"/>
+
+
+
+                    </LinearLayout>
+
+
                     <LinearLayout
                         android:id="@+id/menuContainer"
                         android:layout_width="match_parent"
@@ -233,7 +409,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7.7dp"
                             android:layout_marginTop="14.0dp"
-                            android:text="Menus"
+                            android:text="메뉴"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textSize="24sp"/>
 
@@ -244,6 +420,7 @@
                             android:layout_marginTop="18.0dp"
                             android:clipToPadding="false"
                             android:scrollbars="vertical"
+                            android:nestedScrollingEnabled="false"
                             tools:listitem="@layout/card_menu"/>
                     </LinearLayout>
 
@@ -251,55 +428,112 @@
                         android:id="@+id/infosContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="9.3dp"
-                        android:layout_marginRight="11.3dp"
-                        android:layout_marginTop="8.0dp"
                         android:minHeight="25px"
                         android:minWidth="25px"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textView2"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="0.0dp"
-                            android:layout_marginTop="0.0dp"
-                            android:text="Infos"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textSize="24sp"/>
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
 
-                        <ScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:minHeight="25px"
-                            android:minWidth="25px">
-
-                            <com.ms.square.android.expandabletextview.ExpandableTextView
-                                android:id="@+id/storeFullDescriptionExpandableTextView"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                app:animDuration="200"
-                                app:maxCollapsedLines="4">
+                                android:layout_height="match_parent">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.1dp"
+                                    android:background="#ACACAC"/>
 
                                 <TextView
-                                    android:id="@id/expandable_text"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:background="#f0f0f4"
+                                    android:paddingBottom="10dp"
+                                    android:paddingLeft="22dp"
+                                    android:paddingTop="10dp"
+                                    android:text="상세 설명"
+                                    android:textColor="#868686"
+                                    android:textSize="16dp"/>
+
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.1dp"
+                                android:background="#ACACAC"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_weight="0.4"
+                                    android:padding="20dp"
+                                    android:text="상세 설명"
+                                    android:textSize="14dp"/>
+
+                                <View
+                                    android:id="@+id/view22"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.001dp"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:textColor="#666666"
-                                    android:textSize="16sp"/>
+                                    android:layout_weight="0.4"
+                                    android:background="@android:color/black"/>
 
-                                <ImageButton
-                                    android:id="@id/expand_collapse"
-                                    android:layout_width="wrap_content"
+
+                                <ScrollView
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="right|bottom"
-                                    android:layout_margin="16dp"
-                                    android:background="@android:color/transparent"/>
-                            </com.ms.square.android.expandabletextview.ExpandableTextView>
-                        </ScrollView>
+                                    android:layout_marginBottom="20dp"
+                                    android:layout_marginLeft="30dp"
+                                    android:minHeight="25px"
+                                    android:minWidth="25px">
+
+                                    <com.ms.square.android.expandabletextview.ExpandableTextView
+                                        android:id="@+id/storeFullDescriptionExpandableTextView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        app:animDuration="200"
+                                        app:maxCollapsedLines="4">
+
+                                        <TextView
+                                            android:id="@id/expandable_text"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_marginRight="10dp"
+                                            android:textColor="#666666"
+                                            android:text="Jidhar apna CRUSH hai , udhar hich sala RUSH hai and filhaal timepass k liye only CANDYCRUSH he."
+                                            android:textSize="16sp"/>
+
+                                        <ImageButton
+                                            android:id="@id/expand_collapse"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="right|bottom"
+                                            android:layout_margin="16dp"
+                                            android:background="@android:color/transparent"/>
+                                    </com.ms.square.android.expandabletextview.ExpandableTextView>
+                                </ScrollView>
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.1dp"
+                                android:background="#ACACAC"/>
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -316,7 +550,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="7.7dp"
                             android:layout_marginTop="14.0dp"
-                            android:text="Reviews"
+                            android:text="리뷰"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textSize="24sp"/>
 
@@ -326,6 +560,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="18.0dp"
                             android:clipToPadding="false"
+                            android:nestedScrollingEnabled="false"
                             android:scrollbars="vertical"
                             tools:listitem="@layout/card_review"/>
                     </LinearLayout>
@@ -355,7 +590,7 @@
                             android:layout_marginLeft="7.7dp"
                             android:layout_marginTop="14.0dp"
                             android:text="Address Kor. G. AAA st. 231-2"
-                            android:textAppearance="@android:style/TextAppearance.Material.Body1"/>
+                            />
 
                         <LinearLayout
                             android:id="@+id/storeLocationDataContiner"

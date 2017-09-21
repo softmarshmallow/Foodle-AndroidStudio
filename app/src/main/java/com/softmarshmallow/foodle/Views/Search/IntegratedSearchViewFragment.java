@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.softmarshmallow.foodle.Models.MockDataSource.MockDataSource;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
 
 import java.util.ArrayList;
@@ -77,7 +77,7 @@ public class IntegratedSearchViewFragment extends Fragment
 // Region searchStores
         void SearchStores(String query) {
                 // search store names
-                List<StoreModel> storeDatas = MockDataSource.AllStoreDatas;
+                List<StoreContainerModel> storeDatas = MockDataSource.AllStoreDatas;
 
 
                 SearchStore_MatchStoreName(storeDatas, query);
@@ -92,7 +92,7 @@ public class IntegratedSearchViewFragment extends Fragment
         RecyclerView searchResults_MatchStoreName_RecyclerView;
         private LinearLayoutManager searchResultsRecyclerViewLayoutManager;
         SearchResultStoresDisplayRecyclerviewAdapter searchResults_MatchStoreName_RecyclerViewAdapter;
-        List<StoreModel> searchResults_MatchStoreName = new ArrayList<>();
+        List<StoreContainerModel> searchResults_MatchStoreName = new ArrayList<>();
         void InitSearchResultsRecyclerView(){
                 searchResultsRecyclerViewLayoutManager = new LinearLayoutManager(getContext());
                 searchResults_MatchStoreName_RecyclerView.setLayoutManager(searchResultsRecyclerViewLayoutManager);
@@ -102,13 +102,13 @@ public class IntegratedSearchViewFragment extends Fragment
                         searchResults_MatchStoreName_RecyclerViewAdapter);
         }
 
-        void SearchStore_MatchStoreName(List<StoreModel> storeDatas, String query){
+        void SearchStore_MatchStoreName(List<StoreContainerModel> storeDatas, String query){
 
                 // region
                 // Search searchResult_MatchesStorename
-                List<StoreModel> searchResult_MatchesStorename = new ArrayList<>();
+                List<StoreContainerModel> searchResult_MatchesStorename = new ArrayList<>();
 
-                for (StoreModel storeData : storeDatas){
+                for (StoreContainerModel storeData : storeDatas){
                         if (storeData.StoreName.toLowerCase().contains(query.toLowerCase())){
                                 searchResult_MatchesStorename.add(storeData);
                         }
@@ -131,12 +131,12 @@ public class IntegratedSearchViewFragment extends Fragment
 
 
 
-        void SearchStore_MatchStoreDescription(List<StoreModel> storeDatas, String query){
+        void SearchStore_MatchStoreDescription(List<StoreContainerModel> storeDatas, String query){
                 // region
                 // Search SearchStore_MatchStoreDescription
-                List<StoreModel> searchResult_MatchStoreDescription = new ArrayList<>();
+                List<StoreContainerModel> searchResult_MatchStoreDescription = new ArrayList<>();
 
-                for (StoreModel storeData : storeDatas){
+                for (StoreContainerModel storeData : storeDatas){
                         String content = storeData.StoreShortDescription + storeData.StoreFullDescription;
                         if (content.toLowerCase().contains(query.toLowerCase())){
                                 searchResult_MatchStoreDescription.add(storeData);
@@ -162,7 +162,7 @@ public class IntegratedSearchViewFragment extends Fragment
 
                 protected SearchResultStoresDisplayRecyclerviewAdapter adapter;
 
-                protected  List<StoreModel> Filter(List<StoreModel> storeDatas, String query){
+                protected  List<StoreContainerModel> Filter(List<StoreContainerModel> storeDatas, String query){
 
 
                         return storeDatas;
@@ -172,7 +172,7 @@ public class IntegratedSearchViewFragment extends Fragment
 
         class StoreSearch_MatchStoreName_Conatiner extends StoreSearchContainer{
                 @Override
-                protected List<StoreModel> Filter(List<StoreModel> storeDatas, String query) {
+                protected List<StoreContainerModel> Filter(List<StoreContainerModel> storeDatas, String query) {
                         return super.Filter(storeDatas, query);
                 }
 

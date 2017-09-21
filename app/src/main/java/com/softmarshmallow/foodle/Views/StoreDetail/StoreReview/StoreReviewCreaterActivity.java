@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.RatingBar;
 
-import com.softmarshmallow.foodle.Models.Store.StoreReviewModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreReviewModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.FirebaseUserService;
 import com.softmarshmallow.foodle.Services.StoreReviewService;

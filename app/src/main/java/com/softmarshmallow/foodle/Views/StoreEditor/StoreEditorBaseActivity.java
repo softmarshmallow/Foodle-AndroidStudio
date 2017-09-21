@@ -21,11 +21,10 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreTransferBaseModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreUploadBundleModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.FirebaseUserService;
-import com.softmarshmallow.foodle.Services.StoreService;
-import com.softmarshmallow.foodle.Views.MenuEditor.MenuEditorBaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import io.reactivex.functions.Consumer;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class StoreEditorBaseActivity extends AppCompatActivity
@@ -84,22 +82,16 @@ public class StoreEditorBaseActivity extends AppCompatActivity
         @BindView(R.id.instagramUrlEditText)
         EditText instagramUrlEditText;
         
-        static StoreModel StoreDataToUpdate = new StoreModel();
-        static List<MenuModel> StoreMenuDatasToUpdate = new ArrayList<>();
+        @BindView(R.id.saveButton)
+        FancyButton saveButton;
         
-        //region edit mode
-        public enum EditorType{
-                Create,
-                Update
+        
+        // // FIXME: 9/14/17 add Transferdata field
+        static StoreUploadBundleModel StoreUploadBundleData = new StoreUploadBundleModel();
+        StoreTransferBaseModel getStoreUploadData (){
+                return StoreUploadBundleData.storeTransferBaseModel;
         }
-        static EditorType editorType = EditorType.Create;
-        public static void SetEditingMode(EditorType editorType){
-                StoreEditorBaseActivity.editorType = editorType;
-        }
-        public static void SetStoreDataToUpdate(StoreModel storeDataToUpdate){
-                StoreEditorBaseActivity.StoreDataToUpdate = storeDataToUpdate;
-        }
-        //endregion
+        static List<MenuModel> StoreMenuDatasToUpdate = new ArrayList<>();
         
         
         @Override
@@ -108,27 +100,8 @@ public class StoreEditorBaseActivity extends AppCompatActivity
                 setContentView(R.layout.activity_store_editor);
                 ButterKnife.bind(this);
                 
-                
-                if (editorType == EditorType.Update){
-                        LoadStoreDataToEdit();
-                }
         }
         
-        
-        void LoadStoreDataToEdit(){
-                storeNameEditText.setText(StoreDataToUpdate.StoreName);
-                
-                storeShortDescriptionEditText.setText(StoreDataToUpdate.StoreShortDescription);
-                
-                storeFullDescriptionEditText.setText(StoreDataToUpdate.StoreFullDescription);
-                
-                SetStoreLocationData(new LatLng(StoreDataToUpdate.GetStoreLocation().first, StoreDataToUpdate.GetStoreLocation().second), StoreDataToUpdate.StoreAddress);
-                
-                //// TODO: 9/12/17 implement all
-        
-                // init menus
-                StoreMenuDatasToUpdate = StoreDataToUpdate.Menus;
-        }
         
         
         @Override
@@ -139,7 +112,7 @@ public class StoreEditorBaseActivity extends AppCompatActivity
                 if (resultCode == Activity.RESULT_OK) {
                         if (requestCode == selectStorePhotoRequestCode) {
                                 storePhotoImageView.setImageURI(data.getData());
-                                StoreDataToUpdate.StorePhotoLocalUris.add(data.getData()
+                                StoreUploadBundleData.StorePhotoLocalUris.add(data.getData()
                                         .toString());
                                 isStorePhotoSetted = true;
                         } else if (requestCode == chooseStoreLocationRequestCode) {
@@ -225,9 +198,6 @@ public class StoreEditorBaseActivity extends AppCompatActivity
         // region Menus
         @OnClick(R.id.endterEditMenuPageButton)
         void OnEndterEditMenuPageButtonClick(){
-                
-                // // FIXME: 9/12/17  for debug
-                startActivity(new Intent(this, MenuEditorBaseActivity.class));
         }
         //endregion
         
@@ -294,82 +264,24 @@ public class StoreEditorBaseActivity extends AppCompatActivity
                 }else {
                         
                         BuildData();
-                        if (editorType == EditorType.Create){
-                                CreateNewStore();
-                        }else if (editorType == EditorType.Update){
-                                UpdateStore();
-                        }
+        
+                        PerformCRUDAction();
                 }
         }
         
+        
+        protected void PerformCRUDAction(){}
+        
         void BuildData(){
+                StoreTransferBaseModel StoreDataToUpdate = StoreUploadBundleData.storeTransferBaseModel;
                 StoreDataToUpdate.setStoreOwnerId(FirebaseUserService.GetUserUID());
                 StoreDataToUpdate.setStoreName(storeNameEditText.getText().toString());
                 StoreDataToUpdate.setStoreFullDescription(storeFullDescriptionEditText.getText().toString());
                 
-                StoreDataToUpdate.setStoreLocation(
-                        storeLatLng.latitude + ", " + storeLatLng.longitude);
+                StoreDataToUpdate.setStoreLocation(storeLatLng.latitude + ", " + storeLatLng.longitude);
                 StoreDataToUpdate.setStoreAddress(storeAddress);
                 StoreDataToUpdate.setStorePhoneNumber(phoneNumberEditText.getText().toString());
                 StoreDataToUpdate.setStoreExtraContacts(getStoreExtraContacs());
         }
-        
-        //region CreateStore
-        void CreateNewStore(){
-                final SweetAlertDialog createStoreProgressDialog = new SweetAlertDialog(StoreEditorBaseActivity.this, SweetAlertDialog.PROGRESS_TYPE)
-                        .setTitleText("푸드트럭 업로드중..");
-                createStoreProgressDialog.show();
-                new StoreService.StoreUploader(
-                        StoreDataToUpdate,
-                        new Consumer<StoreModel>()
-                        {
-                                @Override
-                                public void accept(StoreModel storeModel) throws Exception {
-                                        createStoreProgressDialog.dismissWithAnimation();
-                                        new SweetAlertDialog(StoreEditorBaseActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-                                                .setTitleText("업로드 완료")
-                                                .setConfirmClickListener(
-                                                        new SweetAlertDialog.OnSweetClickListener()
-                                                        {
-                                                                @Override
-                                                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                                        StoreEditorBaseActivity.this.finish();
-                                        
-                                                                }
-                                                        }).show();
-                                }
-                        },
-                        new Consumer<String>()
-                        {
-                                @Override
-                                public void accept(String s) throws Exception {
-                                        createStoreProgressDialog.dismissWithAnimation();
-                                        new SweetAlertDialog(StoreEditorBaseActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                                .setTitleText("업로드 실패")
-                                                .setContentText(s)
-                                                .setConfirmClickListener(
-                                                        new SweetAlertDialog.OnSweetClickListener()
-                                                        {
-                                                                @Override
-                                                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                                        StoreEditorBaseActivity.this.finish();
-                                        
-                                                                }
-                                                        }).show();
-                                }
-                        }).CreateStore();
-        }
-        //endregion
-        
-        
-        
-        //region UpdateStore
-        void UpdateStore(){
-                
-        }
-        //endregion
-        
-        
-        
         
 }

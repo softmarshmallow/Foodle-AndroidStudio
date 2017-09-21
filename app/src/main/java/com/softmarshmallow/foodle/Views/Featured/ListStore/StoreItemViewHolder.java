@@ -8,13 +8,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.StoreDetail.StoreDetailViewActivity;
 
-/**
- * Created by UZU on 21/08/2017.
- */
+
 
 public class StoreItemViewHolder extends RecyclerView.ViewHolder
 {
@@ -25,8 +23,8 @@ public class StoreItemViewHolder extends RecyclerView.ViewHolder
         public TextView storeShortDescriptionTextView;
         public ImageView storeIconImageView;
         public ImageView storeFeatureGraphicImageView;
-
-        StoreModel storeData;
+        
+        StoreContainerModel storeData;
         Context context;
 
         public StoreItemViewHolder(View itemView, final Context context) {
@@ -51,7 +49,7 @@ public class StoreItemViewHolder extends RecyclerView.ViewHolder
         }
 
 
-        public void BindWithStoreData(StoreModel storeData)
+        public void BindWithStoreData(StoreContainerModel storeData)
         {
                 this.storeData = storeData;
 
@@ -59,7 +57,7 @@ public class StoreItemViewHolder extends RecyclerView.ViewHolder
 
                 storeShortDescriptionTextView.setText(storeData.StoreShortDescription);
 
-                String MainStorePhotoUrl = storeData.GetMainStorePhotoUrl();
+                String MainStorePhotoUrl = storeData.getMainStorePhotoUrl();
                 if (MainStorePhotoUrl != null)
                 {
                         Glide.with(context)

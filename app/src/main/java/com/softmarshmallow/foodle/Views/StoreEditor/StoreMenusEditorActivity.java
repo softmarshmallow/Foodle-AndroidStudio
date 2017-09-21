@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
@@ -27,20 +24,25 @@ import butterknife.OnClick;
 public class StoreMenusEditorActivity extends AppCompatActivity
 {
         
+        public static String baseStoreId;
+        public static void setBaseStoreId(String baseStoreId){
+                StoreMenusEditorActivity.baseStoreId = baseStoreId;
+        }
+        
+        
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_store_menus_editor);
         
                 ButterKnife.bind(this);
-        
-        
-                menusAdapter = new MenusAdapter(this, createdMenuDatas);
+                
+                
+                menusAdapter = new MenusAdapter(this, MenuDatas);
                 menusRecyclerView.setLayoutManager(new LinearLayoutManager(this));
                 menusRecyclerView.setAdapter(menusAdapter);
                 
         }
-        
         
         
         private static final String TAG = StoreMenusEditorActivity.class.getName();
@@ -48,7 +50,7 @@ public class StoreMenusEditorActivity extends AppCompatActivity
         RecyclerView menusRecyclerView;
         MenusAdapter menusAdapter;
         
-        List<MenuModel> createdMenuDatas = new ArrayList<>();
+        List<MenuModel> MenuDatas = new ArrayList<>();
         
         
         @Override
@@ -65,9 +67,10 @@ public class StoreMenusEditorActivity extends AppCompatActivity
                 }
         }
         
+        
         void OnCreatedNewMenu(MenuModel menuData){
                 // add tp menus recycler view adapter
-                createdMenuDatas.add(menuData);
+                MenuDatas.add(menuData);
                 menusAdapter.notifyDataSetChanged();
         }
         
@@ -75,7 +78,19 @@ public class StoreMenusEditorActivity extends AppCompatActivity
         @OnClick(R.id.createNewMenuButton)
         void OnCreateNewMenuButtonClick(){
                 Intent intent = new Intent(this, MenuCreatorActivity.class);
+                MenuCreatorActivity.SetBaseStoreId(baseStoreId);
                 startActivityForResult(intent, CreateNewMenuRequestCode);
+        }
+        
+        
+        @OnClick(R.id.saveTextButton)
+        void OnSaveButtonClick(){
+                finishEditingStoreMenus();
+        }
+        
+        
+        void finishEditingStoreMenus(){
+                finish();
         }
         
 }

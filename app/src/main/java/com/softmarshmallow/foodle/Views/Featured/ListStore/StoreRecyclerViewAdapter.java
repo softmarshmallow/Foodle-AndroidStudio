@@ -7,24 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
 
 import java.util.List;
 
-/**
- * Created by UZU on 21/08/2017.
- */
 
 public class StoreRecyclerViewAdapter extends RecyclerView.Adapter
 {
         final  static String TAG = StoreRecyclerViewAdapter.class.getName();
+        int maxDisplayLimit = 4;
 
-
-        public List<StoreModel> storeDatas ;
+        public List<StoreContainerModel> storeDatas ;
         Context context;
 
-        public StoreRecyclerViewAdapter(List<StoreModel> storeDatas, Context context)
+        public StoreRecyclerViewAdapter(List<StoreContainerModel> storeDatas, Context context)
         {
                 this.storeDatas = storeDatas;
                 this.context = context;
@@ -33,6 +30,7 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter
         @Override
         public int getItemCount() {
                 return storeDatas.size();
+                
         }
 
 

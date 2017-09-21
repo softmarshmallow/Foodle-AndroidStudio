@@ -64,13 +64,13 @@ public class MainNavigationDrawer
         static DrawerBuilder CreateNavigationDrawer(final Activity activity, Toolbar toolbar) {
                 PrimaryDrawerItem home = new PrimaryDrawerItem().withIdentifier(
                         NavigationItemType.Home.getValue())
-                        .withName("Home");
+                        .withName("홈");
                 SecondaryDrawerItem settings = new SecondaryDrawerItem().withIdentifier(
                         NavigationItemType.Settings.getValue())
-                        .withName("Settings");
+                        .withName("설정");
                 SecondaryDrawerItem storeCreator = new SecondaryDrawerItem().withIdentifier(
                         NavigationItemType.StoreCreatorPage.getValue())
-                        .withName("Create Store");
+                        .withName("푸드트럭 등록하기");
                 SecondaryDrawerItem option1 = new SecondaryDrawerItem().withIdentifier(
                         NavigationItemType.Option1.getValue())
                         .withName("option1");

@@ -113,13 +113,11 @@
                     android:layout_height="match_parent">
 
                     <View
-                        android:id="@+id/view3"
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:background="#ACACAC"/>
 
                     <TextView
-                        android:id="@+id/textView9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#f0f0f4"
@@ -133,7 +131,6 @@
                 </RelativeLayout>
 
                 <View
-                    android:id="@+id/view15"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
                     android:background="#ACACAC"/>
@@ -149,7 +146,6 @@
                     android:textAppearance="@android:style/TextAppearance.Material"/>
 
                 <View
-                    android:id="@+id/view16"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
                     android:background="#ACACAC"/>
@@ -166,13 +162,11 @@
                     android:layout_height="match_parent">
 
                     <View
-                        android:id="@+id/view3"
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:background="#ACACAC"/>
 
                     <TextView
-                        android:id="@+id/textView9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#f0f0f4"
@@ -186,7 +180,6 @@
                 </RelativeLayout>
 
                 <View
-                    android:id="@+id/view15"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
                     android:background="#ACACAC"/>
@@ -201,7 +194,6 @@
                     android:textAppearance="@android:style/TextAppearance.Material"/>
 
                 <View
-                    android:id="@+id/view16"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
                     android:background="#ACACAC"/>
@@ -250,13 +242,11 @@
                     android:layout_height="match_parent">
 
                     <View
-                        android:id="@+id/view3"
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:background="#ACACAC"/>
 
                     <TextView
-                        android:id="@+id/textView9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#f0f0f4"
@@ -270,7 +260,6 @@
                 </RelativeLayout>
 
                 <View
-                    android:id="@+id/view15"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
                     android:background="#ACACAC"/>
@@ -285,7 +274,6 @@
                     android:textAppearance="@android:style/TextAppearance.Material"/>
 
                 <View
-                    android:id="@+id/view16"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
                     android:background="#ACACAC"/>

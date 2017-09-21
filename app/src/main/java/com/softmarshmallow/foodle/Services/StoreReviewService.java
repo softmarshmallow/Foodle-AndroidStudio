@@ -8,8 +8,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
-import com.softmarshmallow.foodle.Models.Store.StoreReviewModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreReviewModel;
 
 import io.reactivex.functions.Consumer;
 
@@ -22,7 +21,8 @@ public class StoreReviewService
         private static final String TAG = "StoreReviewService";
         private static DatabaseReference storeReviewsDatabaseReference = ApiController.database.getReference(
                 "StoreReviews");
-
+        
+        public static final String StoreReviewsIdKey = "StoreReviewsIds";
 
 
         public static class StoreReviewCreator{
@@ -67,7 +67,7 @@ public class StoreReviewService
                 }
 
                 void Operation2_UpdateStoreReviewInStoreData(){
-                        StoreService.storesDatabaseReference.child(baseStoreId).child(StoreModel.StoreReviewsIdKey).push().setValue(
+                        StoreService.storesDatabaseReference.child(baseStoreId).child(StoreReviewsIdKey).push().setValue(
                                 newStoreReviewId
                                 , new DatabaseReference.CompletionListener()
                                 {

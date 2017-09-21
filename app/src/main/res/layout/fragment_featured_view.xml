@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yalantis.taurus.PullToRefreshView
+<!--<com.yalantis.taurus.PullToRefreshView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pull_to_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:type="sun">
+    app:type="sun">-->
+
 <android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
                                             android:minWidth="25px"
                                             android:minHeight="25px"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:background="@color/viewBg"
                                             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                                            android:animationCache="false"
                                             >
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,23 +57,49 @@
                     android:layout_height="27.3dp"
                     android:src="@drawable/you_are_here"/>
 
-                <TextView
-                    android:id="@+id/foodtrucksNearbyTextView"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="14.7dp"
-                    android:text="내주변 푸드트럭"
-                    android:textSize="24sp"/>
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="12.3dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/foodtrucksNearbyTextView"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="추천 푸드트럭"
+                        android:textSize="24sp"
+                        android:textColor="#373737"/>
+
+                    <TextView
+                        android:id="@+id/expandNearbyStoreButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전체 보기"
+                        android:textColor="#a5a5a5"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
             </LinearLayout>
+
+
+
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/NearbyStoresRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"/>
+                android:paddingRight="20dp"
+                android:nestedScrollingEnabled="false"
+                />
 
         </LinearLayout>
+
         <LinearLayout
             android:orientation="vertical"
             android:minWidth="25px"
@@ -127,12 +158,13 @@
                 android:adjustViewBounds="true" />
         </LinearLayout>
 
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/featuredStoresRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18.0dp"
+            android:nestedScrollingEnabled="false"
+
             tools:listitem="@layout/card_store_list_item"/>
 
         <LinearLayout
@@ -192,6 +224,7 @@
                 android:id="@+id/newStoresRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
                 android:clipToPadding="false"
                 android:scrollbars="horizontal"
                 android:layout_marginTop="18.0dp" />
@@ -215,10 +248,13 @@
                 android:id="@+id/festivalsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
                 android:clipToPadding="false"
                 android:scrollbars="horizontal"
                 android:layout_marginTop="18.0dp" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
+<!--
 </com.yalantis.taurus.PullToRefreshView>
+-->

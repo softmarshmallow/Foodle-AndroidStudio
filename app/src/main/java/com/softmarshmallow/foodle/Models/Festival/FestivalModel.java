@@ -1,14 +1,9 @@
 package com.softmarshmallow.foodle.Models.Festival;
 
 import com.softmarshmallow.foodle.Models.ReviewModel;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
 
 import java.util.Date;
 import java.util.List;
-
-/**
- * Created by UZU on 03/09/2017.
- */
 
 public class FestivalModel
 {
@@ -60,6 +55,6 @@ public class FestivalModel
         /// 참여예정 푸드트럭
         /// </summary>
         /// <value>The comming foodtrucks.</value>
-        public List<StoreModel> CommingFoodtrucks;
+        public List<String> CommingFoodtrucksIds;
         
 }

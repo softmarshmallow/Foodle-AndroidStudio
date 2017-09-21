@@ -2,6 +2,7 @@ package com.softmarshmallow.foodle.Views.MenuEditor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -71,7 +72,7 @@ public class MenuEditorBaseActivity extends AppCompatActivity
         FancyButton saveButton;
         
         
-        private MenuModel MenuData = new MenuModel();
+        MenuModel MenuData = new MenuModel();
         
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -114,13 +115,15 @@ public class MenuEditorBaseActivity extends AppCompatActivity
         void OnMenuMainPhotoImageViewClick() {
                 Log.d(TAG, "OnMenuMainPhotoImageViewClick");
                  
-                imagePicker.shouldGenerateThumbnails(true);
+                imagePicker.shouldGenerateThumbnails(false);
                 imagePicker.setImagePickerCallback(
                         new ImagePickerCallback()
                         {
                                 @Override
                                 public void onImagesChosen(List<ChosenImage> images) {
-                                        Glide.with(MenuEditorBaseActivity.this).load( images.get(0).getQueryUri()).into(menuPhotoImageView);
+                                        String imageLocalUri = images.get(0).getQueryUri();
+                                        MenuData.MenuMainLocalPhotoUri = imageLocalUri;
+                                        Glide.with(MenuEditorBaseActivity.this).load(imageLocalUri).into(menuPhotoImageView);
                                         isMenuPhotoSetted = true;
                                 }
                                 
@@ -151,7 +154,7 @@ public class MenuEditorBaseActivity extends AppCompatActivity
                         @Override
                         public void onValidationSucceeded() {
                                 if (AdditionalValidation()){
-                                        CreateMenu();
+                                        PerformCRUDAction();
                                 }
                         }
                         
@@ -187,8 +190,8 @@ public class MenuEditorBaseActivity extends AppCompatActivity
                 return true;
         }
         
-        void CreateMenu() {
-                
+        void BuildData(){
+        
                 MenuData.MenuName = menuNameEditText.getText()
                         .toString();
                 MenuData.MenuShortDescription = menuShortDescriptionEditText.getText()
@@ -196,8 +199,12 @@ public class MenuEditorBaseActivity extends AppCompatActivity
                 MenuData.MenuPrice = Integer.valueOf(menuPriceEditText.getText()
                         .toString());
                 MenuData.MenuNutritionInformation = menuNutritionInformationEditText.getText().toString();
+        
+        }
+        
+        protected void PerformCRUDAction() {
                 
-                
+                // // FIXME: 9/21/17
                 SaveMenu();
         }
         
@@ -207,7 +214,6 @@ public class MenuEditorBaseActivity extends AppCompatActivity
                 Intent intent = new Intent();
                 intent.putExtra(ResultKey, gson.toJson(MenuData));
                 setResult(RESULT_OK, intent);
-                finish();
         }
         
         

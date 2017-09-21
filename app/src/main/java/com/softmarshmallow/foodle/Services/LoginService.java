@@ -28,6 +28,10 @@ public class LoginService
         {
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(authResultOnCompleteListener);
         }
+        
+        public static void Logout(){
+                mAuth.signOut();
+        }
 
         public static void AutoLogin(OnCompleteListener<AuthResult> authResultOnCompleteListener){
                 Login(LoginPreferences.getUserEmail(), LoginPreferences.getUserPassword(), authResultOnCompleteListener);

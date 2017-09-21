@@ -13,7 +13,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
 
 import io.reactivex.functions.Consumer;
 
@@ -23,6 +22,7 @@ public class MenuService
         
         private static final String TAG = "MenuService";
         private static final String MenusKey = "Menus";
+        private static final String MenusIdsKey = "MenusIds";
         
         static DatabaseReference menusDatabaseReference = ApiController.database.getReference(
                 MenusKey);
@@ -131,7 +131,7 @@ public class MenuService
                                                 StoreService.storesDatabaseReference.child(
                                                         baseStoreId)
                                                         .child(
-                                                                StoreModel.MenusIdKey)
+                                                                MenusIdsKey)
                                                         .push()
                                                         .setValue(
                                                                 newMenuDatabaseReference.getKey());

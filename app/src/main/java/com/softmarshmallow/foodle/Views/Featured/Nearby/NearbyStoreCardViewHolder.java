@@ -5,10 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.StoreDetail.StoreDetailViewActivity;
 
@@ -16,9 +15,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-/**
- * Created by UZU on 23/08/2017.
- */
 
 public class NearbyStoreCardViewHolder extends RecyclerView.ViewHolder
 {
@@ -32,7 +28,7 @@ public class NearbyStoreCardViewHolder extends RecyclerView.ViewHolder
         @BindView(R.id.thumbnail)
         ImageView thumbnailImageView;
         private Context context;
-        private StoreModel storeData;
+        private StoreContainerModel storeData;
 
 
         public NearbyStoreCardViewHolder(View itemView, final Context context) {
@@ -51,12 +47,12 @@ public class NearbyStoreCardViewHolder extends RecyclerView.ViewHolder
                 });
         }
 
-        public void BindWithStoreData(StoreModel storeModel) {
+        public void BindWithStoreData(StoreContainerModel storeModel) {
                 this.storeData = storeModel;
                 storeNameTextView.setText(storeModel.StoreName);
                 storeLocationTextView.setText("Some where...");
                 Glide.with(context)
-                        .load(storeModel.GetMainStorePhotoUrl())
+                        .load(storeModel.getMainStorePhotoUrl())
 //                        .override(500, 200)
                         .centerCrop()
                         .into(thumbnailImageView);

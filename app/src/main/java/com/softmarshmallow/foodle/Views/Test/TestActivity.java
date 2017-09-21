@@ -10,15 +10,10 @@ import com.softmarshmallow.foodle.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ernestoyaquello.com.verticalstepperform.VerticalStepperFormLayout;
-import ernestoyaquello.com.verticalstepperform.interfaces.VerticalStepperForm;
 
-public class TestActivity extends AppCompatActivity implements VerticalStepperForm
+public class TestActivity extends AppCompatActivity
 {
 
-
-        @BindView(R.id.vertical_stepper_form)
-        VerticalStepperFormLayout verticalStepperForm;
 
 
         protected void onCreate(Bundle savedInstanceState) {
@@ -36,41 +31,11 @@ public class TestActivity extends AppCompatActivity implements VerticalStepperFo
                 int colorPrimary = ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary);
                 int colorPrimaryDark = ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark);
 
-                VerticalStepperFormLayout.Builder.newInstance(verticalStepperForm,
-                        stepsTitles, this, this)
-                        //.stepsSubtitles(stepsSubtitles)
-
-                        //.materialDesignInDisabledSteps(true) // false by default
-                        //.showVerticalLineWhenStepsAreCollapsed(true) // false by default
-//                        .primaryColor(colorPrimary)
-//                        .primaryDarkColor(colorPrimaryDark)
-                        .displayBottomNavigation(true)
-                        .init();
-
-        }
-
-        @Override
-        public View createStepContentView(int stepNumber) {
-                return new View(this);
-        }
-
-        @Override
-        public void onStepOpening(int stepNumber) {
-                checkSomething();
-        }
-
-        @Override
-        public void sendData() {
 
         }
 
 
 
-        boolean checkSomething(){
-                verticalStepperForm.setActiveStepAsCompleted();
-
-                return true;
-        }
 }
 
 

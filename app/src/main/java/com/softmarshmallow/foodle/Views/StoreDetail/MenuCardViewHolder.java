@@ -12,11 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.R;
+import com.softmarshmallow.foodle.Views.MenuDetailPage.MenuDetailActivity;
 import com.softmarshmallow.foodle.Views.OrderMenu.OrderMenuActivity;
-
-/**
- * Created by UZU on 21/08/2017.
- */
 
 public class MenuCardViewHolder extends RecyclerView.ViewHolder
 {
@@ -45,9 +42,7 @@ public class MenuCardViewHolder extends RecyclerView.ViewHolder
                 {
                         @Override
                         public void onClick(View view) {
-                                OrderMenuActivity.OrderringMenuData = menuData;
-                                Intent intent  =new Intent(context, OrderMenuActivity.class);
-                                context.startActivity(intent);
+                                MenuDetailActivity.ShowMenuDetail(menuData, context);
                         }
                 });
                 

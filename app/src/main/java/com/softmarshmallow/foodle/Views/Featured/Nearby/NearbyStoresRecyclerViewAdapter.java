@@ -7,24 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
+import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
 
 import java.util.List;
 
-/**
- * Created by UZU on 23/08/2017.
- */
 
 public class NearbyStoresRecyclerViewAdapter extends RecyclerView.Adapter
 {
-        final  static String TAG = NearbyStoresRecyclerViewAdapter.class.getName();
+        private final static String TAG = NearbyStoresRecyclerViewAdapter.class.getName();
 
 
-        public List<StoreModel> storeDatas ;
-        Context context;
+        public List<StoreContainerModel> storeDatas ;
+        private Context context;
 
-        public NearbyStoresRecyclerViewAdapter(List<StoreModel> storeDatas, Context context)
+        public NearbyStoresRecyclerViewAdapter(List<StoreContainerModel> storeDatas, Context context)
         {
                 this.storeDatas = storeDatas;
                 this.context = context;
@@ -32,7 +29,13 @@ public class NearbyStoresRecyclerViewAdapter extends RecyclerView.Adapter
 
         @Override
         public int getItemCount() {
-                return storeDatas.size();
+                // return max 4
+                int maxDisplayLimit = 4;
+                if (storeDatas.size() > maxDisplayLimit){
+                        return maxDisplayLimit;
+                }else {
+                        return storeDatas.size();
+                }
         }
 
 
@@ -43,7 +46,6 @@ public class NearbyStoresRecyclerViewAdapter extends RecyclerView.Adapter
                 View itemView = inflater.inflate(R.layout.card_nearby_store, parent, false);
 
                 return new NearbyStoreCardViewHolder(itemView, context);
-
         }
 
         @Override

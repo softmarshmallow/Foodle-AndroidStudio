@@ -3,7 +3,6 @@ package com.softmarshmallow.foodle.Models.User;
 
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.PropertyName;
-import com.softmarshmallow.foodle.Models.Store.StoreModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,12 +47,12 @@ public class FoodleUserProfileModel
         public static final String LikedStoreIdsKey = "LikedStores";
         @PropertyName(LikedStoreIdsKey)
         public Map<String, String> LikedStoreIds = new HashMap<>();
-        @Exclude
+        /*@Exclude
         public List<StoreModel> LikedStores = new ArrayList<>();
         public FoodleUserProfileModel setLikedStores(List<StoreModel> likedStores) {
                 LikedStores = likedStores;
                 return this;
-        }
+        }*/
         // endregion
         
         
@@ -63,12 +62,12 @@ public class FoodleUserProfileModel
         public static final String OwnedStoreIdsKey = "OwnedStore";
         @PropertyName(OwnedStoreIdsKey)
         public Map<String, String> OwnedStoreIds = new HashMap<>();
-        @Exclude
+        /*@Exclude
         public List<StoreModel> OwnedStores = new ArrayList<>();
         public FoodleUserProfileModel setOwnedStores(List<StoreModel> ownedStores) {
                 OwnedStores = ownedStores;
                 return this;
-        }
+        }*/
         // endregion
         
 }

@@ -2,13 +2,12 @@ package com.softmarshmallow.foodle;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-public class FoodleApp extends Application
+public class FoodleApp extends MultiDexApplication
 {
         private static Context context;
 
