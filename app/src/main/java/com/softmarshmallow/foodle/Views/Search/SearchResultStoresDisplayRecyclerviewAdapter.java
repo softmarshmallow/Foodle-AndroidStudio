@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
+import com.softmarshmallow.foodle.Views.Shared.BaseStoreItemViewHolder;
 import com.softmarshmallow.foodle.Views.StoreDetail.StoreDetailViewActivity;
 
 import java.util.List;
@@ -60,7 +61,7 @@ public class SearchResultStoresDisplayRecyclerviewAdapter extends RecyclerView.A
 
 
                 if (searchResultStoreCardViewHolder != null) {
-                        searchResultStoreCardViewHolder.BindWithStoreData(storeDatas.get(position));
+                        searchResultStoreCardViewHolder.BindViewWithData(storeDatas.get(position));
                 }
 
         }
@@ -72,63 +73,11 @@ public class SearchResultStoresDisplayRecyclerviewAdapter extends RecyclerView.A
 }
 
 
-class SearchResultStoreCardViewHolder extends RecyclerView.ViewHolder
+class SearchResultStoreCardViewHolder extends BaseStoreItemViewHolder
 {
         private static final String TAG = SearchResultStoreCardViewHolder.class.getName();
-        private Context context;
-
-        @BindView(R.id.mainStorePhotoImageView)
-         ImageView mainStorePhotoImageView;
-
-
-        @BindView(R.id.storeNameTextView)
-         TextView storeNameTextView;
-
-
-        @BindView(R.id.storeShortDescriptionTextView)
-         TextView storeShortDescriptionTextView;
         
-        
-        StoreContainerModel storeData;
-
-        public SearchResultStoreCardViewHolder(View view, final Context context) {
-                super(view);
-                this.context = context;
-
-                final Gson gson = new Gson();
-
-                ButterKnife.bind(this, view);
-                view.setOnClickListener(new View.OnClickListener()
-                {
-                        @Override
-                        public void onClick(View view) {
-                                Intent intent = new Intent(context,
-                                        (StoreDetailViewActivity.class));
-                                intent.putExtra((StoreContainerModel.class.getName()),
-                                        gson.toJson(storeData));
-                                context.startActivity(intent);
-                        }
-                });
-
+        public SearchResultStoreCardViewHolder(View itemView, Context context) {
+                super(itemView, context);
         }
-
-
-        public void BindWithStoreData(StoreContainerModel storeData) {
-                this.storeData = storeData;
-
-
-                storeNameTextView.setText(storeData.StoreName);
-                storeShortDescriptionTextView.setText(storeData.StoreShortDescription);
-                // set mainPhoto thumbnail
-                String storeMainPhotoUrl = storeData.getMainStorePhotoUrl();
-                if (storeMainPhotoUrl != null){
-                        Glide.with(context)
-                                .load(storeMainPhotoUrl)
-                                .into(mainStorePhotoImageView);
-                }else {
-                        // todo load default image
-                        Log.d(TAG ,"storeMainPhotoMedia is null");
-                }
-        }
-
 }

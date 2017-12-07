@@ -69,6 +69,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/reviewRatingBar"
                             android:layout_marginLeft="7.7dp"
+                            android:singleLine="true"
                             android:text="reviewerName"
                             android:textAppearance="@android:style/TextAppearance.Material.Caption"/>
                     </RelativeLayout>
@@ -91,10 +92,8 @@
             <TextView
                 android:id="@+id/reviewContentTextView"
                 android:layout_width="match_parent"
-                android:layout_height="84.0dp"
-                android:paddingLeft="@dimen/menu_name_padding"
-                android:paddingRight="@dimen/menu_name_padding"
-                android:paddingTop="@dimen/menu_name_padding"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="Review Content Goes Here..."
                 android:textColor="@color/album_title"
                 android:textSize="@dimen/album_title"/>

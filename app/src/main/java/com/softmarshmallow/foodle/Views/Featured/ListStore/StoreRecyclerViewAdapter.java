@@ -54,7 +54,7 @@ public class StoreRecyclerViewAdapter extends RecyclerView.Adapter
 
                 if (storeItemViewHolder != null)
                 {
-                        storeItemViewHolder.BindWithStoreData(storeDatas.get(position));
+                        storeItemViewHolder.BindViewWithData(storeDatas.get(position));
                 }
         }
 

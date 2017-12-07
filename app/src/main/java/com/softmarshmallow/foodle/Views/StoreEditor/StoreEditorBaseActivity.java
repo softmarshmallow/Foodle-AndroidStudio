@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.softmarshmallow.foodle.Helpers.StoreExtraContactsBuilder;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreTransferBaseModel;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreUploadBundleModel;
@@ -27,6 +28,7 @@ import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.FirebaseUserService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -187,9 +189,17 @@ public class StoreEditorBaseActivity extends AppCompatActivity
         
         //region StoreExtraContacts
         String getStoreExtraContacs(){
-                String extraContacts = "페이스북 : " + facebookUrlEditText.getText().toString();
-                extraContacts += "\n" + "인스타그램 : " + instagramUrlEditText.getText().toString();
+                String extraContacts = StoreExtraContactsBuilder.BuildExtraContacts(
+                        new HashMap<String, String>()
+                        {
+                                {
+                                        put(StoreExtraContactsBuilder.facebookKey, facebookUrlEditText.getText().toString());
+                                        put(StoreExtraContactsBuilder.instagramKey, instagramUrlEditText.getText().toString());
+                                }
+                        }
+                );
                 return extraContacts;
+                
         }
         
         //endregion

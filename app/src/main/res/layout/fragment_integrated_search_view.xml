@@ -25,6 +25,7 @@
                 android:id="@+id/integratedSearchView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:queryHint="검색어를 입력하세요"
                 android:minHeight="25px"
                 android:minWidth="25px"/>
 
@@ -36,7 +37,7 @@
                 android:layout_marginRight="9.0dp"
                 android:layout_marginTop="8.5dp"/>
 
-            <LinearLayout
+          <!--  <LinearLayout
                 android:id="@+id/mockResultsContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,7 +54,7 @@
                     android:adjustViewBounds="true"
                     android:src="@drawable/search_result_item1"/>
 
-            </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

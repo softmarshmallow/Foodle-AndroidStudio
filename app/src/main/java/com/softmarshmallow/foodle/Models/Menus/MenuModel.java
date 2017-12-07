@@ -20,11 +20,11 @@ public class MenuModel
         @Exclude
         public String MenuMainLocalPhotoUri;
         
-        public int MenuCalories;
-        
         public int MenuPrice;
         
         public  String MenuNutritionInformation;
+        
+        public String BaseStoreId;
 
         public MenuModel() {
         }
@@ -42,12 +42,6 @@ public class MenuModel
 
         public MenuModel setMenuMainPhotoUrl(String menuMainPhotoUrl) {
                 MenuMainPhotoUrl = menuMainPhotoUrl;
-                return this;
-
-        }
-
-        public MenuModel setMenuCalories(int menuCalories) {
-                MenuCalories = menuCalories;
                 return this;
 
         }

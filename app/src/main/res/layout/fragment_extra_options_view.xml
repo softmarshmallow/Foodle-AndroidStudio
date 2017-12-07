@@ -185,6 +185,7 @@
                     android:background="#ACACAC"/>
 
                 <Button
+                    android:id="@+id/checkPolicyButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
@@ -199,7 +200,7 @@
                     android:background="#ACACAC"/>
 
                 <Button
-                    android:id="@+id/button9"
+                    android:id="@+id/locationBasedServicePolicyButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
@@ -215,14 +216,14 @@
                     android:background="#ACACAC"/>
 
                 <Button
-                    android:id="@+id/button10"
+                    android:id="@+id/checkPrivacyPolicyButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="30dp"
                     android:text="개인정보 취급 방침 확인"
-                    android:textAppearance="@android:style/TextAppearance.Material"/>
+                    />
 
                 <View
                     android:id="@+id/view21"
@@ -265,13 +266,14 @@
                     android:background="#ACACAC"/>
 
                 <Button
+                    android:id="@+id/checkVersionButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="30dp"
                     android:text="v.0.6._"
-                    android:textAppearance="@android:style/TextAppearance.Material"/>
+                    />
 
                 <View
                     android:layout_width="match_parent"

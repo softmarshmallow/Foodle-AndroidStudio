@@ -2,42 +2,39 @@ package com.softmarshmallow.foodle.Views.Login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.TextureView;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.database.Exclude;
-import com.softmarshmallow.foodle.Helpers.LoginPreferences;
+import com.softmarshmallow.foodle.Helpers.LoginHelpers.LoginPreferences;
+import com.softmarshmallow.foodle.Helpers.LoginHelpers.LoginType;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.LoginService;
 import com.softmarshmallow.foodle.Views.MainTabController.MainTabControllerActivity;
+
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import mehdi.sakout.fancybuttons.FancyButton;
 
-/**
- * A login screen that offers login via email/password.
- */
+
 public class LoginActivity extends AppCompatActivity
 {
         static final String TAG = "LoginActivity";
@@ -52,18 +49,22 @@ public class LoginActivity extends AppCompatActivity
         @BindView(R.id.login_form)
         View mLoginFormView;
         
+        LoginType loginType;
+        
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setTheme(R.style.AppTheme_FullScreen);
                 setContentView(R.layout.activity_login);
                 ButterKnife.bind(this);
+        
+                initFacebookLogin();
 
         }
 
         @OnClick(R.id.loginButton)
         void OnLoginButtonClick(){
-                attemptLogin();
+                attemptLoginWithEmail();
         }
         /**
          * Attempts to sign in or register the account specified by the login form.
@@ -72,8 +73,12 @@ public class LoginActivity extends AppCompatActivity
          */
         boolean isAttemptingLogin;
         
-        private void attemptLogin() {
-                Log.d(TAG, "attemptLogin");
+        String email;
+        String password;
+        private void attemptLoginWithEmail() {
+                loginType = LoginType.Email;
+                
+                Log.d(TAG, "attemptLoginWithEmail");
                 
                 if (isAttemptingLogin) {
                         return;
@@ -84,9 +89,9 @@ public class LoginActivity extends AppCompatActivity
                 mPasswordView.setError(null);
                 
                 // Store values at the time of the login attempt.
-                final String email = mEmailView.getText()
+                email = mEmailView.getText()
                         .toString();
-                final String password = mPasswordView.getText()
+                password = mPasswordView.getText()
                         .toString();
                 
                 boolean cancel = false;
@@ -121,42 +126,53 @@ public class LoginActivity extends AppCompatActivity
                         showProgress(true);
                         
                         isAttemptingLogin = true;
-                        LoginService.Login(email, password, new OnCompleteListener<AuthResult>()
-                        {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                        isAttemptingLogin = false;
-                                        showProgress(false);
-                                        
-                                        Log.d(TAG, "Login isSuccessful : " + String.valueOf(
-                                                task.isSuccessful()));
-                                        if (task.isSuccessful()) {
-
-                                                // Save login datas
-                                                LoginPreferences.setUserEmail(email);
-                                                LoginPreferences.setUserPassword(password);
-                                                LoginPreferences.setIsLoggedIn(true);
-
-                                                // move to next activity
-                                                Intent intent = new Intent(LoginActivity.this,
-                                                        nextActivity);
-                                                startActivity(intent);
-                                                
-                                                finish();
-                                        } else {
-                                                Exception exception = task.getException();
-                                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                                        .setTitleText("로그인 오류")
-                                                        .setContentText(exception.getMessage())
-                                                        .show();
-                                                mPasswordView.setError((exception.getMessage()));
-                                                mPasswordView.requestFocus();
-                                        }
-                                }
-                        });
+                        LoginService.LoginWithEmail(email, password, onLoginCompleteListener);
                         
                 }
         }
+        
+        OnCompleteListener onLoginCompleteListener = new OnCompleteListener()
+        {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                        isAttemptingLogin = false;
+                        showProgress(false);
+        
+                        Log.d(TAG, "Login isSuccessful : " + String.valueOf(
+                                task.isSuccessful()));
+                        if (task.isSuccessful()) {
+                                
+                                LoginPreferences.setIsLoggedIn(true);
+                                LoginPreferences.setLoginType(loginType);
+                                switch (loginType){
+                                        case Email:
+                                                // Save login datas
+                                                LoginPreferences.setUserEmail(email);
+                                                LoginPreferences.setUserPassword(password);
+                                                break;
+                                        
+                                        case Facebook:
+                                                LoginPreferences.setFacebookToken(facebookToken);
+                                                break;
+                                }
+                               
+                                // move to next activity
+                                Intent intent = new Intent(LoginActivity.this,
+                                        nextActivity);
+                                startActivity(intent);
+                
+                                finish();
+                        } else {
+                                Exception exception = task.getException();
+                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("로그인 오류")
+                                        .setContentText(exception.getMessage())
+                                        .show();
+                                mPasswordView.setError((exception.getMessage()));
+                                mPasswordView.requestFocus();
+                        }
+                }
+        };
         
         
         private boolean isEmailValid(String email) {
@@ -195,7 +211,7 @@ public class LoginActivity extends AppCompatActivity
 
                 if (loginProgressDialog == null){
                         loginProgressDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE)
-                                .setTitleText("Logging in...");
+                                .setTitleText("접속중...");
                 }
 
                 if (show){
@@ -215,5 +231,90 @@ public class LoginActivity extends AppCompatActivity
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivityForResult(intent, ShowSignupRequestCode);
         }
-}
+        
 
+        
+        //region facebooklogin
+        
+        CallbackManager mCallbackManager;
+        LoginManager loginManager;
+        void initFacebookLogin(){
+                // Initialize Facebook LoginWithEmail button
+                
+                
+                mCallbackManager = CallbackManager.Factory.create();
+        
+                FancyButton facebookLoginButton = findViewById(R.id.facebook_login);
+                facebookLoginButton.setOnClickListener(new View.OnClickListener()
+                {
+                        @Override
+                        public void onClick(View view) {
+                                loginManager.logInWithReadPermissions(LoginActivity.this, Arrays.asList("email", "public_profile"));
+                        }
+                });
+                AccessToken.setCurrentAccessToken(null);
+
+//                LoginButton loginButton = findViewById(R.id.loginWithFacebookButton);
+//                loginButton.setReadPermissions("email", "public_profile");
+        
+               loginManager= LoginManager.getInstance();
+        
+        
+                final FacebookCallback callback = new FacebookCallback<LoginResult>() {
+                        @Override
+                        public void onSuccess(LoginResult loginResult) {
+                                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                                handleFacebookAccessToken(loginResult.getAccessToken());
+                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("성공")
+                                        .setContentText("페이스북으로 로그인 하였습니다.")
+                                        .show();
+                        }
+        
+                        @Override
+                        public void onCancel() {
+                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("취소")
+                                        .setContentText("사용자에 의해 취소되었습니다.")
+                                        .show();
+                                Log.d(TAG, "facebook:onCancel");
+                                // ...
+                        }
+        
+                        @Override
+                        public void onError(FacebookException error) {
+                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("오류")
+                                        .setContentText("로그인중 오류가 발생하였습니다. error : " + error)
+                                        .show();
+                                Log.d(TAG, "facebook:onError", error);
+                                // ...
+                        }
+                };
+                
+                loginManager.registerCallback(mCallbackManager, callback);
+                
+//                loginButton.registerCallback(mCallbackManager, callback);
+        }
+        
+        
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+                super.onActivityResult(requestCode, resultCode, data);
+                
+                // Pass the activity result back to the Facebook SDK
+                mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        }
+        
+        String facebookToken;
+        private void handleFacebookAccessToken(AccessToken token) {
+                facebookToken = token.getToken();
+                loginType = LoginType.Facebook;
+                
+                Log.d(TAG, "handleFacebookAccessToken:" + token);
+                showProgress(true);
+                LoginService.LoginWithFacebook(facebookToken, onLoginCompleteListener);
+        }
+        
+        //endregion
+}

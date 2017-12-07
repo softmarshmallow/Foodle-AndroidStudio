@@ -33,7 +33,6 @@ public class MockDataSource
                                                         .setMenuMainPhotoUrl(
                                                                 "http://www.seriouseats.com/recipes/assets_c/2013/01/20130109-236426-sandwiched-avocado-arugula-and-walnut-sandwich-thumb-625xauto-298252.jpg")
                                                         .setMenuPrice(3500)
-                                                        .setMenuCalories(220)
                                         );
                                         add(
                                                 new MenuModel()
@@ -41,8 +40,7 @@ public class MockDataSource
                                                         .setMenuShortDescription("the best we surve.")
                                                         .setMenuMainPhotoUrl(
                                                                 "https://mobile-cuisine.com/wp-content/uploads/2013/01/spaghetti-with-meat-sauce.jpg")
-                                                        .setMenuPrice(3500)
-                                                        .setMenuCalories(220));
+                                                        .setMenuPrice(3500));
                                 }}
                         )
                                 .setStoreReviews(
@@ -110,18 +108,14 @@ public class MockDataSource
                                                         .setMenuShortDescription("the best we surve.")
                                                         .setMenuMainPhotoUrl(
                                                                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7L1NJYFFLyn4gfmXtiipaabIPkMAv2UzrFeumgjHv5_HLl549EA")
-                                                        .setMenuPrice(3500)
-                                                        .setMenuCalories(220)
-                                        );
+                                                        .setMenuPrice(3500));
                                         add(
                                                 new MenuModel()
                                                         .setMenuName("Test Menu1")
                                                         .setMenuShortDescription("the best we surve.")
                                                         .setMenuMainPhotoUrl(
                                                                 "https://mobile-cuisine.com/wp-content/uploads/2013/01/spaghetti-with-meat-sauce.jpg")
-                                                        .setMenuPrice(3500)
-                                                        .setMenuCalories(220));
-                                }}
+                                                        .setMenuPrice(3500));}}
                         )
                                 .setStoreReviews(
                                         new ArrayList<StoreReviewModel>()
@@ -187,7 +181,6 @@ public class MockDataSource
                                                                 .setMenuMainPhotoUrl(
                                                                         "http://www.seriouseats.com/recipes/assets_c/2013/01/20130109-236426-sandwiched-avocado-arugula-and-walnut-sandwich-thumb-625xauto-298252.jpg")
                                                                 .setMenuPrice(3500)
-                                                                .setMenuCalories(220)
                                                 );
                                                 add(
                                                         new MenuModel()
@@ -196,7 +189,7 @@ public class MockDataSource
                                                                 .setMenuMainPhotoUrl(
                                                                         "http://www.seriouseats.com/recipes/assets_c/2013/01/20130109-236426-sandwiched-avocado-arugula-and-walnut-sandwich-thumb-625xauto-298252.jpg")
                                                                 .setMenuPrice(3500)
-                                                                .setMenuCalories(220));
+                                                );
                                         }}
                                 )
                                 .setStoreReviews(
@@ -268,7 +261,6 @@ public class MockDataSource
                                                                 .setMenuMainPhotoUrl(
                                                                         "http://www.seriouseats.com/recipes/assets_c/2013/01/20130109-236426-sandwiched-avocado-arugula-and-walnut-sandwich-thumb-625xauto-298252.jpg")
                                                                 .setMenuPrice(3500)
-                                                                .setMenuCalories(220)
                                                 );
                                                 add(
                                                         new MenuModel()
@@ -276,8 +268,7 @@ public class MockDataSource
                                                                 .setMenuShortDescription("the best we surve.")
                                                                 .setMenuMainPhotoUrl(
                                                                         "http://www.seriouseats.com/recipes/assets_c/2013/01/20130109-236426-sandwiched-avocado-arugula-and-walnut-sandwich-thumb-625xauto-298252.jpg")
-                                                                .setMenuPrice(3500)
-                                                                .setMenuCalories(220));
+                                                                .setMenuPrice(3500));
                                         }}
                                 )
                                 .setStoreReviews(

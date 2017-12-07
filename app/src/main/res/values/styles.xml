@@ -76,7 +76,6 @@
         <!-- Custom Attr-->
         <item name="fontPath">fonts/NanumBarunGothicLight.otf</item>
 
-        <!--<item name="fontPath">fonts/AppleSDGothicNeo_Thin.otf</item>-->
         <!--<item name="fontPath">fonts/NotoSansUI-Regular.ttf</item>-->
     </style>
 

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.daimajia.slider.library.SliderLayout
+                    android:id="@+id/promotionImageSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/watchFromMapsButtonContainer"
+                android:tag="sticky"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="24.3dp"
+                android:layout_marginRight="24.7dp"
+                android:orientation="horizontal"
+                android:paddingLeft="16.7dp"
+                android:paddingBottom="15.3dp"
+                android:paddingTop="15dp"
+                android:background="@drawable/food_curve_rect">
+
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="28.3dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/you_are_here"/>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_view_on_map"
+                    android:layout_marginLeft="14.3dp"
+                    android:textSize="16.7sp"
+                    android:layout_gravity="center"
+                    android:textColor="#373737"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="21.3dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="16.3dp"
+                    android:tint="#373737"
+                    android:src="@drawable/ic_right_arrow"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="12.3dp"
+                android:layout_marginTop="29.7dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/featured_store_recommendation"
+                    android:textSize="19.3sp"
+                    android:textColor="#373737"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_see_all"
+                    android:textColor="#a5a5a5"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/featuredStoresRecyclerView"
+                    android:clipToPadding="false"
+                    android:paddingLeft="24.3dp"
+                    android:paddingTop="17.7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:dividerHeight="0dp"
+                    android:divider="#fff"
+                    android:scrollbars="none" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="12.3dp"
+                android:layout_marginTop="44.7dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/featured_menu_recommendation"
+                    android:textSize="19.3sp"
+                    android:textColor="#373737"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_see_all"
+                    android:textColor="#a5a5a5"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/featuredMenusRecyclerView"
+                    android:clipToPadding="false"
+                    android:paddingLeft="24.3dp"
+                    android:paddingTop="17.7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:dividerHeight="0dp"
+                    android:divider="#fff"
+                    android:scrollbars="none" />
+
+            </LinearLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_gravity="center"
+                android:layout_marginTop="39.7dp"
+                android:layout_marginBottom="34.3dp"
+                android:layout_width="match_parent"
+                android:clipToPadding="false"
+                android:paddingLeft="23.7dp"
+                android:paddingRight="22.3dp"
+                android:layout_height="188.3dp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

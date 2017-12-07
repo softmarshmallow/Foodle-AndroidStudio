@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.softmarshmallow.foodle.Helpers.LoginPreferences;
+import com.softmarshmallow.foodle.Helpers.LoginHelpers.LoginPreferences;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.LoginService;
 import com.softmarshmallow.foodle.Views.Login.LoginActivity;
@@ -130,7 +130,7 @@ public class SplashScreenActivity extends AppCompatActivity
                         }
                 });
         }
-
+        
         void MoveToMainActivity(){
                 Intent intent = new Intent(SplashScreenActivity.this, MainTabControllerActivity.class);
                 startActivity(intent);

@@ -44,7 +44,7 @@ public class RequestCateringActivity extends AppCompatActivity
         void NotifyUserThatThisFeatureIsNotSupported(){
                 new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("지원안함")
-                        .setContentText("이 기능은 아직 지원되지 않습니다. 그냥 둘러볼까요?")
+                        .setContentText("이 기능은 아직 지원되지 않습니다.\n그냥 둘러볼까요?")
                         .show();
         }
         

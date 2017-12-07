@@ -1,6 +1,7 @@
 package com.softmarshmallow.foodle.Views.Mypage.Shared;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -30,10 +31,16 @@ public class StoresListViewActivity extends AppCompatActivity
         // fixme embed StoreListFragment under this activity
         // fixme
         // fixme
+        
 
+        static List<StoreContainerModel> storeDatas;
 
-        List<StoreContainerModel> storeDatas;
-
+        
+        public static void showStoresList(Context context, List<StoreContainerModel> storeDatas){
+                StoresListViewActivity.storeDatas = storeDatas;
+                context.startActivity(new Intent(context, StoresListViewActivity.class));
+                Log.d(TAG, "StoreDatas = " + storeDatas.size());
+        }
 
 
 
@@ -68,10 +75,7 @@ public class StoresListViewActivity extends AppCompatActivity
         {
                 Log.d(TAG, "LoadStoreDatasInBackground");
                 // Load StoreData
-                Gson gson = new Gson();
-                this.storeDatas = gson.fromJson(getIntent().getStringExtra(StoreDatasKey), new TypeToken<List<StoreContainerModel>>(){}.getType());
-
-
+                
                 runOnUiThread(new Runnable()
                 {
                         @Override

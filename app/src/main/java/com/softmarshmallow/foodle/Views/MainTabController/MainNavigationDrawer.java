@@ -11,18 +11,15 @@ import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+import com.softmarshmallow.foodle.Helpers.ContactToFoodleHelper;
 import com.softmarshmallow.foodle.R;
-import com.softmarshmallow.foodle.Views.Festival.FestivalDetailViewActivity;
-import com.softmarshmallow.foodle.Views.MenuEditor.MenuCreatorActivity;
+import com.softmarshmallow.foodle.Views.Mypage.ProfileEditorActivity;
 import com.softmarshmallow.foodle.Views.StoreEditor.StoreCreatorActivity;
-import com.softmarshmallow.foodle.Views.Test.TestActivity;
-
+import com.softmarshmallow.foodle.Views.StoreMapsView.StoreMapsViewActivity;
 
 
 public class MainNavigationDrawer
@@ -32,12 +29,12 @@ public class MainNavigationDrawer
         
         enum NavigationItemType
         {
-                Home(0),
+//                Home(0),
                 Settings(1),
                 StoreCreatorPage(2),
-                Option1(3),
-                Option2(4),
-                Option3(5),;
+                EditProfile(3),
+                ViewOnMaps(4),
+                ContactToFoodle(5),;
                 
                 
                 int value;
@@ -62,27 +59,29 @@ public class MainNavigationDrawer
         }
         
         static DrawerBuilder CreateNavigationDrawer(final Activity activity, Toolbar toolbar) {
-                PrimaryDrawerItem home = new PrimaryDrawerItem().withIdentifier(
-                        NavigationItemType.Home.getValue())
-                        .withName("홈");
+               
                 SecondaryDrawerItem settings = new SecondaryDrawerItem().withIdentifier(
                         NavigationItemType.Settings.getValue())
                         .withName("설정");
+                
                 SecondaryDrawerItem storeCreator = new SecondaryDrawerItem().withIdentifier(
                         NavigationItemType.StoreCreatorPage.getValue())
                         .withName("푸드트럭 등록하기");
-                SecondaryDrawerItem option1 = new SecondaryDrawerItem().withIdentifier(
-                        NavigationItemType.Option1.getValue())
-                        .withName("option1");
+                
+                SecondaryDrawerItem editProfile = new SecondaryDrawerItem().withIdentifier(
+                        NavigationItemType.EditProfile.getValue())
+                        .withName("프로필 수정");
+                
                 SecondaryDrawerItem option2 = new SecondaryDrawerItem().withIdentifier(
-                        NavigationItemType.Option2.getValue())
-                        .withName("option2");
+                        NavigationItemType.ViewOnMaps.getValue())
+                        .withName("지도에서 보기");
 
                 SecondaryDrawerItem option3 = new SecondaryDrawerItem().withIdentifier(
-                        NavigationItemType.Option3.getValue())
-                        .withName("option3");
+                        NavigationItemType.ContactToFoodle.getValue())
+                        .withName("연락하기");
         
                 // Create the AccountHeader
+                /*
                 AccountHeader headerResult = new AccountHeaderBuilder()
                         .withActivity(activity)
                         .withHeaderBackground(R.drawable.app_icon_red_v3)
@@ -100,7 +99,7 @@ public class MainNavigationDrawer
                                 }
                         })
                         .build();
-
+                */
 
                 //create the drawer and remember the `Drawer` result object
         
@@ -109,13 +108,11 @@ public class MainNavigationDrawer
                         .withToolbar(toolbar)
                         .withActionBarDrawerToggleAnimated(true)
                         .withActionBarDrawerToggle(true)
-                        .withAccountHeader(headerResult)
+//                        .withAccountHeader(headerResult)
                         .addDrawerItems(
-                                home,
-                                new DividerDrawerItem(),
-                                settings,
+//                                settings,
                                 storeCreator,
-                                option1,
+                                editProfile,
                                 option2,
                                 option3
                         )
@@ -133,13 +130,8 @@ public class MainNavigationDrawer
                                 
                                         Intent intent;
                                         switch (navigationItemType) {
-                                                case Home:
-                                                        intent = new Intent(activity, TestActivity.class);
-                                                         activity.startActivity(intent);
-                                                        break;
-                                                case Settings:
-
                                                 
+                                                case Settings:
                                                         break;
                                                 case StoreCreatorPage:
                                                         intent = new Intent(activity,
@@ -147,26 +139,22 @@ public class MainNavigationDrawer
                                                         activity.startActivity(intent);
                                                         break;
                                         
-                                                case Option1:
+                                                case EditProfile:
                                                         intent = new Intent(activity,
-                                                                MenuCreatorActivity.class);
+                                                                ProfileEditorActivity.class);
                                                         activity.startActivity(intent);
                                                         break;
                                         
-                                                case Option2:
+                                                case ViewOnMaps:
                                                         intent = new Intent(activity,
-                                                                FestivalDetailViewActivity.class);
+                                                                StoreMapsViewActivity.class);
                                                         activity.startActivity(intent);
                                                         break;
-                                                case Option3:
-//                                                        intent = new Intent(activity,
-//                                                                StoreEditorBaseActivity.class);
-//                                                        activity.startActivity(intent);
-
-
+                                                case ContactToFoodle:
+                                                        ContactToFoodleHelper.SendEmailToFoodle(activity);
                                                         break;
                                         }
-                                
+                                        
                                         return true;
                                 }
                         });

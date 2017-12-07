@@ -2,8 +2,11 @@ package com.softmarshmallow.foodle.Models.StoreV2;
 
 import android.util.Pair;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.Exclude;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class StoreTransferBaseModel
@@ -16,7 +19,8 @@ public class StoreTransferBaseModel
         public String StoreAddress;
         public String StorePhoneNumber;
         public String StoreExtraContacts;
-      
+        public List<String> StorePhotoUrls = new ArrayList<>();
+        
         @Exclude
         public Pair<Double, Double> getStoreLocation() {
                 try {
@@ -28,6 +32,11 @@ public class StoreTransferBaseModel
                 catch (Exception e) {
                         return new Pair<Double, Double>(0d, 0d);
                 }
+        }
+        @Exclude
+        public LatLng getStoreLatLng(){
+                Pair<Double, Double> pair = getStoreLocation();
+                return new LatLng(pair.first, pair.second);
         }
         
         public StoreTransferBaseModel setStoreOwnerId(String storeOwnerId) {

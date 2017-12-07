@@ -3,6 +3,7 @@ package com.softmarshmallow.foodle.Services;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.Menu;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -13,6 +14,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.functions.Consumer;
 
@@ -163,6 +167,46 @@ public class MenuService
                 throw new Exception();
                 
         }
+        
+        
+        
+        
+        
+        public static void GetAllMenu(final Consumer<List<MenuModel>> resultCallback, final Consumer<String> errorCallback){
+                Log.d(TAG, "GetAllStores");
+        
+                menusDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener()
+                {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                List<MenuModel> allStores = new ArrayList<MenuModel>();
+                                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                        MenuModel value = child.getValue(MenuModel.class);
+                                        value.Id = child.getKey();
+                                        allStores.add(value);
+                                }
+                                try {
+                                        resultCallback.accept(allStores);
+                                }
+                                catch (Exception e) {
+                                        e.printStackTrace();
+                                }
+                        }
+                
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                                try {
+                                        errorCallback.accept(databaseError.getMessage());
+                                }
+                                catch (Exception e) {
+                                        e.printStackTrace();
+                                }
+                        }
+                });
+        }
+        
+        
+        
         
         
         public static void GetMenu(String menuID, final Consumer<MenuModel> resultCallback, final Consumer<String> errorCallback) {

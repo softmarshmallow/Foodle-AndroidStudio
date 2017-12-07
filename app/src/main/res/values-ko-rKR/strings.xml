@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quit_app_title">같이 있어요~ 네?</string>
+    <string name="quit_app_content">정말 가실거에요?</string>
+    <string name="btn_login">로그인</string>
+    <string name="quit_app_confirm">담에봐</string>
+    <string name="quit_app_cancel">좀만더 이따 갈까?</string>
+    <string name="btn_facebook_login">페이스북 로그인</string>
+    <string name="btn_enter_register">회원가입</string>
+    <string name="prompt_email">이메일 주소</string>
+    <string name="prompt_password">비밀번호</string>
+    <string name="action_register">회원가입</string>
+    <string name="action_sign_in">로그인</string>
+    <string name="error_invalid_email">이메일주소가 올바르지 않아요 ㅠ</string>
+    <string name="error_invalid_password">비밀번호를 다시 확인해주세요</string>
+    <string name="error_field_required">이칸은 채워주셔야되는데 흐흐</string>
+    <string name="prompt_confirm_password">비밀번호 확인</string>
+    <string name="action_view_on_map">지도에서 보기</string>
+    <string name="featured_store_recommendation">여기 추천!</string>
+    <string name="action_see_all">전체 보기</string>
+    <string name="featured_menu_recommendation">먹어보자~</string>
+    <string name="action_request_catering">케이터링</string>
+    <string name="action_share">공유</string>
+    <string name="action_write_review">리뷰</string>
+    <string name="promt_phone">전화</string>
+    <string name="prompt_location">위치</string>
+</resources>

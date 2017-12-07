@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="19.7dp"
+        android:orientation="vertical">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/storeImage"
+            app:riv_corner_radius="10dp"
+            android:layout_width="207.3dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:src="@drawable/demo_menu_real_image"/>
+
+        <TextView
+            android:id="@+id/storeNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLength="15"
+            android:text="Parata"
+            android:textSize="16.7sp"
+            android:layout_marginTop="13dp"
+            android:textColor="#373737"/>
+
+
+        <TextView
+            android:id="@+id/captionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Punjabi"
+            android:textSize="12.7sp"
+            android:maxLength="40"
+            android:layout_marginTop="11.7dp"
+            android:textColor="#a5a5a5"/>
+
+        <TextView
+            android:id="@+id/locationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs 500 / person (app.)"
+            android:textSize="12.7sp"
+            android:layout_marginTop="5.7dp"
+            android:textColor="#a5a5a5"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9.3dp"
+            android:orientation="horizontal">
+
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/ratingBarStyleSmall"
+                android:isIndicator="true"
+                android:rating="4"
+                />
+<!--
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rating="3"
+                android:isIndicator="false"
+                android:clickable="false"
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                style="?android:attr/ratingBarStyleSmall" />-->
+
+            <TextView
+                android:id="@+id/tv_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 Review"
+                android:textSize="9.7sp"
+                android:layout_marginLeft="3dp"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:textColor="#a5a5a5"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

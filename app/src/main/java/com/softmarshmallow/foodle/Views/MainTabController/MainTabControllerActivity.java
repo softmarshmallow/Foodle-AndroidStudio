@@ -48,8 +48,8 @@ public class MainTabControllerActivity extends AppCompatActivity
                 setTheme(R.style.AppTheme_NoActionBar);
                 setContentView(R.layout.activity_main_tab_controller);
                 ButterKnife.bind(this);
-        
-                 InitNavDrawer();
+                
+                InitNavDrawer();
                 
                 InitTabBar();
         }
@@ -178,8 +178,6 @@ public class MainTabControllerActivity extends AppCompatActivity
                                 }
                         }
                 }, 500);
-                
-                
         }
         
         public void FocusOnTab(MainTabsType tabType) {
@@ -241,9 +239,9 @@ public class MainTabControllerActivity extends AppCompatActivity
 
         void AskIfQuitApp(){
                 new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("같이 있어요~ 네?")
-                        .setContentText("정말 가실거에요?")
-                        .setCancelText("좀만더 이따 갈까?")
+                        .setTitleText(getString(R.string.quit_app_title))
+                        .setContentText(getString(R.string.quit_app_content))
+                        .setCancelText(getString(R.string.quit_app_cancel))
                         .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sDialog) {
@@ -251,7 +249,7 @@ public class MainTabControllerActivity extends AppCompatActivity
                                 }
                         })
 
-                        .setConfirmText("담에봐 ㅠ")
+                        .setConfirmText(getString(R.string.quit_app_confirm))
                         .setConfirmClickListener (new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sDialog) {

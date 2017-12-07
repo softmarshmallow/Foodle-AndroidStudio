@@ -2,14 +2,14 @@ package com.softmarshmallow.foodle.Views.ExtraOptions;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.softmarshmallow.foodle.Helpers.LoginPreferences;
+import com.softmarshmallow.foodle.Helpers.ContactToFoodleHelper;
+import com.softmarshmallow.foodle.Helpers.LoginHelpers.LoginPreferences;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.LoginService;
 import com.softmarshmallow.foodle.Views.Festival.FestivalCreatorActivity;
@@ -54,7 +54,7 @@ public class ExtraOptionsViewFragment extends Fragment
                 new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("로그아웃")
                         .setContentText("로그아웃 하시겠습니까?")
-                        .setContentText("넵!")
+                        .setConfirmText("넵!")
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
                         {
                                 @Override
@@ -83,12 +83,39 @@ public class ExtraOptionsViewFragment extends Fragment
         
         @OnClick(R.id.ContactButton)
         public void onContactButtonClicked() {
-                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-                emailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                emailIntent.setType("vnd.android.cursor.item/email");
-                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"woojoo@softmarshmallow.com"});
-                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "푸들에게 한마디");
-                emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "내용을 입력해주세요");
-                startActivity(Intent.createChooser(emailIntent, "Send mail using..."));
+                ContactToFoodleHelper.SendEmailToFoodle(getContext());
+        }
+        
+        
+        @OnClick(R.id.checkPolicyButton)
+        public void onCheckPolicyButtonClicked() {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("준비중")
+                        .setContentText("준비중입니다.")
+                        .show();
+        }
+        
+        @OnClick(R.id.locationBasedServicePolicyButton)
+        public void onLocationBasedServicePolicyButtonClicked() {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("준비중")
+                        .setContentText("준비중입니다.")
+                        .show();
+        }
+        
+        @OnClick(R.id.checkPrivacyPolicyButton)
+        public void onCheckPrivacyPolicyButtonClicked() {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("준비중")
+                        .setContentText("준비중입니다.")
+                        .show();
+        }
+        
+        @OnClick(R.id.checkVersionButton)
+        public void onCheckVersionButtonClicked() {
+                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("v0.7.x")
+                        .setContentText("축하드립니다. 최신 버전이군요!")
+                        .show();
         }
 }

@@ -134,7 +134,7 @@ public class SignupActivity extends AppCompatActivity
                                                 if (task.isSuccessful()) {
                                                         new SweetAlertDialog(SignupActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                                                                 .setTitleText("Register Complete")
-                                                                .setConfirmText("Login")
+                                                                .setConfirmText("LoginWithEmail")
                                                                 .setConfirmClickListener(
                                                                         new SweetAlertDialog.OnSweetClickListener()
                                                                         {

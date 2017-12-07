@@ -77,6 +77,7 @@ public class StoreService
                                                         if (task.getException() == null) {
                                                                 Uri uri = task.getResult()
                                                                         .getDownloadUrl();
+                                                                storeUploadBundleData.storeTransferBaseModel.StorePhotoUrls.add(uri.toString());
                                                                 storePhotoUrls.add(
                                                                         uri.toString());
                                                                 Log.d(TAG,
@@ -152,9 +153,9 @@ public class StoreService
         //
         //
         //
-
-
         
+        
+        public static List<StoreContainerModel> storeContainerDataList = new ArrayList<>();
         public static void GetAllStores(final Consumer<List<StoreContainerModel>> resultCallback, final Consumer<String> errorCallback) {
                 Log.d(TAG, "GetAllStores");
 
@@ -169,7 +170,8 @@ public class StoreService
                                         allStores.add(value);
                                 }
                                 try {
-                                        resultCallback.accept(allStores);
+                                        storeContainerDataList = allStores;
+                                        resultCallback.accept(storeContainerDataList);
                                 }
                                 catch (Exception e) {
                                         e.printStackTrace();
@@ -187,7 +189,6 @@ public class StoreService
                         }
                 });
         }
-        
         
         public static void GetStore(final String storeId, final Consumer<StoreContainerModel> resultCallback, final Consumer<String> errorCallback) {
                 Log.d(TAG, "GetStore");

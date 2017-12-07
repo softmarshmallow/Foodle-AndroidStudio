@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Geocoder;
+import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,12 +27,10 @@ import com.google.gson.Gson;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
-import com.r0adkll.slidr.Slidr;
+import com.softmarshmallow.foodle.Helpers.StoreExtraContactsBuilder;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.Models.ReviewModel;
-
 import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
-import com.softmarshmallow.foodle.Models.StoreV2.StoreDownloadModel;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreReviewModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.MenuService;
@@ -46,6 +44,7 @@ import com.yalantis.taurus.PullToRefreshView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,8 +52,6 @@ import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.functions.Consumer;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
-import android.widget.Toast;
 
 public class StoreDetailViewActivity extends AppCompatActivity implements OnMapReadyCallback, AppBarLayout.OnOffsetChangedListener
 {
@@ -94,6 +91,10 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
         @BindView(R.id.storeAddressTextView)
         TextView storeAddressTextView;
         
+        @BindView(R.id.storeAddressPreviewTextView)
+        TextView storeAddressPreviewTextView;
+        
+        
         @BindView(R.id.storeMapDescriptionAddressTextView)
         TextView storeMapDescriptionAddressTextView;
         
@@ -109,6 +110,7 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
         ReviewsAdapter reviewsAdapter;
         
         static StoreContainerModel storeDataToDisplay;
+
         
         public static void ShowStoreDetailWithData(Context context, StoreContainerModel storeDataToDisplay) {
                 StoreDetailViewActivity.storeDataToDisplay = storeDataToDisplay;
@@ -126,10 +128,10 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                 //pushable activity
                 Slidr.attach(this);
 */
-
-
+                
+                
                 toolbar.setTitleTextColor(Color.RED);
-
+                
                 //region Init
                 // map
                 storeLocationMapView.onCreate(savedInstanceState);
@@ -149,7 +151,6 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                 this.geoCoder = new Geocoder(this, Locale.getDefault());
                 //endregion
                 
-        
                 
                 LoadStoreData();
                 
@@ -173,42 +174,72 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                 
                 Gson gson = new Gson();
                 // Load StoreData
-                if (storeDataToDisplay == null){
-                        Log.e(TAG, "STORE DATA CANNOT BE NULL, this may be caused by using old intend pattern");
+                if (storeDataToDisplay == null) {
+                        Log.e(TAG,
+                                "STORE DATA CANNOT BE NULL, this may be caused by using old intend pattern");
                         this.storeDataToDisplay = gson.fromJson(getIntent().getStringExtra(
                                 (StoreContainerModel.class.getName())), StoreContainerModel.class);
                 }
-                
                 
                 
                 runOnUiThread(new Runnable()
                 {
                         @Override
                         public void run() {
+                                updateStoreInfo();
+        
+                                initStoreMenusRecyclerView();
                                 
-                                SetMenus();
+                                initStoreReviewsRecyclerView();
+        
+                                updateStoreContacts();
+        
                                 
-                                SetStoreReviews();
-                                
-                                
-                                // Store MainImage
-                                Glide.with(StoreDetailViewActivity.this)
-                                        .load(storeDataToDisplay.getMainStorePhotoUrl())
-                                        .into(storeFeatureGraphicImageView);
-                                // StoreName
-                                storeNameTextView.setText(storeDataToDisplay.StoreName);
-                                // StoreShortDescription
-                                storeShortDescriptionTextView.setText(
-                                        storeDataToDisplay.StoreShortDescription);
-                                // StoreFullDescription
-                                storeFullDescriptionExpandableTextView.setText(
-                                        storeDataToDisplay.StoreFullDescription);
-                                
-                                
-                                // region Store Location ==
-                                storeAddressTextView.setText(storeDataToDisplay.StoreAddress);
-                                
-                                // Store address with LatLng Data
+                        }
+                });
+                
+        }
+        
+        //region Menus
+        void initStoreMenusRecyclerView(){
+                RecyclerView.LayoutManager menusLayoutManager = new GridLayoutManager(this, 2);
+        
+                menusAdapter = new MenusAdapter(this, storeDataToDisplay.Menus);
+                menusRecyclerView.setLayoutManager(menusLayoutManager);
+                menusRecyclerView.addItemDecoration(
+                        new GridSpacingItemDecoration(2,
+                                GridSpacingItemDecoration.ConvertPixelsToDp(10), true));
+                menusRecyclerView.setItemAnimator(new DefaultItemAnimator());
+                menusRecyclerView.setAdapter(menusAdapter);
+        
+                updateStoreMenus();
+        }
+        
+        void updateStoreInfo(){
+        
+                // Store MainImage
+                Glide.with(StoreDetailViewActivity.this)
+                        .load(storeDataToDisplay.getMainStorePhotoUrl())
+                        .into(storeFeatureGraphicImageView);
+                // StoreName
+                storeNameTextView.setText(storeDataToDisplay.StoreName);
+                // StoreShortDescription
+                storeShortDescriptionTextView.setText(
+                        storeDataToDisplay.StoreShortDescription);
+                // StoreFullDescription
+                storeFullDescriptionExpandableTextView.setText(
+                        storeDataToDisplay.StoreFullDescription);
+        
+        
+                // region Store Location ==
+                storeAddressPreviewTextView.setText(storeDataToDisplay.StoreAddress);
+                storeAddressTextView.setText(storeDataToDisplay.StoreAddress);
+        
+        
+                // set map with storeLocation
+        
+        
+                // Store address with LatLng Data
                                /* String addressByGeoCoder = "";
                                 try {
                                         List<Address> listAddresses = geoCoder.getFromLocation(
@@ -227,44 +258,33 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                                 }
                                 storeMapDescriptionAddressTextView.setText(addressByGeoCoder);
 */
-
-                                // set map with storeLocation
-                                // set google map to storeLocation
-                                storeLocationMapView.getMapAsync(new OnMapReadyCallback()
-                                {
-                                        @Override
-                                        public void onMapReady(GoogleMap googleMap) {
-                                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                                        new LatLng(
-                                                                storeDataToDisplay.getStoreLocation().first,
-                                                                storeDataToDisplay.getStoreLocation().second),
-                                                        18.5f));
-                                        }
-                                });
-                                //endregion
-                                
+        
+        
+        
+                // set google map to storeLocation
+                storeLocationMapView.getMapAsync(new OnMapReadyCallback()
+                {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
+                                googleMap.moveCamera(
+                                        CameraUpdateFactory.newLatLngZoom(
+                                                new LatLng(
+                                                        storeDataToDisplay.getStoreLocation().first,
+                                                        storeDataToDisplay.getStoreLocation().second),
+                                                18.5f));
                         }
                 });
-                
+                //endregion
+        
         }
         
-        //region Menus
-        void SetMenus() {
+        void updateStoreMenus() {
                 
                 // Menus
-                RecyclerView.LayoutManager menusLayoutManager = new GridLayoutManager(this, 2);
+
                 
-                menusAdapter = new MenusAdapter(this);
-                menusRecyclerView.setLayoutManager(menusLayoutManager);
-                menusRecyclerView.addItemDecoration(
-                        new GridSpacingItemDecoration(2,
-                                GridSpacingItemDecoration.ConvertPixelsToDp(10), true));
-                menusRecyclerView.setItemAnimator(new DefaultItemAnimator());
-                menusRecyclerView.setAdapter(menusAdapter);
-
-
                 storeDataToDisplay.Menus = new ArrayList<>();
-                for (String keyToMenuId : storeDataToDisplay.MenusIds.keySet()){
+                for (String keyToMenuId : storeDataToDisplay.MenusIds.keySet()) {
                         String menuId = storeDataToDisplay.MenusIds.get(keyToMenuId);
                         MenuService.GetMenu(
                                 menuId,
@@ -283,45 +303,47 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                                         }
                                 });
                 }
-
-
+                
                 
         }
-        
-        
         //endregion
         
         
         //region Reviews
-
-        
-        void SetStoreReviews() {
+        void initStoreReviewsRecyclerView() {
                 reviewsAdapter = new ReviewsAdapter(this);
-
+                
                 // Reviews
                 RecyclerView.LayoutManager reviewsLayoutManager = new LinearLayoutManager(this);
-
+                
                 reviewsRecyclerView.setLayoutManager(reviewsLayoutManager);
                 reviewsRecyclerView.addItemDecoration(
                         new GridSpacingItemDecoration(2,
                                 GridSpacingItemDecoration.ConvertPixelsToDp(10), true));
                 reviewsRecyclerView.setItemAnimator(new DefaultItemAnimator());
                 reviewsRecyclerView.setAdapter(reviewsAdapter);
-
-
+        
+                updateStoreReviews();
+        }
+        
+        void updateStoreReviews(){
+        
                 // Load & Update Review Datas
                 storeDataToDisplay.StoreReviews = new ArrayList<>();
                 for (String storeReviewsIdsHashKey : storeDataToDisplay.StoreReviewsIds.keySet()) {
-                        String storeReviewId = storeDataToDisplay.StoreReviewsIds.get(storeReviewsIdsHashKey);
+                        String storeReviewId = storeDataToDisplay.StoreReviewsIds.get(
+                                storeReviewsIdsHashKey);
                         StoreReviewService.GetStoreReview(
                                 storeReviewId,
                                 new Consumer<StoreReviewModel>()
                                 {
                                         @Override
                                         public void accept(StoreReviewModel storeReviewModel) throws Exception {
-                                                storeDataToDisplay.StoreReviews.add(storeReviewModel);
+                                                storeDataToDisplay.StoreReviews.add(
+                                                        storeReviewModel);
                                                 List<? extends ReviewModel> reviews = storeDataToDisplay.StoreReviews;
-                                                reviewsAdapter.UpdateReviews((List<ReviewModel>) reviews);
+                                                reviewsAdapter.UpdateReviews(
+                                                        (List<ReviewModel>) reviews);
                                         }
                                 }, new Consumer<String>()
                                 {
@@ -331,20 +353,39 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                                         }
                                 });
                 }
-
-
-
         }
         //endregion
         
-        void InitPullToRefresh(){
+        //region Contacts
+        @BindView(R.id.storePhoneNumberTextView)
+        TextView storePhoneNumberTextView;
+        
+        @BindView(R.id.storeFacebookLinkTextView)
+        TextView storeFacebookLinkTextView;
+        @BindView(R.id.storeInstagramLinkTextView)
+        TextView storeInstagramLinkTextView;
+        
+        void updateStoreContacts(){
+                storePhoneNumberTextView.setText(storeDataToDisplay.StorePhoneNumber);
+                
+                // SET extra contacts
+                Map<String, String> contacts = StoreExtraContactsBuilder.Parse(storeDataToDisplay.StoreExtraContacts);
+                
+                storeFacebookLinkTextView.setText(contacts.get(StoreExtraContactsBuilder.facebookKey));
+                storeInstagramLinkTextView.setText(contacts.get(StoreExtraContactsBuilder.instagramKey));
+        }
+        
+        //endregion
+        
+        
+        void InitPullToRefresh() {
                 pullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener()
                 {
                         @Override
                         public void onRefresh() {
                                 Log.d(TAG, "onRefresh");
-
-
+                                
+                                
                                 StoreService.GetStore(
                                         storeDataToDisplay.Id,
                                         new Consumer<StoreContainerModel>()
@@ -352,29 +393,34 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                                                 @Override
                                                 public void accept(StoreContainerModel storeModel) throws Exception {
                                                         pullToRefreshView.setRefreshing(false);
-                                                        StoreDetailViewActivity.ShowStoreDetailWithData(StoreDetailViewActivity.this,  storeModel);
-                                                        finish();
+                                                        storeDataToDisplay = storeModel;
+                                                        updateStoreMenus();
+                                                        updateStoreReviews();
+                                                        updateStoreContacts();
+                                                        
+                                                        new SweetAlertDialog(StoreDetailViewActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                                                .setTitleText("업데이트 완료")
+                                                                .show();
+                                                        
                                                 }
                                         }, new Consumer<String>()
                                         {
                                                 @Override
                                                 public void accept(String databaseError) throws Exception {
                                                         pullToRefreshView.setRefreshing(false);
-                                                        new SweetAlertDialog(StoreDetailViewActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                                        new SweetAlertDialog(
+                                                                StoreDetailViewActivity.this,
+                                                                SweetAlertDialog.ERROR_TYPE)
                                                                 .setTitleText("업데이트 오류")
                                                                 .setContentText(databaseError)
                                                                 .show();
                                                 }
                                         });
-
-
-
+                                
+                                
                         }
                 });
         }
-        
-        
-
         
         
         //region map
@@ -430,23 +476,24 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
         }
         
         
-        void InitLikeButton(){
+        void InitLikeButton() {
                 LikeButton likeButton = findViewById(R.id.likeButton);
-                likeButton.setOnLikeListener(new OnLikeListener() {
+                likeButton.setOnLikeListener(new OnLikeListener()
+                {
                         @Override
                         public void liked(LikeButton likeButton) {
-                                new SweetAlertDialog(StoreDetailViewActivity.this)
+                                /*new SweetAlertDialog(StoreDetailViewActivity.this)
                                         .setTitleText("Liked!")
-                                        .show();
-
+                                        .show();*/
+                                
                         }
-                
+                        
                         @Override
                         public void unLiked(LikeButton likeButton) {
-                                new SweetAlertDialog(StoreDetailViewActivity.this)
+                                /*new SweetAlertDialog(StoreDetailViewActivity.this)
                                         .setTitleText("UnLiked!")
-                                        .show();
-
+                                        .show();*/
+                                
                         }
                 });
         }
@@ -460,20 +507,24 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
         
         @OnClick(R.id.shareOptionContainer)
         void OnShareOptionClick() {
-                Toast.makeText(this, "Share!", Toast.LENGTH_SHORT)
-                        .show();
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, storeDataToDisplay.StoreExtraContacts);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
         }
         
         @OnClick(R.id.writeReviewOptionContainer)
         void OnWriteReviewOptionClick() {
-                StoreReviewCreaterActivity.StartCreateStoreReviewActivity(storeDataToDisplay.Id, this);
+                StoreReviewCreaterActivity.StartCreateStoreReviewActivity(storeDataToDisplay.Id,
+                        this);
         }
         
         @Override
         public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 //The Refresh must be only active when the offset is zero :
                 pullToRefreshView.setEnabled(verticalOffset == 0);
-        
+                
         }
         
         @Override
@@ -489,7 +540,7 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
         }
         
         //endregion
-
+        
         @Override
         protected void attachBaseContext(Context newBase) {
                 super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

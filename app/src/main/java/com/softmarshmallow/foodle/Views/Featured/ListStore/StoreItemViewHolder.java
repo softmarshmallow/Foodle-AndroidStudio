@@ -49,7 +49,7 @@ public class StoreItemViewHolder extends RecyclerView.ViewHolder
         }
 
 
-        public void BindWithStoreData(StoreContainerModel storeData)
+        public void BindViewWithData(StoreContainerModel storeData)
         {
                 this.storeData = storeData;
 

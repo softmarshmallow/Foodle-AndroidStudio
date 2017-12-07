@@ -6,11 +6,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import com.softmarshmallow.foodle.Views.ExtraOptions.ExtraOptionsViewFragment;
-import com.softmarshmallow.foodle.Views.Featured.FeaturedViewFragment;
+import com.softmarshmallow.foodle.Views.FeaturedViewV2.FeaturedViewFragment;
 import com.softmarshmallow.foodle.Views.Mypage.MypageFragment;
 import com.softmarshmallow.foodle.Views.NotificationsPage.NotificationsViewFragment;
 import com.softmarshmallow.foodle.Views.Search.IntegratedSearchViewFragment;
-import com.softmarshmallow.foodle.Views.Test.TestFragment;
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter
 {
@@ -26,8 +25,9 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter
         public int getCount() {
                 return MainTabsType.values().length;
         }
-
-        Fragment featuredViewFragment = new FeaturedViewFragment();
+        
+        Fragment featuredViewFragmentV2 = new FeaturedViewFragment();
+        
         // Fragment testFragment = new TestFragment();
         Fragment storeSearchViewFragment = new IntegratedSearchViewFragment();
         Fragment mypageFragment = new MypageFragment();
@@ -45,7 +45,8 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter
                 switch (tabType)
                 {
                         case Featured:
-                                return featuredViewFragment;
+//                                return featuredViewFragment;
+                                     return featuredViewFragmentV2;
                         case Search:
                                 return storeSearchViewFragment;
                         case MyPage:

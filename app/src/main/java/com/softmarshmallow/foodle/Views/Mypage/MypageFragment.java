@@ -122,14 +122,8 @@ public class MypageFragment extends Fragment
 
                 // fixme for debug
                 List<StoreContainerModel> likedStores = MockDataSource.LikedStoreDatas;
-
-                Intent intent = new Intent(getContext(), (StoresListViewActivity.class));
-                intent.putExtra((StoresListViewActivity.StoreDatasKey),
-                        gson.toJson(likedStores));
-
-                // intent
-                getActivity().startActivity(intent);
-
+                
+                StoresListViewActivity.showStoresList(getContext(), likedStores);
         }
 
 
@@ -139,13 +133,8 @@ public class MypageFragment extends Fragment
 
                 // fixme for debug
                 List<StoreContainerModel> ownedStoreDatas = MockDataSource.OwnedStoreDatas;
-
-                Intent intent = new Intent(getContext(), (StoresListViewActivity.class));
-                intent.putExtra((StoresListViewActivity.StoreDatasKey),
-                        gson.toJson(ownedStoreDatas));
-
-                // intent
-                getActivity().startActivity(intent);
+        
+                StoresListViewActivity.showStoresList(getContext(), ownedStoreDatas);
         }
 
 }

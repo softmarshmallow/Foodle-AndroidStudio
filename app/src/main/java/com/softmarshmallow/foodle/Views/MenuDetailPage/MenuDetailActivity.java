@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mehdi.sakout.fancybuttons.FancyButton;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MenuDetailActivity extends AppCompatActivity
 {
@@ -79,4 +80,12 @@ public class MenuDetailActivity extends AppCompatActivity
                 Intent intent  =new Intent(this, OrderMenuActivity.class);
                 startActivity(intent);
         }
+        
+        
+        
+        @Override
+        protected void attachBaseContext(Context newBase) {
+                super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        }
+        
 }

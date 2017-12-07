@@ -14,6 +14,7 @@ import android.widget.SearchView;
 import com.softmarshmallow.foodle.Models.MockDataSource.MockDataSource;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
+import com.softmarshmallow.foodle.Services.StoreService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +78,7 @@ public class IntegratedSearchViewFragment extends Fragment
 // Region searchStores
         void SearchStores(String query) {
                 // search store names
-                List<StoreContainerModel> storeDatas = MockDataSource.AllStoreDatas;
+                List<StoreContainerModel> storeDatas = StoreService.storeContainerDataList;
 
 
                 SearchStore_MatchStoreName(storeDatas, query);

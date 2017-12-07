@@ -210,6 +210,7 @@ public class MenuEditorBaseActivity extends AppCompatActivity
         
         
         void SaveMenu(){
+                BuildData();
                 Gson gson = new Gson();
                 Intent intent = new Intent();
                 intent.putExtra(ResultKey, gson.toJson(MenuData));

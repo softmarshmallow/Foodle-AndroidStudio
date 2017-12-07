@@ -92,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <ImageView
-            android:src="@drawable/default_foodtruck_icon"
+            android:src="@drawable/demo_foodtruck_real_image"
             android:layout_width="match_parent"
             android:layout_height="335.0dp"
             android:id="@+id/eventIconImageView" />
@@ -102,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <ImageView
-            android:src="@drawable/default_foodtruck_featuregraphic"
+            android:src="@drawable/demo_foodtruck_real_image"
             android:layout_width="match_parent"
             android:layout_height="353.0dp"
             android:id="@+id/eventFeatureGraphicImageView" />
