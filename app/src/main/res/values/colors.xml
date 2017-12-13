@@ -3,9 +3,9 @@
     <color
         name="colorPrimary">#ffffff</color>
     <color
-        name="colorPrimaryDark">#fe4e4e</color>
+        name="colorPrimaryDark">#ff5252</color>
     <color
-        name="colorAccent">#ff9999</color>
+        name="colorAccent">#ff6565</color>
     <color
         name="tabSelectedIconColor">#ee5555</color>
     <color
@@ -13,6 +13,5 @@
     <color
         name="viewBg">#ffffff</color>
     <color
-        name="album_title">#4c4c4c</color>
-    <color name="foreground_material_light">#9a5e5e</color>
+        name="textLightDark">#4c4c4c</color>
 </resources>

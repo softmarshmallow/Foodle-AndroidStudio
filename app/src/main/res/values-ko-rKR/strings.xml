@@ -24,4 +24,9 @@
     <string name="action_write_review">리뷰</string>
     <string name="promt_phone">전화</string>
     <string name="prompt_location">위치</string>
+    <string name="action_settings">설정</string>
+    <string name="action_add_favourite">좋아해요!</string>
+    <string name="action_order_menu">메뉴 주문하기</string>
+    <string name="error_confirm_password_non_match">비밀번호가 일치하지 않아요ㅠ</string>
+    <string name="error_incorrect_password">비밀번호를 다시 확인해주세요</string>
 </resources>

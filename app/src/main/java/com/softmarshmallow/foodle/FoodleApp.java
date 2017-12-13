@@ -20,29 +20,11 @@ public class FoodleApp extends Application
                         .setFontAttrId(R.attr.fontPath)
                         .build()
                 );*/
-/*
 
-                // LeakCanary
-                if (LeakCanary.isInAnalyzerProcess(this)) {
-                        // This process is dedicated to LeakCanary for heap analysis.
-                        // You should not init your app in this process.
-                        return;
-                }
-                refWatcher = LeakCanary.install(this);*/
         }
 
         public static Context getAppContext() {
                 return FoodleApp.context;
         }
-
-/*
-
-        private RefWatcher refWatcher;
-
-        public static RefWatcher getRefWatcher(Context context) {
-                FoodleApp application = (FoodleApp) context.getApplicationContext();
-                return application.refWatcher;
-        }
-*/
 
 }

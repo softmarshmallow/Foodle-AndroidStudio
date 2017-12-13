@@ -41,7 +41,7 @@
             android:layout_marginTop="0dp"
             android:singleLine="true"
             android:text="StoreName"
-            android:textColor="@color/album_title"
+            android:textColor="@color/textLightDark"
             android:textSize="24sp"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintLeft_toLeftOf="parent"
