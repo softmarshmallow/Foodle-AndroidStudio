@@ -20,6 +20,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.zxing.integration.android.IntentIntegrator;
 import com.softmarshmallow.foodle.Helpers.LoginHelpers.LoginPreferences;
 import com.softmarshmallow.foodle.Helpers.LoginHelpers.LoginType;
 import com.softmarshmallow.foodle.R;
@@ -60,6 +61,9 @@ public class LoginActivity extends AppCompatActivity
         
                 initFacebookLogin();
 
+
+
+
         }
 
         @OnClick(R.id.loginButton)
@@ -68,7 +72,7 @@ public class LoginActivity extends AppCompatActivity
         }
         /**
          * Attempts to sign in or register the account specified by the login form.
-         * If there are form errors (invalid email, missing fields, etc.), the
+         * If there are f orm errors (invalid email, missing fields, etc.), the
          * errors are presented and no actual login attempt is made.
          */
         boolean isAttemptingLogin;
