@@ -1,6 +1,8 @@
 package com.softmarshmallow.foodle.Views.Search;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.softmarshmallow.foodle.Models.MockDataSource.MockDataSource;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
@@ -21,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,6 +75,7 @@ public class IntegratedSearchViewFragment extends Fragment
                                 return false;
                         }
                 });
+
 
                 return view;
         }
@@ -180,6 +187,24 @@ public class IntegratedSearchViewFragment extends Fragment
         }
 
 
+        @OnClick(R.id.Scan)
+        void OnClick(){
+                IntentIntegrator.forFragment(this).initiateScan(); // `this` is the current Fragment
 
 
+        }
+
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+                if(result != null) {
+                        if(result.getContents() == null) {
+                                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+                        } else {
+                                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                        }
+                } else {
+                        super.onActivityResult(requestCode, resultCode, data);
+                }
+        }
 }

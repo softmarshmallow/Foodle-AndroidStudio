@@ -100,7 +100,10 @@ dependencies {
     // validation Lib
     compile 'com.mobsandgeeks:android-saripaar:2.0.3'
 
-    //
+
+    //  QR Code
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.journeyapps:zxing-android-embedded:3.5.0'
 
     // Image Picker
     compile 'com.kbeanie:multipicker:1.1.31@aar'
