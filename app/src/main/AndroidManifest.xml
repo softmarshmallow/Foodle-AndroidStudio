@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".FoodleApp"
@@ -22,8 +23,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/GoogleApiKey"/>
@@ -132,6 +131,16 @@
         <activity android:name=".Views.Test.TestMapsActivity">
         </activity>
         <activity android:name=".Views.StoreMapsView.StoreMapsViewActivity">
+        </activity>
+        <activity android:name=".Views.FoodtruckOwnerTabView.FoodtruckOwnerTabControllerActivity">
+        </activity>
+        <activity android:name=".Views.OrderMenu.OrderSheetActivity">
+        </activity>
+        <activity android:name=".Views.QR_ReaderView.QR_ReaderActivity">
+        </activity>
+        <activity android:name=".Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity">
+        </activity>
+        <activity android:name=".Views.SMSVerification.SMSVerification_PinCodeEnterViewActivity">
         </activity>
     </application>
 
