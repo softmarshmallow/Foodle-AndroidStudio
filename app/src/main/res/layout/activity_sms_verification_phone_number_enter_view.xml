@@ -59,7 +59,7 @@
 
 
         <TextView
-            android:id="@+id/phoneNumberTitleTextView"
+            android:id="@+id/PinCodeTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="핸드폰 번호"
@@ -75,7 +75,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneNumberTitleTextView">
+            app:layout_constraintTop_toBottomOf="@+id/PinCodeTitleTextView">
 
             <RelativeLayout
                 android:id="@+id/dialCodeChooserContainer"

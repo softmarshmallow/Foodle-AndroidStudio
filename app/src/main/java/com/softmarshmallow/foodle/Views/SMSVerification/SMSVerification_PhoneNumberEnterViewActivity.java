@@ -13,7 +13,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +38,7 @@ public class SMSVerification_PhoneNumberEnterViewActivity extends AppCompatActiv
                 final InputMethodManager inputMethodManager = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
 
 
-                final EditText phoneNumber_et = (EditText) activity.findViewById(R.id.phoneNumberTitleTextView);
+                final EditText phoneNumber_et = (EditText) activity.findViewById(R.id.PinCodeTitleTextView);
                 phoneNumber_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
