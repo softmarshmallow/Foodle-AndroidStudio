@@ -1,6 +1,7 @@
 package com.softmarshmallow.foodle.Views.MainTabController;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.design.widget.TabLayout;
@@ -17,9 +18,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+//import com.google.zxing.integration.android.IntentIntegrator;
+//import com.google.zxing.integration.android.IntentResult;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingMenuLayout;
+import com.softmarshmallow.foodle.Models.MockDataSource.MockDataSource;
 import com.softmarshmallow.foodle.R;
+import com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity;
+import com.softmarshmallow.foodle.Views.StoreDetail.StoreDetailViewActivity;
 
 import java.util.ArrayList;
 
@@ -45,6 +51,7 @@ public class MainTabControllerActivity extends AppCompatActivity
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 instance = this;
+
                 setTheme(R.style.AppTheme_NoActionBar);
                 setContentView(R.layout.activity_main_tab_controller);
                 ButterKnife.bind(this);
@@ -258,6 +265,21 @@ public class MainTabControllerActivity extends AppCompatActivity
                                 }
                         }).show();
         }
-        
+
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+//                if(result != null) {
+//                        if(result.getContents() == null) {
+//
+//                        } else {
+//                                StoreDetailViewActivity.ShowStoreDetailWithData(this, MockDataSource.getTestStore_1());
+//                        }
+//                } else {
+//                        super.onActivityResult(requestCode, resultCode, data);
+//                }
+        }
+
+
 }
 

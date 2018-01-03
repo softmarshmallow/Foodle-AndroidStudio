@@ -20,7 +20,9 @@ public class FirebaseUserService
         
         private static final String TAG = FirebaseUserService.class.getName();
         private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        
+
+
+
         static FirebaseUser getCurrentUser(){
                  return FirebaseAuth.getInstance().getCurrentUser();
         }
@@ -154,6 +156,6 @@ public class FirebaseUserService
         public static String getUserPhoneNumber(){
                 return getCurrentUser().getPhoneNumber();
         }
-        
-        
+
+
 }
