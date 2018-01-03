@@ -16,13 +16,10 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.Models.MockDataSource.MockDataSource;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.StoreService;
-import com.softmarshmallow.foodle.Views.MenuDetailPage.MenuDetailActivity;
-import com.softmarshmallow.foodle.Views.StoreDetail.StoreDetailViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -192,9 +189,7 @@ public class IntegratedSearchViewFragment extends Fragment
 
         @OnClick(R.id.Scan)
         void OnClick(){
-//                IntentIntegrator.forFragment(()).initiateScan(); // `this` is the current Fragment
-                Log.d("Error", "SEX");
-                StoreDetailViewActivity.ShowStoreDetailWithData(getContext(),MockDataSource.getTestStore_1());
+                IntentIntegrator.forFragment(this).initiateScan(); // `this` is the current Fragment
 
 
         }
@@ -204,9 +199,9 @@ public class IntegratedSearchViewFragment extends Fragment
                 IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
                 if(result != null) {
                         if(result.getContents() == null) {
-
+                                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
                         } else {
-                                StoreDetailViewActivity.ShowStoreDetailWithData(getContext(),MockDataSource.getTestStore_1());
+                                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                         }
                 } else {
                         super.onActivityResult(requestCode, resultCode, data);

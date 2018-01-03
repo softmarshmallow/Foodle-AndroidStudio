@@ -20,7 +20,6 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.zxing.integration.android.IntentIntegrator;
 import com.softmarshmallow.foodle.Helpers.LoginHelpers.LoginPreferences;
 import com.softmarshmallow.foodle.Helpers.LoginHelpers.LoginType;
 import com.softmarshmallow.foodle.R;

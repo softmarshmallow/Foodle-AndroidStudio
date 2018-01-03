@@ -64,10 +64,10 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
         
         @BindView(R.id.pull_to_refresh)
         PullToRefreshView pullToRefreshView;
-        
-        @BindView(R.id.toolbar)
-        Toolbar toolbar;
-        
+//
+//        @BindView(R.id.toolbar)
+//        Toolbar toolbar;
+//
         @BindView(R.id.storeFeatureGraphicImageView)
         ImageView storeFeatureGraphicImageView;
         
@@ -130,14 +130,14 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
 */
                 
                 
-                toolbar.setTitleTextColor(Color.RED);
+//                toolbar.setTitleTextColor(Color.RED);
+//                setSupportActionBar(toolbar);
                 
                 //region Init
                 // map
                 storeLocationMapView.onCreate(savedInstanceState);
                 SetUpMap();
                 
-                setSupportActionBar(toolbar);
                 
                 // Init CollapsingToolbar
                 InitCollapsingToolbar();

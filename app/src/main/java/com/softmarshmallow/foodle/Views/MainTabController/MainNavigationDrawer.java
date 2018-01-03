@@ -7,8 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
@@ -18,6 +17,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.softmarshmallow.foodle.Helpers.ContactToFoodleHelper;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.Mypage.ProfileEditorActivity;
+import com.softmarshmallow.foodle.Views.QR_ReaderView.QR_ReaderActivity;
 import com.softmarshmallow.foodle.Views.StoreEditor.StoreCreatorActivity;
 import com.softmarshmallow.foodle.Views.StoreMapsView.StoreMapsViewActivity;
 
@@ -34,7 +34,8 @@ public class MainNavigationDrawer
                 StoreCreatorPage(2),
                 EditProfile(3),
                 ViewOnMaps(4),
-                ContactToFoodle(5),;
+                ContactToFoodle(5),
+                Extra1(6);
                 
                 
                 int value;
@@ -80,6 +81,10 @@ public class MainNavigationDrawer
                         NavigationItemType.ContactToFoodle.getValue())
                         .withName("연락하기");
         
+                SecondaryDrawerItem option4 = new SecondaryDrawerItem().withIdentifier(
+                        NavigationItemType.Extra1.getValue())
+                        .withName("QR주문");
+        
                 // Create the AccountHeader
                 /*
                 AccountHeader headerResult = new AccountHeaderBuilder()
@@ -114,7 +119,8 @@ public class MainNavigationDrawer
                                 storeCreator,
                                 editProfile,
                                 option2,
-                                option3
+                                option3,
+                                option4
                         )
                         .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener()
                         {
@@ -152,6 +158,21 @@ public class MainNavigationDrawer
                                                         break;
                                                 case ContactToFoodle:
                                                         ContactToFoodleHelper.SendEmailToFoodle(activity);
+                                                        break;
+                                                
+                                                case Extra1:
+        
+                                                        intent = new Intent(activity,
+                                                                QR_ReaderActivity.class);
+                                                        activity.startActivity(intent);
+                                                        /*
+                                                        IntentIntegrator integrator = new IntentIntegrator(activity);
+                                                        integrator.setBarcodeImageEnabled(false);
+                                                        integrator.setOrientationLocked(true);
+                                                        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+                                                        integrator.setPrompt("");
+                                                        integrator.setBeepEnabled(false);
+                                                        integrator.initiateScan();*/
                                                         break;
                                         }
                                         

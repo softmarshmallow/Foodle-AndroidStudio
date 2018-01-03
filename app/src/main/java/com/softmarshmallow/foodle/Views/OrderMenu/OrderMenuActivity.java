@@ -1,6 +1,7 @@
 package com.softmarshmallow.foodle.Views.OrderMenu;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -117,10 +118,24 @@ public class OrderMenuActivity extends AppCompatActivity
         @OnClick(R.id.orderButton)
         void OnOrderButtonClick(){
 
-                new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
-                        .setTitleText("죄송합니다ㅠ")
-                        .setContentText("주문 기능은 아직 준비중입니다")
-                        .show();
+                SweetAlertDialog orderConfirmAlert = new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
+                        .setTitleText("주문확인")
+                        .setContentText("푸드트럭에게 주문확인서를 제시해 주세요")
+                        //region confirm
+                        .setConfirmText("확인")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener()
+                        {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        finish();
+                                        startActivity(new Intent(OrderMenuActivity.this, OrderSheetActivity.class));
+                                }
+                        });
+        
+                orderConfirmAlert.setCancelable(false);
+                orderConfirmAlert.show();
+        
+        
         }
 
 
