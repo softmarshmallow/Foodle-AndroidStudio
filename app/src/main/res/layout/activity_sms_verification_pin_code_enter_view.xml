@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             tools:context="com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PinCodeEnterViewActivity"
-                                             android:background="@drawable/background_gradient_1">
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity"
+    android:background="@drawable/background_gradient_1">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="28dp"
-        android:text="핸드폰 번호를\n확인해 주세요"
+        android:text="인증번호 입력"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,14 +28,13 @@
         android:layout_marginEnd="36dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:text="Foodle이 여러분께 인증번호를 전송할수있는\n핸드폰 번호를 입력해주세요."
+        android:text="입력하신 핸드폰 번호로 인증번호를\n발송하였습니다. 인증번호를 입력해주세요"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        android:layout_marginRight="36dp"
-        android:layout_marginLeft="24dp"/>
+        />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -61,11 +61,36 @@
             android:id="@+id/phoneNumberTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="핸드폰 번호"
+            android:text="4자리 핀번호"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+        <LinearLayout
+            android:id="@+id/linearLayout10"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumberTitleTextView">
+
+            <EditText
+                android:id="@+id/phoneNumberEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:hint="X-X-X-X"
+                android:inputType="phone"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                tools:layout_editor_absoluteX="99dp"
+                tools:layout_editor_absoluteY="271dp"/>
+        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 
     <ImageView
@@ -81,7 +106,7 @@
 
 
     <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/confirmPhoneNumberButton"
+        android:id="@+id/UploadReviewButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_centerVertical="true"
