@@ -2,6 +2,7 @@ package com.softmarshmallow.foodle.Views.SMSVerification;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -27,6 +28,8 @@ import com.softmarshmallow.foodle.R;
 
 import java.io.IOException;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 public class SMSVerification_PhoneNumberEnterViewActivity extends AppCompatActivity
 {
         public static final String TAG = SMSVerification_PhoneNumberEnterViewActivity.class.getSimpleName();
@@ -38,8 +41,8 @@ public class SMSVerification_PhoneNumberEnterViewActivity extends AppCompatActiv
                 final Activity activity = this;
                 final InputMethodManager inputMethodManager = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
 
-
-                final EditText phoneNumber_et = (EditText) activity.findViewById(R.id.phoneNumberTitleTextView);
+                final Intent intent_ = new Intent(this, SMSVerification_PinCodeEnterViewActivity.class);
+                final EditText phoneNumber_et = (EditText) activity.findViewById(R.id.phoneNumberEditText);
                 phoneNumber_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
@@ -55,7 +58,7 @@ public class SMSVerification_PhoneNumberEnterViewActivity extends AppCompatActiv
                         }
                 });
 
-                Button sign_btn = (Button) activity.findViewById(R.id.confirmPhoneNumberButton);
+                FancyButton sign_btn = (FancyButton) activity.findViewById(R.id.confirm_button);
                 sign_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -70,6 +73,7 @@ public class SMSVerification_PhoneNumberEnterViewActivity extends AppCompatActiv
                                                 phoneNumber_et.setError("Enter your Phone Number");
                                         else {
                                                 initiateGetUserStatus(prefix, phoneNumber);
+                                                startActivity(intent_);
                                         }
                                 }
                         }

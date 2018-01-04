@@ -24,6 +24,8 @@ import com.softmarshmallow.foodle.R;
 
 import java.io.IOException;
 
+import mehdi.sakout.fancybuttons.FancyButton;
+
 public class SMSVerification_PinCodeEnterViewActivity extends AppCompatActivity
 {
         public static final String TAG = SMSVerification_PinCodeEnterViewActivity.class.getSimpleName();
@@ -85,7 +87,7 @@ public class SMSVerification_PinCodeEnterViewActivity extends AppCompatActivity
                 final FoodleApp application = (FoodleApp) activity.getApplication();
                 final InputMethodManager inputMethodManager = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                final EditText code_et = (EditText) activity.findViewById(R.id.PhoneNumberEditText);
+                final EditText code_et = (EditText) activity.findViewById(R.id.phoneNumberEditText);
                 code_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -101,7 +103,7 @@ public class SMSVerification_PinCodeEnterViewActivity extends AppCompatActivity
                         }
                 });
 
-                Button confirm_btn = (Button) activity.findViewById(R.id.button);
+                FancyButton confirm_btn = (FancyButton) activity.findViewById(R.id.UploadReviewButton);
                 confirm_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
