@@ -11,17 +11,17 @@
  * with the License.
  */
 
-package com.nexmo.sdk.sample.verifysample.adapter;
-
-import java.util.ArrayList;
+package com.softmarshmallow.foodle.Views.SMSVerification;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
 import android.widget.AdapterView;
 
-import com.nexmo.sdk.sample.verifysample.R;
 import com.nexmo.sdk.util.DeviceUtil;
+import com.softmarshmallow.foodle.R;
+
+import java.util.ArrayList;
 
 /**
  *  Helper for reading the country list from resources, and accessing them.

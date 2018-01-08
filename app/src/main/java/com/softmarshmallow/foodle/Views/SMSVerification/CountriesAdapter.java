@@ -11,7 +11,7 @@
  * with the License.
  */
 
-package com.nexmo.sdk.sample.verifysample.adapter;
+package com.softmarshmallow.foodle.Views.SMSVerification;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,7 +20,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.nexmo.sdk.sample.verifysample.R;
+
+import com.softmarshmallow.foodle.R;
 
 import java.util.ArrayList;
 
@@ -67,7 +68,7 @@ public class CountriesAdapter extends ArrayAdapter<Country> {
     }
 
     @Override
-    public View getDropDownView(int position, View convertView,ViewGroup parent) {
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
         if (convertView == null)
             convertView = this.layoutInflater.inflate(R.layout.country_dropdown_item, null);
         TextView label = (TextView) convertView.findViewById(R.id.country_dropdown_tv);

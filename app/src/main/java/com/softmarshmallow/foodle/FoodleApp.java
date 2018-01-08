@@ -1,18 +1,14 @@
 package com.softmarshmallow.foodle;
 
 import android.app.Application;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.nexmo.sdk.NexmoClient;
 import com.nexmo.sdk.core.client.ClientBuilderException;
 import com.nexmo.sdk.verify.client.VerifyClient;
-import com.softmarshmallow.foodle.Views.SMSVerification.MyFirebaseInstanceIDService;
+import com.softmarshmallow.foodle.Views.SMSVerification.NexmoConfig;
 
 //import static com.softmarshmallow.foodle.Views.SMSVerification.MyFirebaseInstanceIDService.INTENT_EXTRA_PUSH_TOKEN;
 
@@ -61,7 +57,7 @@ public class FoodleApp extends Application
          * you may choose to use SharedPreferences, a file or define meta-data in the AndroidManifest.xml
          */
         public void acquireVerifyClient() {
-            if (TextUtils.isEmpty(Config.NexmoAppId) || TextUtils.isEmpty(Config.NexmoSharedSecretKey)) {
+            if (TextUtils.isEmpty(NexmoConfig.NexmoAppId) || TextUtils.isEmpty(NexmoConfig.NexmoSharedSecretKey)) {
                 Log.e(TAG, "You must supply valid appId and sharedSecretKey, provided by Nexmo");
                 return;
             }
@@ -69,8 +65,8 @@ public class FoodleApp extends Application
             try {
                 nexmoClient = new NexmoClient.NexmoClientBuilder()
                         .context(context)
-                        .applicationId(Config.NexmoAppId)
-                        .sharedSecretKey(Config.NexmoSharedSecretKey)
+                        .applicationId(NexmoConfig.NexmoAppId)
+                        .sharedSecretKey(NexmoConfig.NexmoSharedSecretKey)
                         .build();
             } catch (ClientBuilderException e) {
                 e.printStackTrace();

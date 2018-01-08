@@ -11,7 +11,7 @@
  * with the License.
  */
 
-package com.nexmo.sdk.sample.verifysample.adapter;
+package com.softmarshmallow.foodle.Views.SMSVerification;
 
 /**
  * Country information.

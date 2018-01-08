@@ -84,25 +84,37 @@
                 tools:layout_editor_absoluteX="36dp"
                 tools:layout_editor_absoluteY="271dp">
 
-                <ImageView
-                    android:id="@+id/dialCodeBackgroundImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/dialog_background"
-                    tools:layout_editor_absoluteX="25dp"
-                    tools:layout_editor_absoluteY="263dp"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/dialCodeBackgroundImageView"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--app:srcCompat="@drawable/dialog_background"-->
+                    <!--tools:layout_editor_absoluteX="25dp"-->
+                    <!--tools:layout_editor_absoluteY="263dp"/>-->
 
-                <TextView
-                    android:id="@+id/dialCodeTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                <!--<TextView-->
+                    <!--android:id="@+id/dialCodeTextView"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="+1"-->
+                    <!--android:textColor="@color/colorIdentity"-->
+                    <!--android:textSize="12sp"/>-->
+                <Spinner
+                    android:id="@+id/prefix_sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:gravity="center"
-                    android:text="+1"
-                    android:textColor="@color/colorIdentity"
-                    android:textSize="12sp"/>
+
+                    android:maxLength="3"/>
+
+
             </RelativeLayout>
 
             <EditText
