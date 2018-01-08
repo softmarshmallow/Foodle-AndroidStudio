@@ -34,7 +34,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        />
+        android:layout_marginRight="36dp"
+        android:layout_marginLeft="24dp"/>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -58,7 +59,7 @@
 
 
         <TextView
-            android:id="@+id/phoneNumberTitleTextView"
+            android:id="@+id/PinCodeTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4자리 핀번호"
@@ -74,12 +75,12 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneNumberTitleTextView">
+            app:layout_constraintTop_toBottomOf="@+id/PinCodeTitleTextView">
 
             <EditText
-                android:id="@+id/phoneNumberEditText"
+                android:id="@+id/PinCodeEditText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:ems="10"
@@ -101,7 +102,7 @@
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_x"
+        app:srcCompat="@drawable/ic_left_arrow"
         android:layout_marginLeft="24dp"/>
 
 
