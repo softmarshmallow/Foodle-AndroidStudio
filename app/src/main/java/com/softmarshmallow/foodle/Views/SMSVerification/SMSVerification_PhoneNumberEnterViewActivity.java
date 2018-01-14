@@ -78,7 +78,6 @@ public class SMSVerification_PhoneNumberEnterViewActivity extends AppCompatActiv
                                 }
                         }
                 });
-
         }
 
         private void initiateGetUserStatus(final String prefix, final String phoneNumber) {

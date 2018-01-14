@@ -51,7 +51,6 @@
                     android:paddingRight="@dimen/card_notification_content_spacing"
                     android:paddingTop="@dimen/card_notification_content_spacing"
                     android:text="Notification"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Notification.Title"
                     />
 
                 <TextView
@@ -61,7 +60,7 @@
                     android:paddingLeft="@dimen/card_notification_time_spacing"
                     android:paddingRight="@dimen/card_notification_time_spacing"
                     android:text="description"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Notification.Time.Media"/>
+                    />
             </LinearLayout>
 
         </LinearLayout>
