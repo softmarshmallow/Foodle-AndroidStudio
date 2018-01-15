@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.softmarshmallow.foodle.R;
+import com.softmarshmallow.foodle.Views.StoreEditorV3.CustomViews.LandingPageSectionItemView;
 
 public class StoreEditorLandingPageActivity extends AppCompatActivity
 {
