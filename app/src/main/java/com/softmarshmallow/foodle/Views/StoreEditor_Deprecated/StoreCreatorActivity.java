@@ -1,10 +1,9 @@
-package com.softmarshmallow.foodle.Views.StoreEditor;
+package com.softmarshmallow.foodle.Views.StoreEditor_Deprecated;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
-import com.softmarshmallow.foodle.Models.StoreV2.StoreDownloadModel;
 import com.softmarshmallow.foodle.Services.StoreService;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;

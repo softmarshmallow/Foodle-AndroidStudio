@@ -51,10 +51,7 @@ public class MainTabControllerActivity extends AppCompatActivity
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 instance = this;
-                Intent intent = new Intent(this, SMSVerification_PhoneNumberEnterViewActivity.class);
-                startActivity(intent);
-
-
+                
                 setTheme(R.style.AppTheme_NoActionBar);
                 setContentView(R.layout.activity_main_tab_controller);
                 ButterKnife.bind(this);

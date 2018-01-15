@@ -17,6 +17,19 @@
 
     <color
         name="viewBg">#ffffff</color>
+
+    <!--region Dividers-->
+    <color name="dividerLight">#CBCBCB</color>
+    <!--endregion-->
+
+
+
+    <!--region TextColors-->
     <color
-        name="textLightDark">#4c4c4c</color>
+        name="textLightDark">#525053</color>
+    <color
+        name="textWhite">#ffff</color>
+    <!--endregion-->
+
+
 </resources>

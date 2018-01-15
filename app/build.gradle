@@ -96,7 +96,6 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
 
-
     //Drag and drop to reorderable ListView
     compile 'com.github.woxthebox:draglistview:1.5.2'
 
@@ -189,6 +188,7 @@ dependencies {
     compile 'com.google.firebase:firebase-storage:11.6.0'
     testCompile 'junit:junit:4.12'
 }
+
 
 
 

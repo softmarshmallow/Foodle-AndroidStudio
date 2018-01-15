@@ -14,7 +14,7 @@ import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.LoginService;
 import com.softmarshmallow.foodle.Views.Festival.FestivalCreatorActivity;
 import com.softmarshmallow.foodle.Views.Login.LoginActivity;
-import com.softmarshmallow.foodle.Views.StoreEditor.StoreCreatorActivity;
+import com.softmarshmallow.foodle.Views.StoreEditor_Deprecated.StoreCreatorActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

@@ -1,4 +1,4 @@
-package com.softmarshmallow.foodle.Views.StoreEditor;
+package com.softmarshmallow.foodle.Views.StoreEditor_Deprecated;
 
 import android.app.Activity;
 import android.content.Intent;

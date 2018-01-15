@@ -5,20 +5,19 @@ import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.softmarshmallow.foodle.Helpers.ContactToFoodleHelper;
-import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.Mypage.ProfileEditorActivity;
 import com.softmarshmallow.foodle.Views.QR_ReaderView.QR_ReaderActivity;
-import com.softmarshmallow.foodle.Views.StoreEditor.StoreCreatorActivity;
+import com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity;
+import com.softmarshmallow.foodle.Views.StoreEditorV3.StoreEditorLandingPageActivity;
+import com.softmarshmallow.foodle.Views.StoreEditor_Deprecated.StoreCreatorActivity;
 import com.softmarshmallow.foodle.Views.StoreMapsView.StoreMapsViewActivity;
 
 
@@ -35,7 +34,13 @@ public class MainNavigationDrawer
                 EditProfile(3),
                 ViewOnMaps(4),
                 ContactToFoodle(5),
-                Extra1(6);
+                Extra1(6),
+                //region Dev options
+                DevOption1(1001),
+                DevOption2(1002),
+                DevOption3(1003),
+                DevOption4(1004);
+                //endregion
                 
                 
                 int value;
@@ -85,8 +90,10 @@ public class MainNavigationDrawer
                         NavigationItemType.Extra1.getValue())
                         .withName("QR주문");
         
-                // Create the AccountHeader
+                
+                
                 /*
+                // Create the AccountHeader
                 AccountHeader headerResult = new AccountHeaderBuilder()
                         .withActivity(activity)
                         .withHeaderBackground(R.drawable.app_icon_red_v3)
@@ -104,9 +111,9 @@ public class MainNavigationDrawer
                                 }
                         })
                         .build();
+                //create the drawer and remember the `Drawer` result object
                 */
 
-                //create the drawer and remember the `Drawer` result object
         
                 DrawerBuilder builder = new DrawerBuilder()
                         .withActivity(activity)
@@ -120,7 +127,16 @@ public class MainNavigationDrawer
                                 editProfile,
                                 option2,
                                 option3,
-                                option4
+                                option4,
+                                new DividerDrawerItem(),
+                                //region DevOptions
+                                new SecondaryDrawerItem().withIdentifier(NavigationItemType.DevOption1.getValue()).withName("Dev1 - StoreEditorV3"),
+                                new SecondaryDrawerItem().withIdentifier(NavigationItemType.DevOption2.getValue()).withName("Dev2 - SMS_Verification"),
+                                new SecondaryDrawerItem().withIdentifier(NavigationItemType.DevOption3.getValue()).withName("Dev3 - NA")
+                                //endregion
+
+
+
                         )
                         .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener()
                         {
@@ -159,7 +175,9 @@ public class MainNavigationDrawer
                                                 case ContactToFoodle:
                                                         ContactToFoodleHelper.SendEmailToFoodle(activity);
                                                         break;
-                                                
+                                                        
+                                                //region Devoptions
+                          
                                                 case Extra1:
         
                                                         intent = new Intent(activity,
@@ -174,6 +192,23 @@ public class MainNavigationDrawer
                                                         integrator.setBeepEnabled(false);
                                                         integrator.initiateScan();*/
                                                         break;
+        
+                                                case DevOption1:
+                                                        intent = new Intent(activity,
+                                                                StoreEditorLandingPageActivity.class);
+                                                        activity.startActivity(intent);
+                                                        break;
+                                                case DevOption2:
+                                                        intent = new Intent(activity,
+                                                                SMSVerification_PhoneNumberEnterViewActivity.class);
+                                                        activity.startActivity(intent);
+                                                        break;
+                                                case DevOption3:
+                                                        break;
+                                                case DevOption4:
+                                                        break;
+                                                //endregion
+        
                                         }
                                         
                                         return true;

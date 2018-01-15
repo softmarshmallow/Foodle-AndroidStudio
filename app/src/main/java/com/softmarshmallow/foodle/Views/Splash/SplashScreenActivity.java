@@ -14,8 +14,6 @@ import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.LoginService;
 import com.softmarshmallow.foodle.Views.Login.LoginActivity;
 import com.softmarshmallow.foodle.Views.MainTabController.MainTabControllerActivity;
-import com.softmarshmallow.foodle.Views.StoreEditor.StoreCreatorActivity;
-import com.softmarshmallow.foodle.Views.Test.TestActivity;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
