@@ -1,4 +1,4 @@
-package com.softmarshmallow.foodle.Helpers.PromotionSlider;
+package com.softmarshmallow.foodle.CustomViews.PromotionSlider;
 
 import android.content.Context;
 import android.view.LayoutInflater;
