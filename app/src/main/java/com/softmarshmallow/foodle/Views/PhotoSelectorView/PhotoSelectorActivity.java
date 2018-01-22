@@ -2,10 +2,13 @@ package com.softmarshmallow.foodle.Views.PhotoSelectorView;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -27,6 +30,8 @@ public class PhotoSelectorActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_photo_selector_view);
+
         mBoardView = (BoardView) findViewById(R.id.board_view);
         mBoardView.setSnapToColumnsWhenScrolling(true);
         mBoardView.setSnapToColumnWhenDragging(true);
@@ -71,12 +76,9 @@ public class PhotoSelectorActivity extends AppCompatActivity {
                 return true;
             }
         });
-        ((AppCompatActivity) this).getSupportActionBar().setTitle("Board");
+        //mBoardView.setLayoutMode();
+//        ((AppCompatActivity) this).getSupportActionBar().setTitle("Board");
 
-        addColumnList();
-        addColumnList();
-        addColumnList();
-        addColumnList();
         addColumnList();
     }
 
@@ -90,10 +92,14 @@ public class PhotoSelectorActivity extends AppCompatActivity {
         }
 
         final int column = mColumns;
-        final PhotoSelectorItemAdapter listAdapter = new PhotoSelectorItemAdapter(mItemArray, R.layout.card_photoselecter , R.id.card_photoselecter, true);
+        final PhotoSelectorItemAdapter listAdapter = new PhotoSelectorItemAdapter(mItemArray, R.layout.column_item , R.id.item_layout, true);
 
+        mBoardView.addColumnList(listAdapter, null, false).setLayoutManager( new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mColumns++;
+
     }
+
+
 
     private static class MyDragItem extends DragItem {
 
@@ -103,21 +109,28 @@ public class PhotoSelectorActivity extends AppCompatActivity {
 
         @Override
         public void onBindDragView(View clickedView, View dragView) {
-            CharSequence text = ((TextView) clickedView.findViewById(R.id.text)).getText();
-            ((TextView) dragView.findViewById(R.id.text)).setText(text);
+  //          CharSequence text = ((TextView) clickedView.findViewById(R.id.text)).getText();
+//            ((TextView) dragView.findViewById(R.id.text)).setText(text);
+
             CardView dragCard = ((CardView) dragView.findViewById(R.id.card_photoselecter));
             CardView clickedCard = ((CardView) clickedView.findViewById(R.id.card_photoselecter));
 
             dragCard.setMaxCardElevation(40);
-            dragCard.setCardElevation(clickedCard.getCardElevation());
-            // I know the dragView is a FrameLayout and that is why I can use setForeground below api level 23
-            //  dragCard.setForeground(clickedView.getResources().getDrawable(R.drawable.card_view_drag_foreground));
+        //    dragCard.setCardElevation(clickedCard.getCardElevation());
         }
 
         @Override
         public void onMeasureDragView(View clickedView, View dragView) {
-            CardView dragCard = ((CardView) dragView.findViewById(R.id.card_photoselecter));
-            CardView clickedCard = ((CardView) clickedView.findViewById(R.id.card_photoselecter));
+            CardView dragCard = (CardView) dragView;
+            CardView clickedCard = ((CardView) clickedView.findViewById(R.id.card));
+
+
+            Log.w("LOGOOO", dragView+"");
+            Log.w("LOGOOO", dragCard+"");
+            Log.w("LOGOOO", dragView.getPaddingBottom()+"");
+            Log.d("tag", ((CardView) clickedView.findViewById(R.id.card))+"");
+            Log.d("tag", clickedCard.getPaddingBottom()+"");
+
             int widthDiff = dragCard.getPaddingLeft() - clickedCard.getPaddingLeft() + dragCard.getPaddingRight() -
                     clickedCard.getPaddingRight();
             int heightDiff = dragCard.getPaddingTop() - clickedCard.getPaddingTop() + dragCard.getPaddingBottom() -
