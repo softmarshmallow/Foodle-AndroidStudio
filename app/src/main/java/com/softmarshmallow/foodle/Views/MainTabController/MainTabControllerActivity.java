@@ -54,8 +54,6 @@ public class MainTabControllerActivity extends AppCompatActivity
                 super.onCreate(savedInstanceState);
                 instance = this;
 
-                Intent intent = new Intent(this, PhotoSelectorActivity.class);
-                startActivity(intent);;
 
                 setTheme(R.style.AppTheme_NoActionBar);
                 setContentView(R.layout.activity_main_tab_controller);
