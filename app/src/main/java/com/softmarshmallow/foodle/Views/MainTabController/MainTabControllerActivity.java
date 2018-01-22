@@ -24,7 +24,9 @@ import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingMenuLayout;
 import com.softmarshmallow.foodle.Models.MockDataSource.MockDataSource;
 import com.softmarshmallow.foodle.R;
+import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoSelectorActivity;
 import com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity;
+import com.softmarshmallow.foodle.Views.Splash.SplashScreenActivity;
 import com.softmarshmallow.foodle.Views.StoreDetail.StoreDetailViewActivity;
 
 import java.util.ArrayList;
@@ -51,7 +53,10 @@ public class MainTabControllerActivity extends AppCompatActivity
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 instance = this;
-                
+
+                Intent intent = new Intent(this, PhotoSelectorActivity.class);
+                startActivity(intent);;
+
                 setTheme(R.style.AppTheme_NoActionBar);
                 setContentView(R.layout.activity_main_tab_controller);
                 ButterKnife.bind(this);

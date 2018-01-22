@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoSelectorActivity">
+    tools:context="com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoSelectorActivity"
+    android:layout_gravity="center">
     <ImageView
         android:id="@+id/exitButton"
         android:layout_width="20dp"
@@ -15,23 +16,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_left_arrow"
         android:layout_marginLeft="24dp"/>
-    <com.woxthebox.draglistview.sample.MySwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- Need to wrap DragListView in another layout for
-            wrap_content to work for some reason -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.woxthebox.draglistview.DragListView
-                android:id="@+id/drag_list_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </FrameLayout>
-    </com.woxthebox.draglistview.sample.MySwipeRefreshLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    <com.woxthebox.draglistview.BoardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/board_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:gravity="center"
+    />
+</LinearLayout>
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/SaveButton"
         android:layout_width="100dp"
