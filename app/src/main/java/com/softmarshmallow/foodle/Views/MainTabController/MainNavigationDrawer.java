@@ -16,7 +16,7 @@ import com.softmarshmallow.foodle.Helpers.ContactToFoodleHelper;
 import com.softmarshmallow.foodle.Views.Mypage.ProfileEditorActivity;
 import com.softmarshmallow.foodle.Views.QR_ReaderView.QR_ReaderActivity;
 import com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity;
-import com.softmarshmallow.foodle.Views.StoreEditorV3.StoreEditorLandingPageActivity;
+import com.softmarshmallow.foodle.Views.StoreEditorV3.StoreEditorLandingPage.StoreEditorLandingPageActivity;
 import com.softmarshmallow.foodle.Views.StoreEditor_Deprecated.StoreCreatorActivity;
 import com.softmarshmallow.foodle.Views.StoreMapsView.StoreMapsViewActivity;
 

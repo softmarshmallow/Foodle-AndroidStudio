@@ -72,8 +72,8 @@ public class FeaturedViewFragment extends Fragment
         SliderLayout promotionImageSlider;
         
         void InitPromotionSlider() {
-                
-                DefaultSliderView sliderView0 = (DefaultSliderView) new DefaultSliderView(
+        
+                PromotionSliderView sliderView0 = (PromotionSliderView) new PromotionSliderView(
                         getContext()).image(R.drawable.promotion1_mockup);
                 sliderView0.setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
                 sliderView0.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener()
@@ -103,13 +103,13 @@ public class FeaturedViewFragment extends Fragment
                 
                 sliderView2.setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
                 promotionImageSlider.addSlider(sliderView2);
-                
-                DefaultSliderView sliderView3 = (DefaultSliderView) new DefaultSliderView(
+        
+                PromotionSliderView sliderView3 = (PromotionSliderView) new PromotionSliderView(
                         getContext()).image(R.drawable.category2_mockup);
                 sliderView3.setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
                 promotionImageSlider.addSlider(sliderView3);
-                
-                DefaultSliderView sliderView4 = (DefaultSliderView) new DefaultSliderView(
+        
+                PromotionSliderView sliderView4 = (PromotionSliderView) new PromotionSliderView(
                         getContext()).image(R.drawable.category3_mockup);
                 sliderView4.setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
                 promotionImageSlider.addSlider(sliderView4);

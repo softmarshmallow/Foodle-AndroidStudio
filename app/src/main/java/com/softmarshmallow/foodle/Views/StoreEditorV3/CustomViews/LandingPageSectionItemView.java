@@ -85,9 +85,11 @@ public class LandingPageSectionItemView extends ConstraintLayout
                 
         }
         
-        @SuppressLint("ShowToast")
-        @OnClick(R.id.continueButton)
-        public void onContinueButtonClicked() {
-                Toast.makeText(getContext(),"Clicked", Toast.LENGTH_LONG).show();
+        OnClickListener onContinueButtonClickListener;
+        public void setOnContinueButtonClickListener(OnClickListener onContinueButtonClickListener) {
+                this.onContinueButtonClickListener = onContinueButtonClickListener;
+                continueButton.setOnClickListener(onContinueButtonClickListener);
         }
+        
+        
 }

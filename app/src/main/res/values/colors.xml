@@ -16,12 +16,19 @@
         name="tabUnselectedIconColor">#ee5555</color>
 
     <color
+        name="colorDisabled">#DFDFE0</color>
+    <color
         name="viewBg">#ffffff</color>
 
     <!--region Dividers-->
     <color name="dividerLight">#CBCBCB</color>
     <!--endregion-->
 
+
+    <!--region Tints-->
+    <color
+        name="colorLightDark">#525053</color>
+    <!--endregion-->
 
 
     <!--region TextColors-->

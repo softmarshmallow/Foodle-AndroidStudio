@@ -15,7 +15,7 @@ public class PromotionSliderView extends BaseSliderView
                 super(context);
         }
         
-       
+        
         
         private String promotionTitle;
         private String promotionDescription;

@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.softmarshmallow.foodle.Views.StoreEditorV3.StoreEditorLandingPageActivity">
+    tools:context="com.softmarshmallow.foodle.Views.StoreEditorV3.StoreEditorLandingPage.StoreEditorLandingPageActivity">
 
 
     <android.support.constraint.ConstraintLayout
@@ -23,33 +23,33 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
             <com.softmarshmallow.foodle.Views.StoreEditorV3.CustomViews.LandingPageSectionItemView
+                android:id="@+id/section_basic_forms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:descriptionText="푸드트럭의 이름 설명 태그 연락처등을 입력합니다"
-                app:titleText="기본정보부터 시작하죠"
-                />
+                app:titleText="기본정보부터 시작하죠"/>
 
             <com.softmarshmallow.foodle.Views.StoreEditorV3.CustomViews.LandingPageSectionItemView
+                android:id="@+id/section_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:descriptionText="현제 푸드트럭의 위치를 알려주세요, 앞으로도 이곳에서 업데이트 할수있습니다."
-                app:titleText="위치를 알려주세요"
-                />
+                app:titleText="위치를 알려주세요"/>
 
 
             <com.softmarshmallow.foodle.Views.StoreEditorV3.CustomViews.LandingPageSectionItemView
+                android:id="@+id/section_photos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:descriptionText="당신의 푸드트럭을 잘 나타내는 사진과 설명을 입력하게됩니다."
-                app:titleText="비쥬얼을 추가합시다"
-                />
+                app:titleText="비쥬얼을 추가합시다"/>
 
             <com.softmarshmallow.foodle.Views.StoreEditorV3.CustomViews.LandingPageSectionItemView
+                android:id="@+id/section_menus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:descriptionText="메뉴의 이름, 가격, 사진등을 입력하게 됩니다."
-                app:titleText="메뉴를 알려주세요"
-                />
+                app:titleText="메뉴를 알려주세요"/>
 
         </LinearLayout>
 
@@ -64,7 +64,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/exitButton"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:layout_marginStart="26dp"
@@ -92,7 +92,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton"/>
+                app:layout_constraintTop_toBottomOf="@+id/exitButton"/>
         </android.support.constraint.ConstraintLayout>
 
 

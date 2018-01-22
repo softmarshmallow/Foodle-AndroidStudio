@@ -119,7 +119,11 @@
         <activity android:name=".Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity"/>
         <activity android:name=".Views.SMSVerification.SMSVerification_PinCodeEnterViewActivity"/>
         <activity android:name=".Views.PhotoSelectorView.PhotoSelectorActivity"/>
-        <activity android:name=".Views.StoreEditorV3.StoreEditorLandingPageActivity">
+        <activity android:name=".Views.StoreEditorV3.StoreEditorLandingPage.StoreEditorLandingPageActivity">
+        </activity>
+        <activity android:name=".Views.StoreEditorV3.StoreBasicInfoFormsPage.StoreBasicFormsActivity">
+        </activity>
+        <activity android:name=".Views.LocationEditor.LocationEditorActivity">
         </activity>
     </application>
 
