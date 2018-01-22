@@ -1,10 +1,22 @@
 package com.softmarshmallow.foodle.Views.PhotoSelectorView;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.nfc.Tag;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,14 +24,19 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.softmarshmallow.foodle.R;
 import com.woxthebox.draglistview.BoardView;
 import com.woxthebox.draglistview.DragItem;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
+
 
 public class PhotoSelectorActivity extends AppCompatActivity {
 
@@ -27,10 +44,79 @@ public class PhotoSelectorActivity extends AppCompatActivity {
     private BoardView mBoardView;
     private int mColumns;
 
+    ArrayList<Pair<Long, Bitmap>> mItemArray = new ArrayList<Pair<Long, Bitmap>>();
+    public PhotoSelectorItemAdapter listAdapter = new PhotoSelectorItemAdapter(mItemArray, R.layout.column_item , R.id.item_layout, true);
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1) {
+                File f = new File(Environment.getExternalStorageDirectory().toString());
+                for (File temp : f.listFiles()) {
+                    if (temp.getName().equals("temp.jpg")) {
+                        f = temp;
+                        break;
+                    }
+                }
+                try {
+                    Bitmap bitmap;
+                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+
+                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                            bitmapOptions);
+
+                   // viewImage.setImageBitmap(bitmap);
+                    addPhoto(bitmap);
+                    String path = android.os.Environment
+                            .getExternalStorageDirectory()
+                            + File.separator
+                            + "Phoenix" + File.separator + "default";
+                    f.delete();
+                    OutputStream outFile = null;
+                    File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                    try {
+                        outFile = new FileOutputStream(file);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
+                        outFile.flush();
+                        outFile.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (requestCode == 2) {
+
+                Uri selectedImage = data.getData();
+                String[] filePath = { MediaStore.Images.Media.DATA };
+                Cursor c = getContentResolver().query(selectedImage,filePath, null, null, null);
+                c.moveToFirst();
+                int columnIndex = c.getColumnIndex(filePath[0]);
+                String picturePath = c.getString(columnIndex);
+                c.close();
+                Bitmap _bit = BitmapFactory.decodeFile(picturePath);
+                Log.d("bitmap check", "pic_path : "+picturePath+"\nfile_path : "+filePath+"\n bitmap : "+_bit);
+                addPhoto(_bit);
+            }
+        }
+    }
+
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_selector_view);
+
 
         mBoardView = (BoardView) findViewById(R.id.board_view);
         mBoardView.setSnapToColumnsWhenScrolling(true);
@@ -80,24 +166,62 @@ public class PhotoSelectorActivity extends AppCompatActivity {
 //        ((AppCompatActivity) this).getSupportActionBar().setTitle("Board");
 
         addColumnList();
-    }
+        selectImage();
+        }
 
 
     private void addColumnList() {
-        final ArrayList<Pair<Long, String>> mItemArray = new ArrayList<>();
-        int addItems = 15;
-        for (int i = 0; i < addItems; i++) {
-            long id = sCreatedItems++;
-            mItemArray.add(new Pair<>(id, "Item " + id));
-        }
+        Drawable vectorDrawable = ResourcesCompat.getDrawable(this.getResources(), R.drawable.home_icon, null);
+        Bitmap myLogo = ((BitmapDrawable) vectorDrawable).getBitmap();
+        Log.d("LOGO", "addColumnList: "+myLogo);
+        mItemArray.add(new Pair<>(1L, myLogo));
+        mItemArray.add(new Pair<>(2L, myLogo));
+
 
         final int column = mColumns;
-        final PhotoSelectorItemAdapter listAdapter = new PhotoSelectorItemAdapter(mItemArray, R.layout.column_item , R.id.item_layout, true);
 
         mBoardView.addColumnList(listAdapter, null, false).setLayoutManager( new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mColumns++;
+        listAdapter.notifyDataSetChanged();
+
 
     }
+    private void addPhoto(Bitmap img){
+        mItemArray.add(2,new Pair<>(1L ,img));
+        Log.d("", "addPhoto" + img);
+        listAdapter.notifyDataSetChanged();
+        Log.d("", "addPhoto: "+mItemArray.size());
+    }
+    private void selectImage() {
+
+        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(PhotoSelectorActivity.this);
+        builder.setTitle("Add Photo!");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Take Photo"))
+                {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                    startActivityForResult(intent, 1);
+                }
+                else if (options[item].equals("Choose from Gallery"))
+                {
+                    Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, 2);
+
+                }
+                else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
 
 
 
@@ -124,13 +248,6 @@ public class PhotoSelectorActivity extends AppCompatActivity {
             CardView dragCard = (CardView) dragView;
             CardView clickedCard = ((CardView) clickedView.findViewById(R.id.card));
 
-
-            Log.w("LOGOOO", dragView+"");
-            Log.w("LOGOOO", dragCard+"");
-            Log.w("LOGOOO", dragView.getPaddingBottom()+"");
-            Log.d("tag", ((CardView) clickedView.findViewById(R.id.card))+"");
-            Log.d("tag", clickedCard.getPaddingBottom()+"");
-
             int widthDiff = dragCard.getPaddingLeft() - clickedCard.getPaddingLeft() + dragCard.getPaddingRight() -
                     clickedCard.getPaddingRight();
             int heightDiff = dragCard.getPaddingTop() - clickedCard.getPaddingTop() + dragCard.getPaddingBottom() -
@@ -138,6 +255,8 @@ public class PhotoSelectorActivity extends AppCompatActivity {
             int width = clickedView.getMeasuredWidth() + widthDiff;
             int height = clickedView.getMeasuredHeight() + heightDiff;
             dragView.setLayoutParams(new FrameLayout.LayoutParams(width, height));
+
+
 
             int widthSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
             int heightSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);

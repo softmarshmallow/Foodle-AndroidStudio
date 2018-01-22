@@ -16,19 +16,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_left_arrow"
         android:layout_marginLeft="24dp"/>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+
     <com.woxthebox.draglistview.BoardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/board_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:foregroundGravity="center"
         android:gravity="center"
-    />
-</LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/SaveButton"
         android:layout_width="100dp"

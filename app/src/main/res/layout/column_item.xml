@@ -43,6 +43,7 @@
             android:layout_height="300dp"
             android:layout_marginRight="12dp"
             android:cropToPadding="false"
+            android:id="@+id/ImageSelecterImage"
             android:src="@drawable/ic_launcher" />
 
         <TextView

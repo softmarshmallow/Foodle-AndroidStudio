@@ -16,10 +16,12 @@
 
 package com.softmarshmallow.foodle.Views.PhotoSelectorView;
 
+import android.graphics.Bitmap;
 import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,13 +30,13 @@ import com.woxthebox.draglistview.DragItemAdapter;
 
 import java.util.ArrayList;
 
-class PhotoSelectorItemAdapter extends DragItemAdapter<Pair<Long, String>, PhotoSelectorItemAdapter.ViewHolder> {
+class PhotoSelectorItemAdapter extends DragItemAdapter<Pair<Long, Bitmap>, PhotoSelectorItemAdapter.ViewHolder> {
 
     private int mLayoutId;
     private int mGrabHandleId;
     private boolean mDragOnLongPress;
 
-    PhotoSelectorItemAdapter(ArrayList<Pair<Long, String>> list, int layoutId, int grabHandleId, boolean dragOnLongPress) {
+    PhotoSelectorItemAdapter(ArrayList<Pair<Long, Bitmap>> list, int layoutId, int grabHandleId, boolean dragOnLongPress) {
         mLayoutId = layoutId;
         mGrabHandleId = grabHandleId;
         mDragOnLongPress = dragOnLongPress;
@@ -50,8 +52,8 @@ class PhotoSelectorItemAdapter extends DragItemAdapter<Pair<Long, String>, Photo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        String text = mItemList.get(position).second;
-        holder.mText.setText(text);
+        Bitmap bitmap = mItemList.get(position).second;
+        holder.imageView.setImageBitmap(bitmap);
         holder.itemView.setTag(mItemList.get(position));
     }
 
@@ -62,11 +64,12 @@ class PhotoSelectorItemAdapter extends DragItemAdapter<Pair<Long, String>, Photo
     }
 
     class ViewHolder extends DragItemAdapter.ViewHolder {
-        TextView mText;
+        ImageView imageView;
 
         ViewHolder(final View itemView) {
             super(itemView, mGrabHandleId, mDragOnLongPress);
-            mText = (TextView) itemView.findViewById(R.id.text);
+            //mText = (TextView) itemView.findViewById(R.id.text);
+            imageView = (ImageView) itemView.findViewById(R.id.ImageSelecterImage);
         }
 
         @Override
