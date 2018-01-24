@@ -1,10 +1,12 @@
 package com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,8 +27,8 @@ public class DefaultEditTextContainerView extends ConstraintLayout
         @BindView(R.id.contentEditText)
         public EditText contentEditText;
         
-        private String mTitleText;
-        private String mHintText;
+        private String mTitleText = "title";
+        private String mHintText = "hint";
         
         
         public DefaultEditTextContainerView(Context context) {
@@ -43,7 +45,6 @@ public class DefaultEditTextContainerView extends ConstraintLayout
         public DefaultEditTextContainerView(Context context, AttributeSet attrs, int defStyleAttr) {
                 super(context, attrs, defStyleAttr);
                 init(attrs, defStyleAttr);
-                
         }
         
         
@@ -69,12 +70,9 @@ public class DefaultEditTextContainerView extends ConstraintLayout
                 
                 typedArray.recycle();
                 // endregion
-        
-        
+                
                 titleText.setText(mTitleText);
                 contentEditText.setHint(mHintText);
         }
-        
-        
         
 }

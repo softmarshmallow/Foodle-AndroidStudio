@@ -35,8 +35,7 @@ public class AddressFormsFragment extends Fragment
         TextView descriptionTextView;
         @BindView(R.id.constraintLayout2)
         ConstraintLayout constraintLayout2;
-        @BindView(R.id.textView10)
-        TextView textView10;
+        
         
         public AddressFormsFragment() {
                 // Required empty public constructor
