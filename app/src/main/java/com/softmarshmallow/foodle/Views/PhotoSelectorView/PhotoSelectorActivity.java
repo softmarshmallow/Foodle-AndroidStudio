@@ -16,6 +16,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.util.Pair;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -24,6 +25,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.softmarshmallow.foodle.R;
@@ -37,6 +40,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.OnClick;
+
 
 public class PhotoSelectorActivity extends AppCompatActivity {
 
@@ -45,7 +51,7 @@ public class PhotoSelectorActivity extends AppCompatActivity {
     private int mColumns;
 
     ArrayList<Pair<Long, Bitmap>> mItemArray = new ArrayList<Pair<Long, Bitmap>>();
-    public PhotoSelectorItemAdapter listAdapter = new PhotoSelectorItemAdapter(mItemArray, R.layout.column_item , R.id.item_layout, true);
+    public PhotoSelectorItemAdapter listAdapter = new PhotoSelectorItemAdapter(mItemArray, R.layout.column_item , R.id.card, true);
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -65,8 +71,7 @@ public class PhotoSelectorActivity extends AppCompatActivity {
                     Bitmap bitmap;
                     BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
 
-                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                            bitmapOptions);
+                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),bitmapOptions);
 
                    // viewImage.setImageBitmap(bitmap);
                     addPhoto(bitmap);
@@ -111,18 +116,27 @@ public class PhotoSelectorActivity extends AppCompatActivity {
 
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_selector_view);
+        Intent intent = getIntent();
+        if(intent!=null){
+            String path = intent.getStringExtra("MainBitmap");
+            Bitmap _bit = BitmapFactory.decodeFile(path);
+            addPhoto(_bit);
+        }
 
+        intent.putExtra("re", "return");
+        setResult(RESULT_OK,intent);
 
         mBoardView = (BoardView) findViewById(R.id.board_view);
         mBoardView.setSnapToColumnsWhenScrolling(true);
         mBoardView.setSnapToColumnWhenDragging(true);
         mBoardView.setSnapDragItemToTouch(true);
-        mBoardView.setCustomDragItem(new MyDragItem(this, R.layout.card_photoselecter));
+        mBoardView.setCustomDragItem(new MyDragItem(this, R.layout.column_item));
         mBoardView.setSnapToColumnInLandscape(false);
         mBoardView.setColumnSnapPosition(BoardView.ColumnSnapPosition.CENTER);
 
@@ -164,9 +178,8 @@ public class PhotoSelectorActivity extends AppCompatActivity {
         });
         //mBoardView.setLayoutMode();
 //        ((AppCompatActivity) this).getSupportActionBar().setTitle("Board");
-
         addColumnList();
-        selectImage();
+//        selectImage();
         }
 
 
@@ -175,8 +188,6 @@ public class PhotoSelectorActivity extends AppCompatActivity {
         Bitmap myLogo = ((BitmapDrawable) vectorDrawable).getBitmap();
         Log.d("LOGO", "addColumnList: "+myLogo);
         mItemArray.add(new Pair<>(1L, myLogo));
-        mItemArray.add(new Pair<>(2L, myLogo));
-
 
         final int column = mColumns;
 
@@ -187,7 +198,7 @@ public class PhotoSelectorActivity extends AppCompatActivity {
 
     }
     private void addPhoto(Bitmap img){
-        mItemArray.add(2,new Pair<>(1L ,img));
+        mItemArray.add(0,new Pair<>(1L ,img));
         Log.d("", "addPhoto" + img);
         listAdapter.notifyDataSetChanged();
         Log.d("", "addPhoto: "+mItemArray.size());
@@ -233,11 +244,16 @@ public class PhotoSelectorActivity extends AppCompatActivity {
 
         @Override
         public void onBindDragView(View clickedView, View dragView) {
-  //          CharSequence text = ((TextView) clickedView.findViewById(R.id.text)).getText();
+            BitmapDrawable d = (BitmapDrawable)((ImageView) clickedView.findViewById(R.id.ImageSelecterImage)).getDrawable();
+            Bitmap b = d.getBitmap();
+            ImageView imageView = (ImageView)dragView.findViewById(R.id.ImageSelecterImage);
+            imageView.setImageBitmap(b);
+
+            //  CharSequence text = ((TextView) clickedView.findViewById(R.id.text)).getText();
 //            ((TextView) dragView.findViewById(R.id.text)).setText(text);
 
-            CardView dragCard = ((CardView) dragView.findViewById(R.id.card_photoselecter));
-            CardView clickedCard = ((CardView) clickedView.findViewById(R.id.card_photoselecter));
+            CardView dragCard = ((CardView) dragView.findViewById(R.id.card));
+            CardView clickedCard = ((CardView) clickedView.findViewById(R.id.card));
 
             dragCard.setMaxCardElevation(40);
         //    dragCard.setCardElevation(clickedCard.getCardElevation());
@@ -247,6 +263,7 @@ public class PhotoSelectorActivity extends AppCompatActivity {
         public void onMeasureDragView(View clickedView, View dragView) {
             CardView dragCard = (CardView) dragView;
             CardView clickedCard = ((CardView) clickedView.findViewById(R.id.card));
+
 
             int widthDiff = dragCard.getPaddingLeft() - clickedCard.getPaddingLeft() + dragCard.getPaddingRight() -
                     clickedCard.getPaddingRight();
@@ -265,8 +282,8 @@ public class PhotoSelectorActivity extends AppCompatActivity {
 
         @Override
         public void onStartDragAnimation(View dragView) {
-            CardView dragCard = ((CardView) dragView.findViewById(R.id.card_photoselecter));
-            ObjectAnimator anim = ObjectAnimator.ofFloat(dragCard, "CardElevation", dragCard.getCardElevation(), 40);
+            CardView dragCard = ((CardView) dragView.findViewById(R.id.card));
+            ObjectAnimator anim = ObjectAnimator.ofFloat(dragCard, "CardElevation", dragCard.getCardElevation(), 40f);
             anim.setInterpolator(new DecelerateInterpolator());
             anim.setDuration(ANIMATION_DURATION);
             anim.start();
@@ -274,8 +291,8 @@ public class PhotoSelectorActivity extends AppCompatActivity {
 
         @Override
         public void onEndDragAnimation(View dragView) {
-            CardView dragCard = ((CardView) dragView.findViewById(R.id.card_photoselecter));
-            ObjectAnimator anim = ObjectAnimator.ofFloat(dragCard, "CardElevation", dragCard.getCardElevation(), 6);
+            CardView dragCard = ((CardView) dragView.findViewById(R.id.card));
+            ObjectAnimator anim = ObjectAnimator.ofFloat(dragCard, "CardElevation", dragCard.getCardElevation(), 6f);
             anim.setInterpolator(new DecelerateInterpolator());
             anim.setDuration(ANIMATION_DURATION);
             anim.start();

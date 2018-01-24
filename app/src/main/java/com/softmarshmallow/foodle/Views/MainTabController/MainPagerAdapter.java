@@ -45,7 +45,6 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter
                 switch (tabType)
                 {
                         case Featured:
-//                                return featuredViewFragment;
                                      return featuredViewFragmentV2;
                         case Search:
                                 return storeSearchViewFragment;
