@@ -54,7 +54,6 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
         // Setup D&D feature and RecyclerView
         RecyclerViewDragDropManager dragMgr = new RecyclerViewDragDropManager();
     
-        
         dragMgr.setInitiateOnMove(false);
         dragMgr.setInitiateOnLongPress(true);
 
