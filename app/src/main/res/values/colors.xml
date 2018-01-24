@@ -28,6 +28,8 @@
     <!--region Tints-->
     <color
         name="colorLightDark">#525053</color>
+    <color
+        name="colorLight">#CECDCF</color>
     <!--endregion-->
 
 

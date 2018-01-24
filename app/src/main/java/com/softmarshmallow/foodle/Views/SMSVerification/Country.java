@@ -16,8 +16,10 @@ package com.softmarshmallow.foodle.Views.SMSVerification;
 /**
  * Country information.
  */
+//todo -> FQN... eg. CountryInfoContainer
 public class Country {
 
+    //todo Add Extra Feilds... eg. DialCode
     private final String name;
     private final String code;
 

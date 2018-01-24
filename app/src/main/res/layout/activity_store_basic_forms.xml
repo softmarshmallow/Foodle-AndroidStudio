@@ -13,14 +13,12 @@
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:lines="2"
         android:maxLines="2"
-        android:textColor="@color/textLightDark"
-        android:textSize="26sp"
-        android:textStyle="bold"
         android:text="어떤 푸드트럭을\n운영하시나요?"
+        android:textAppearance="@style/TextAppearance.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +28,7 @@
         android:id="@+id/exitButton"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:adjustViewBounds="true"
         android:background="#00000000"
@@ -39,5 +37,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_x"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="319dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView2">
+
+        <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+            android:id="@+id/storeNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintText="예) 모모네 타코야끼"
+            app:titleText="푸드트럭 이름"/>
+
+
+        <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+            android:id="@+id/storeShortPromotionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintText="예) 10년 경력의 모모가 운영하는 월드클래스 타코야끼!"
+            app:titleText="푸드트럭 한줄 프로모션"/>
+
+
+        <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+            android:id="@+id/storeLongDescriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintText="예) 모모네 타코야끼는 2004년 부산에서 시작하여 전국 12개 지사를 두고있는…"
+            app:titleText="푸드트럭 상세설명"/>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -16,8 +16,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
-
-
     <!-- Permission has to be GRANTED -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
@@ -108,10 +106,10 @@
         <activity
             android:name=".Views.Mypage.ProfileEditorActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Views.MenuEditor.MenuEditorBaseActivity"/>
+        <activity android:name=".Views.MenuEditor_Deprecated.MenuEditorBaseActivity"/>
         <activity android:name=".Views.MenuDetailPage.MenuDetailActivity"/>
         <activity android:name=".Views.StoreEditor_Deprecated.StoreMenusEditorActivity"/>
-        <activity android:name=".Views.MenuEditor.MenuCreatorActivity"/>
+        <activity android:name=".Views.MenuEditor_Deprecated.MenuCreatorActivity"/>
         <activity android:name=".Views.StoreEditor_Deprecated.StoreCreatorActivity"/>
         <activity android:name=".Views.StoreEditor_Deprecated.StoreUpdaterActivity"/>
         <activity android:name=".Views.Test.TestMapsActivity"/>
@@ -127,6 +125,10 @@
         <activity android:name=".Views.StoreEditorV3.StoreBasicInfoFormsPage.StoreBasicFormsActivity">
         </activity>
         <activity android:name=".Views.LocationEditor.LocationEditorActivity">
+        </activity>
+        <activity android:name=".Views.MenuEditorV3.MenuEditorListingPage.MenuEditorListingPageActivity">
+        </activity>
+        <activity android:name=".Views.MenuEditorV3.MenuEditorLandingPage.MenuEditorLandingPageActivity">
         </activity>
     </application>
 

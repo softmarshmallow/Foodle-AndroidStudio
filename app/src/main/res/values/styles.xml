@@ -15,8 +15,6 @@
         <item
             name="colorAccent">@color/colorAccent
         </item>
-        <item name="android:textViewStyle">@style/AppFont.Thin</item>
-
         <item
             name="android:windowNoTitle">true
         </item>
@@ -70,7 +68,16 @@
 
 
 
-<!--Fonts-->
+    <!--TextAppearance-->
+    <style name="TextAppearance.Large" parent="android:TextAppearance">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textLightDark</item>
+    </style>
+
+
+
+    <!--Fonts-->
 
     <style name="AppFont.Thin" parent="android:TextAppearance">
         <!-- Custom Attr-->

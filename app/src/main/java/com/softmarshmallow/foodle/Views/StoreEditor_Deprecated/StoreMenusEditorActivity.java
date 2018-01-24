@@ -11,7 +11,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.R;
-import com.softmarshmallow.foodle.Views.MenuEditor.MenuCreatorActivity;
+import com.softmarshmallow.foodle.Views.MenuEditor_Deprecated.MenuCreatorActivity;
 import com.softmarshmallow.foodle.Views.StoreDetail.MenusAdapter;
 
 import java.util.ArrayList;
