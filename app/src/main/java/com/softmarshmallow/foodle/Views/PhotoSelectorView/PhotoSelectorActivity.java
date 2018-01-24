@@ -45,10 +45,8 @@ public class PhotoSelectorActivity extends AppCompatActivity
 {
         
         private static final String TAG = PhotoSelectorActivity.class.getSimpleName();
-        
-        
-        @BindView(R.id.board_view)
-        BoardView mBoardView;
+
+        public BoardView mBoardView;
         
         ArrayList<Pair<Long, Bitmap>> mItemArray = new ArrayList<Pair<Long, Bitmap>>();
         public PhotoSelectorItemAdapter listAdapter = new PhotoSelectorItemAdapter(mItemArray,
@@ -60,9 +58,8 @@ public class PhotoSelectorActivity extends AppCompatActivity
                 
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_photo_selector_view);
-                ButterKnife.bind(this);
-                
-                
+
+
                 // get passed image data
                 Intent intent = getIntent();
                 if (intent != null) {
@@ -82,14 +79,13 @@ public class PhotoSelectorActivity extends AppCompatActivity
         void initBoardView(){
                 
                 Log.d(TAG, "initBoardView");
-        
+                mBoardView = (BoardView)findViewById(R.id.board_view);
                 mBoardView.setSnapToColumnsWhenScrolling(true);
                 mBoardView.setSnapToColumnWhenDragging(true);
                 mBoardView.setSnapDragItemToTouch(true);
                 mBoardView.setCustomDragItem(new PhotoDragItem(this, R.layout.column_item));
                 mBoardView.setSnapToColumnInLandscape(false);
                 mBoardView.setColumnSnapPosition(BoardView.ColumnSnapPosition.CENTER);
-        
                 mBoardView.setBoardListener(new BoardView.BoardListener()
                 {
                         @Override

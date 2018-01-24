@@ -26,11 +26,11 @@
         card_view:cardElevation="2dp"
         card_view:cardPreventCornerOverlap="true"
         card_view:cardUseCompatPadding="true"
-        android:layout_margin="20dp">
+        >
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_marginRight="12dp"
             android:cropToPadding="false"
             android:id="@+id/ImageSelecterImage"

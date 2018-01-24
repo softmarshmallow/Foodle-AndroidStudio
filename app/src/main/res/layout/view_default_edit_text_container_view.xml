@@ -60,7 +60,8 @@
         android:tint="@color/colorLight"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/contentEditText"
-        app:layout_constraintTop_toTopOf="@+id/contentEditText"
-        app:srcCompat="@drawable/oval"/>
+        app:layout_constraintTop_toTopOf="@+id/contentEditText"/>
+        <!--app:srcCompat="@drawable/oval"-->
+
 
 </android.support.constraint.ConstraintLayout>
