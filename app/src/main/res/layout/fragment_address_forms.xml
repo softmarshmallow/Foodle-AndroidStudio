@@ -64,22 +64,25 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
             <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+                android:id="@+id/countryEditTextContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:hintText="South Korea"
                 app:titleText="나라"/>
 
 
             <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+                android:id="@+id/streetEditTextContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:hintText="예)판교원로 186"
                 app:titleText="도로"/>
 
 
             <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+                android:id="@+id/locationDescriptionEditTextContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:hintText="예)판교역 1번출구앞 조각상 옆"
                 app:titleText="위치 설명"/>
         </LinearLayout>

@@ -16,18 +16,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 //import com.google.zxing.integration.android.IntentIntegrator;
 //import com.google.zxing.integration.android.IntentResult;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingMenuLayout;
-import com.softmarshmallow.foodle.Models.MockDataSource.MockDataSource;
 import com.softmarshmallow.foodle.R;
-import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoSelectorActivity;
-import com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity;
-import com.softmarshmallow.foodle.Views.Splash.SplashScreenActivity;
-import com.softmarshmallow.foodle.Views.StoreDetail.StoreDetailViewActivity;
 
 import java.util.ArrayList;
 

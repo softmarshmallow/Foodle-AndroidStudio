@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.LocationEditor.LocationEditorActivity;
+import com.softmarshmallow.foodle.Views.MenuEditorV3.MenuEditorListingPage.MenuEditorListingPageActivity;
 import com.softmarshmallow.foodle.Views.StoreEditorV3.CustomViews.LandingPageSectionItemView;
 import com.softmarshmallow.foodle.Views.StoreEditorV3.StoreBasicInfoFormsPage.StoreBasicFormsActivity;
 
@@ -78,13 +79,14 @@ public class StoreEditorLandingPageActivity extends AppCompatActivity
                 });
                 
                 
-                
                 // Section  sectionMenus
                 sectionMenus.setOnContinueButtonClickListener(new View.OnClickListener()
                 {
                         @Override
                         public void onClick(View view) {
-                                Toast.makeText(StoreEditorLandingPageActivity.this, "NA", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(StoreEditorLandingPageActivity.this,
+                                        MenuEditorListingPageActivity.class);
+                                startActivity(intent);
                         }
                 });
         }

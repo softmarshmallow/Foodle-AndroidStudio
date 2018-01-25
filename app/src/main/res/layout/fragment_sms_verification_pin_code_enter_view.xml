@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity"
+    tools:context="com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PinCodeEnterViewFragment"
     android:background="@drawable/background_gradient_1">
 
     <TextView
@@ -105,9 +105,8 @@
         app:srcCompat="@drawable/ic_left_arrow"
         android:layout_marginLeft="24dp"/>
 
-
     <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/UploadReviewButton"
+        android:id="@+id/confirmButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_centerVertical="true"

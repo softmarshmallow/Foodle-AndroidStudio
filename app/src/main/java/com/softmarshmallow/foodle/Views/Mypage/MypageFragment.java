@@ -19,7 +19,6 @@ import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.FirebaseUserService;
 import com.softmarshmallow.foodle.Services.FoodleUserProfileService;
 import com.softmarshmallow.foodle.Views.Mypage.Shared.StoresListViewActivity;
-import com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity;
 
 import java.util.List;
 
