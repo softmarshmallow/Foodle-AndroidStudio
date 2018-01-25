@@ -16,18 +16,23 @@
 
 package com.softmarshmallow.foodle.Views.Test.DragListTest;
 
+import android.Manifest;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
@@ -67,6 +72,7 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
 {
 
     MyAdapter adapter = new MyAdapter();
+    private static final int MY_CAMERA_REQUEST_CODE = 100;
 
     private void selectImage() {
 
@@ -76,16 +82,20 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
         builder.setTitle("Add Photo!");
         builder.setItems(options, new DialogInterface.OnClickListener()
         {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(DialogInterface dialog, int item) {
 
                 //TODO : Take Photo
                 if (options[item].equals("Take Photo")) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    File f = new File(Environment.getExternalStorageDirectory(),
-                            "temp.jpg");
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-                    startActivityForResult(intent, 1);
+
+                    if (checkSelfPermission(Manifest.permission.CAMERA)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[]{Manifest.permission.CAMERA},
+                                MY_CAMERA_REQUEST_CODE);
+                    }
+                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(cameraIntent, 1);
                 } else if (options[item].equals("Choose from Gallery")) {
                     Intent intent = new Intent(Intent.ACTION_PICK,
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -104,52 +114,10 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
 
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
-                File f = new File(Environment.getExternalStorageDirectory()
-                        .toString());
-                for (File temp : f.listFiles()) {
-                    if (temp.getName()
-                            .equals("temp.jpg")) {
-                        f = temp;
-                        break;
-                    }
-                }
-                try {
-                    Bitmap bitmap;
-                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
 
-                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                            bitmapOptions);
 
-                    // viewImage.setImageBitmap(bitmap);
-                   // addPhoto(bitmap);
-                    String path = Environment
-                            .getExternalStorageDirectory()
-                            + File.separator
-                            + "Phoenix" + File.separator + "default";
-                    f.delete();
-                    OutputStream outFile = null;
-                    File file = new File(path, String.valueOf(
-                            System.currentTimeMillis()) + ".jpg");
-                    try {
-                        outFile = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85,
-                                outFile);
-                        outFile.flush();
-                        outFile.close();
-                    }
-                    catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                adapter.mItems.add(new MyItem(1,"Camera",photo));
             } else if (requestCode == 2) {try {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
@@ -171,6 +139,27 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
         adapter.mItems.add(new MyItem(3,"Main", bit));
         adapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == MY_CAMERA_REQUEST_CODE) {
+
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();//
+
+            } else {
+
+                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
+
+            }
+
+        }
     }
 
     @Override
