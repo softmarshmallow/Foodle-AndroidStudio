@@ -2,6 +2,7 @@ package com.softmarshmallow.foodle.Views.LocationEditor;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
  */
 public class LocationChooserFragment extends Fragment implements OnMapReadyCallback
 {
-        
+        public static LocationChooserFragment Instance;
         
         SupportMapFragment map;
         Unbinder unbinder;
@@ -38,6 +39,11 @@ public class LocationChooserFragment extends Fragment implements OnMapReadyCallb
                 // Required empty public constructor
         }
         
+        @Override
+        public void onCreate(@Nullable Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                Instance = this;
+        }
         
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,

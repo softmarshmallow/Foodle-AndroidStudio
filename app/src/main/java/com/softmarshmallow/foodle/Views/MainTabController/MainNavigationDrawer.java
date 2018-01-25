@@ -14,10 +14,9 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.softmarshmallow.foodle.Helpers.ContactToFoodleHelper;
 import com.softmarshmallow.foodle.Views.Mypage.ProfileEditorActivity;
-import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoSelectorActivity;
 import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoSelectorFirstActivity;
 import com.softmarshmallow.foodle.Views.QR_ReaderView.QR_ReaderActivity;
-import com.softmarshmallow.foodle.Views.SMSVerification.SMSVerification_PhoneNumberEnterViewActivity;
+import com.softmarshmallow.foodle.Views.SMSVerification.SMSVerificationActivity;
 import com.softmarshmallow.foodle.Views.StoreEditorV3.StoreEditorLandingPage.StoreEditorLandingPageActivity;
 import com.softmarshmallow.foodle.Views.StoreEditor_Deprecated.StoreCreatorActivity;
 import com.softmarshmallow.foodle.Views.StoreMapsView.StoreMapsViewActivity;
@@ -204,7 +203,7 @@ public class MainNavigationDrawer
                                                         break;
                                                 case DevOption2:
                                                         intent = new Intent(activity,
-                                                                SMSVerification_PhoneNumberEnterViewActivity.class);
+                                                                SMSVerificationActivity.class);
                                                         activity.startActivity(intent);
                                                         break;
                                                 case DevOption3:
