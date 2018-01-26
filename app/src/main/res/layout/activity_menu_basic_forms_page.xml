@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.softmarshmallow.foodle.Views.MenuEditorV3.MenuBasicFormsPage.MenuBasicFormsPageActivity">
+
+    <ImageButton
+        android:id="@+id/exitButton"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:adjustViewBounds="true"
+        android:background="#00000000"
+        android:scaleType="fitXY"
+        android:tint="@color/colorLightDark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_x"/>
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:lines="2"
+        android:maxLines="2"
+        android:text="어떤 메뉴를 판매\n하시나요?"
+        android:textAppearance="@style/TextAppearance.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exitButton"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView">
+
+        <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:titleText="메뉴 이름"
+            app:hintText="예)수제 햄버거"/>
+        <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:titleText="메뉴 가격"
+            app:hintText="$2.99"/>
+        <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:titleText="메뉴 설명"
+            app:hintText="예)맛과 건강 모두 챙기는 수제햄버거"/>
+        <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:titleText="메뉴 태그"
+            app:hintText="예)#타코야끼 #맜잇다 #홍대 #데이트코스 #동글동글"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
