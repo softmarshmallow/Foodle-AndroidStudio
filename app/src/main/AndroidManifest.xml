@@ -132,6 +132,8 @@
         <activity android:name=".Views.Test.DragListTest.MinimalDraggableExampleActivity"/>
         <activity android:name=".Views.SMSVerification.SMSVerificationActivity">
         </activity>
+        <activity android:name=".Views.MenuEditorV3.MenuBasicFormsPage.MenuBasicFormsPageActivity">
+        </activity>
     </application>
 
 </manifest>

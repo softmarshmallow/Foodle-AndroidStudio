@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.softmarshmallow.foodle.Models.MockDataSource.MockDataSource;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.LocationEditor.LocationEditorActivity;
 import com.softmarshmallow.foodle.Views.MenuEditorV3.MenuEditorListingPage.MenuEditorListingPageActivity;
+import com.softmarshmallow.foodle.Views.StoreDetail.StoreDetailViewActivity;
 import com.softmarshmallow.foodle.Views.StoreEditorV3.CustomViews.LandingPageSectionItemView;
 import com.softmarshmallow.foodle.Views.StoreEditorV3.StoreBasicInfoFormsPage.StoreBasicFormsActivity;
 
@@ -68,13 +70,14 @@ public class StoreEditorLandingPageActivity extends AppCompatActivity
                 });
                 
                 
-                
                 // Section  sectionPhotos
                 sectionPhotos.setOnContinueButtonClickListener(new View.OnClickListener()
                 {
                         @Override
                         public void onClick(View view) {
-                                Toast.makeText(StoreEditorLandingPageActivity.this, "NA", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(StoreEditorLandingPageActivity.this, "NA",
+                                        Toast.LENGTH_SHORT)
+                                        .show();
                         }
                 });
                 
@@ -95,5 +98,10 @@ public class StoreEditorLandingPageActivity extends AppCompatActivity
         @OnClick(R.id.exitButton)
         public void onExitButtonClicked() {
                 finish();
+        }
+        
+        @OnClick(R.id.previewButton)
+        public void onPreviewClicked() {
+                StoreDetailViewActivity.ShowStoreDetailWithData(this, MockDataSource.getTestStore_Caseys());
         }
 }

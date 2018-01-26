@@ -37,22 +37,14 @@
                         app:titleText="메뉴 기본정보"/>
 
                     <com.softmarshmallow.foodle.Views.StoreEditorV3.CustomViews.LandingPageSectionItemView
-                        android:id="@+id/section_location"
+                        android:id="@+id/section_photos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:descriptionText="메뉴를 잘 표현하는 사진을 등록해주세요."
                         app:titleText="미각을 시각화합니다"/>
 
-
                     <com.softmarshmallow.foodle.Views.StoreEditorV3.CustomViews.LandingPageSectionItemView
-                        android:id="@+id/section_photos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:descriptionText="당신의 푸드트럭을 잘 나타내는 사진과 설명을 입력하게됩니다."
-                        app:titleText="비쥬얼을 추가합시다"/>
-
-                    <com.softmarshmallow.foodle.Views.StoreEditorV3.CustomViews.LandingPageSectionItemView
-                        android:id="@+id/section_menus"
+                        android:id="@+id/section_menu_extra_options"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:descriptionText="메뉴의 사이즈, 추가 제료, 카테고리등을 설정합니다."
