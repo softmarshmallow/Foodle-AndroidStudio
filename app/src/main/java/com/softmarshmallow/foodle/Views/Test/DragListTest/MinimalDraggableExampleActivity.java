@@ -94,8 +94,6 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
                         requestPermissions(new String[]{Manifest.permission.CAMERA},
                                 MY_CAMERA_REQUEST_CODE);
                     }
-                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(cameraIntent, 1);
                 } else if (options[item].equals("Choose from Gallery")) {
                     Intent intent = new Intent(Intent.ACTION_PICK,
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -150,8 +148,8 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
         if (requestCode == MY_CAMERA_REQUEST_CODE) {
 
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();//
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, 1);
 
             } else {
 
