@@ -64,6 +64,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
+
 /*
  * This example shows very very minimal implementation of draggable feature.
  * Please refer to other examples for more advanced usages. Thanks!
@@ -85,14 +87,15 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(DialogInterface dialog, int item) {
-
-                //TODO : Take Photo
                 if (options[item].equals("Take Photo")) {
-
                     if (checkSelfPermission(Manifest.permission.CAMERA)
                             != PackageManager.PERMISSION_GRANTED) {
                         requestPermissions(new String[]{Manifest.permission.CAMERA},
                                 MY_CAMERA_REQUEST_CODE);
+                    }else{
+                        Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(cameraIntent, 1);
+
                     }
                 } else if (options[item].equals("Choose from Gallery")) {
                     Intent intent = new Intent(Intent.ACTION_PICK,
@@ -112,8 +115,6 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
 
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
-
-
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
                 adapter.mItems.add(new MyItem(1,"Camera",photo));
             } else if (requestCode == 2) {try {
@@ -148,9 +149,7 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
         if (requestCode == MY_CAMERA_REQUEST_CODE) {
 
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, 1);
-
+                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();//\
             } else {
 
                 Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
@@ -160,10 +159,10 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_demo_minimal);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
@@ -189,7 +188,9 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
         adapter.mItems.add(new MyItem(1,"Main", myLogo));
         adapter.mItems.add(new MyItem(2,"Main", myLogo));
 
-
+        Intent intent = getIntent();
+        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("MainBitmap");
+        addPhoto(bitmap);
         selectImage();
     }
 
