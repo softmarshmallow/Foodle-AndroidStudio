@@ -17,6 +17,7 @@
 package com.softmarshmallow.foodle.Views.Test.DragListTest;
 
 import android.Manifest;
+import android.app.DialogFragment;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,6 +34,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
@@ -41,10 +44,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +69,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.OnClick;
+
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
 
 /*
@@ -72,47 +79,21 @@ import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
  */
 public class MinimalDraggableExampleActivity extends AppCompatActivity
 {
-
+    LinearLayout llBottomSheet;
     MyAdapter adapter = new MyAdapter();
     private static final int MY_CAMERA_REQUEST_CODE = 100;
+    static BottomSheetDialog mBottomSheetDialog;
+    RecyclerView recyclerView;
 
-    private void selectImage() {
+    public static void selectImage() {
 
-        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
+        mBottomSheetDialog.show();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MinimalDraggableExampleActivity.this);
-        builder.setTitle("Add Photo!");
-        builder.setItems(options, new DialogInterface.OnClickListener()
-        {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                if (options[item].equals("Take Photo")) {
-                    if (checkSelfPermission(Manifest.permission.CAMERA)
-                            != PackageManager.PERMISSION_GRANTED) {
-                        requestPermissions(new String[]{Manifest.permission.CAMERA},
-                                MY_CAMERA_REQUEST_CODE);
-                    }else{
-                        Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(cameraIntent, 1);
-
-                    }
-                } else if (options[item].equals("Choose from Gallery")) {
-                    Intent intent = new Intent(Intent.ACTION_PICK,
-                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent, 2);
-
-                } else if (options[item].equals("Cancel")) {
-                    dialog.dismiss();
-                }
-            }
-        });
-        builder.show();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        mBottomSheetDialog.hide();
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
@@ -164,10 +145,40 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo_minimal);
+        mBottomSheetDialog = new BottomSheetDialog(this);
+        View sheetView = this.getLayoutInflater().inflate(R.layout.fragment_photoselecter_bottom, null);
+        mBottomSheetDialog.setContentView(sheetView);
+        LinearLayout edit = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_edit);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkSelfPermission(Manifest.permission.CAMERA)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA},
+                            MY_CAMERA_REQUEST_CODE);
+                    // Edit code here;
+                }else{
+                    Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(cameraIntent, 1);
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+                }
+            }
+        });
 
-        // Setup D&D feature and RecyclerView
+        LinearLayout delete = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_delete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Delete code here;
+
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 2);
+            }
+        });
+
+        recyclerView = findViewById(R.id.recycler_view);
+
         RecyclerViewDragDropManager dragMgr = new RecyclerViewDragDropManager();
     
         dragMgr.setInitiateOnMove(false);
@@ -175,19 +186,15 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(dragMgr.createWrappedAdapter(adapter));
-
         dragMgr.attachRecyclerView(recyclerView);
 
         Snackbar.make(findViewById(R.id.container), "TIP: Long press item to initiate Drag & Drop action!", Snackbar.LENGTH_LONG).show();
 
         Drawable vectorDrawable = ResourcesCompat.getDrawable(this.getResources(),
-                R.drawable.home_icon, null);
+                R.drawable.plus, null);
         Bitmap myLogo = ((BitmapDrawable) vectorDrawable).getBitmap();
-        Log.d("TQ", "onCreate: "+myLogo);
-        adapter.mItems.add(new MyItem(0,"Main", myLogo));
-        adapter.mItems.add(new MyItem(1,"Main", myLogo));
-        adapter.mItems.add(new MyItem(2,"Main", myLogo));
 
+        adapter.mItems.add(new MyItem(0,"Plus", myLogo));
         Intent intent = getIntent();
         Bitmap bitmap = (Bitmap) intent.getParcelableExtra("MainBitmap");
         addPhoto(bitmap);
@@ -213,11 +220,24 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
     static class MyViewHolder extends AbstractDraggableItemViewHolder {
         TextView textView;
         ImageView imageView;
-        public MyViewHolder(View itemView) {
+
+        public MyViewHolder(final View itemView) {
             super(itemView);
             textView = itemView.findViewById(android.R.id.text1);
             imageView = itemView.findViewById(R.id.ImageSelecterImage);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (textView.getText().equals("Plus"))
+                        MinimalDraggableExampleActivity.selectImage();
+                    else
+                        Log.d("TAG", "instance initializer: Sex");
+
+                }
+            });
         }
+
+
     }
 
     static class MyAdapter extends RecyclerView.Adapter<MyViewHolder> implements DraggableItemAdapter<MyViewHolder> {
@@ -231,7 +251,6 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
 //                mItems.add(new MyItem(i, "Item " + i, ));
 //            }
         }
-
         @Override
         public long getItemId(int position) {
             return mItems.get(position).id; // need to return stable (= not change even after reordered) value

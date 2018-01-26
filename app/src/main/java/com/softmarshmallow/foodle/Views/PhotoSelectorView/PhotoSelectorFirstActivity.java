@@ -138,8 +138,5 @@ public class PhotoSelectorFirstActivity extends AppCompatActivity {
         builder.show();
     }
 
-
-
-
 }
 
