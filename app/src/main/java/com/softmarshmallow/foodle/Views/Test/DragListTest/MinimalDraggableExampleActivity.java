@@ -79,7 +79,6 @@ import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
  */
 public class MinimalDraggableExampleActivity extends AppCompatActivity
 {
-    LinearLayout llBottomSheet;
     MyAdapter adapter = new MyAdapter();
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     static BottomSheetDialog mBottomSheetDialog;
@@ -196,9 +195,14 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
 
         adapter.mItems.add(new MyItem(0,"Plus", myLogo));
         Intent intent = getIntent();
-        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("MainBitmap");
+    try{
+        byte[] byteArray = getIntent().getByteArrayExtra("MainBitmap");
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         addPhoto(bitmap);
         selectImage();
+    }catch (Exception e){
+        Log.d("", "onCreate: "+e);
+    }
     }
 
     static class MyItem {
@@ -230,13 +234,9 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
                 public void onClick(View view) {
                     if (textView.getText().equals("Plus"))
                         MinimalDraggableExampleActivity.selectImage();
-                    else
-                        Log.d("TAG", "instance initializer: Sex");
-
                 }
             });
         }
-
 
     }
 
@@ -267,6 +267,11 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
             MyItem item = mItems.get(position);
             holder.textView.setText(item.text);
             holder.imageView.setImageBitmap(item.bitmap);
+            if(item.text.equals("Main")){
+                holder.textView.setVisibility(View.VISIBLE);
+            }else{
+                holder.textView.setVisibility(View.INVISIBLE);
+            }
         }
 
         @Override
