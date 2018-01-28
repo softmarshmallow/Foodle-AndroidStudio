@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,20 +16,34 @@
         android:scaleType="centerCrop"
         />
 
-    <TextView
-        android:id="@android:id/text1"
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/TextBG"
         android:layout_width="54dp"
-        android:layout_height="30dp"
+        android:layout_height="21dp"
+        android:src="@color/mdtp_light_gray"
+        app:riv_corner_radius="5dp"
+        android:scaleType="centerCrop"
         android:layout_marginBottom="9dp"
         android:layout_marginStart="8dp"
-        android:background="@color/mdtp_light_gray"
-        android:gravity="center"
-        android:text="test"
-
-        android:textColor="@color/ms_white"
-        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+
+    </com.makeramen.roundedimageview.RoundedImageView>>
+    <TextView
+        android:layout_width="57dp"
+        android:id="@+id/text1"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="9dp"
+        android:gravity="center"
+        android:text="대표사진"
+        android:textColor="@color/ms_white"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:riv_corner_radius="10dp" />
+
 
 
 </android.support.constraint.ConstraintLayout>

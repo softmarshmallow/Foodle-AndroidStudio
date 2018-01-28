@@ -19,6 +19,7 @@ package com.softmarshmallow.foodle.Views.Test.DragListTest;
 import android.Manifest;
 import android.app.DialogFragment;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -57,6 +58,7 @@ import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemAdapter;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.ItemDraggableRange;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractDraggableItemViewHolder;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoSelectorActivity;
 
@@ -115,7 +117,7 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
     }
 
     private void addPhoto(Bitmap bit) {
-        adapter.mItems.add(new MyItem(3,"Main", bit));
+        adapter.mItems.add(adapter.mItems.size()-1,new MyItem(0,"None", bit));
         adapter.notifyDataSetChanged();
 
     }
@@ -193,28 +195,27 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
                 R.drawable.plus, null);
         Bitmap myLogo = ((BitmapDrawable) vectorDrawable).getBitmap();
 
-        adapter.mItems.add(new MyItem(0,"Plus", myLogo));
         Intent intent = getIntent();
-    try{
-        byte[] byteArray = getIntent().getByteArrayExtra("MainBitmap");
-        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        addPhoto(bitmap);
-        selectImage();
-    }catch (Exception e){
-        Log.d("", "onCreate: "+e);
-    }
+        try{
+            byte[] byteArray = getIntent().getByteArrayExtra("MainBitmap");
+            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            adapter.mItems.add(new MyItem(1,"Main",bitmap));
+        }catch (Exception e){
+            Log.d("", "onCreate: "+e);
+        }
+        adapter.mItems.add(new MyItem(2,"Plus", myLogo));
     }
 
     static class MyItem {
-        public final long id;
-        public final String text;
+        public int id;
+        public String text;
         public Bitmap bitmap;
 
-        public MyItem(long id, String text) {
+        public MyItem(int id, String text) {
             this.id = id;
             this.text = text;
         }
-        public MyItem(long id, String text, Bitmap bitmap) {
+        public MyItem(int id, String text, Bitmap bitmap) {
             this.id = id;
             this.text = text;
             this.bitmap = bitmap;
@@ -224,15 +225,18 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
     static class MyViewHolder extends AbstractDraggableItemViewHolder {
         TextView textView;
         ImageView imageView;
-
+        RoundedImageView roundedImageView;
+        int id = 0;
         public MyViewHolder(final View itemView) {
             super(itemView);
-            textView = itemView.findViewById(android.R.id.text1);
+            textView = itemView.findViewById(R.id.text1);
             imageView = itemView.findViewById(R.id.ImageSelecterImage);
+            roundedImageView = itemView.findViewById(R.id.TextBG);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (textView.getText().equals("Plus"))
+                    Log.d("TEST_CLcick", "onClick: "+id);
+                    if (id ==2)
                         MinimalDraggableExampleActivity.selectImage();
                 }
             });
@@ -265,12 +269,14 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
             MyItem item = mItems.get(position);
-            holder.textView.setText(item.text);
             holder.imageView.setImageBitmap(item.bitmap);
-            if(item.text.equals("Main")){
+            holder.id = item.id;
+            if(item.id == 1){
                 holder.textView.setVisibility(View.VISIBLE);
+                holder.roundedImageView.setVisibility(View.VISIBLE);
             }else{
                 holder.textView.setVisibility(View.INVISIBLE);
+                holder.roundedImageView.setVisibility(View.INVISIBLE);
             }
         }
 
@@ -281,12 +287,20 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
 
         @Override
         public void onMoveItem(int fromPosition, int toPosition) {
+            Log.d("TEST_CLcick", fromPosition+" _+_ " +toPosition);
+            if(toPosition == mItems.size()-1) {
+                MyItem movedItem = mItems.remove(fromPosition);
+                mItems.add(toPosition-1, movedItem);
+                return;
+            }
             MyItem movedItem = mItems.remove(fromPosition);
             mItems.add(toPosition, movedItem);
         }
 
         @Override
         public boolean onCheckCanStartDrag(MyViewHolder holder, int position, int x, int y) {
+            if(mItems.get(position).id == 2)
+                return false;
             return true;
         }
 
@@ -297,8 +311,11 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
 
         @Override
         public boolean onCheckCanDrop(int draggingPosition, int dropPosition) {
+            if (dropPosition == this.mItems.size()-1)
+                return false;
             return true;
         }
+
 
         @Override
         public void onItemDragStarted(int position) {
@@ -306,6 +323,14 @@ public class MinimalDraggableExampleActivity extends AppCompatActivity
 
         @Override
         public void onItemDragFinished(int fromPosition, int toPosition, boolean result) {
+            for (MyItem item:mItems) {
+                if(item.id !=2)
+                    item.id = 0;
+            }
+            mItems.get(0).id = 1;
+
+            this.notifyDataSetChanged();
+
         }
     }
 }
