@@ -20,7 +20,7 @@ import com.softmarshmallow.foodle.Views.SMSVerification.SMSVerificationActivity;
 import com.softmarshmallow.foodle.Views.StoreEditorV3.StoreEditorLandingPage.StoreEditorLandingPageActivity;
 import com.softmarshmallow.foodle.Views.StoreEditor_Deprecated.StoreCreatorActivity;
 import com.softmarshmallow.foodle.Views.StoreMapsView.StoreMapsViewActivity;
-import com.softmarshmallow.foodle.Views.Test.DragListTest.MinimalDraggableExampleActivity;
+import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoSelectorActivity;
 
 
 public class MainNavigationDrawer
@@ -213,7 +213,7 @@ public class MainNavigationDrawer
                                                         break;
                                                 case DevOption4:
                                                         intent = new Intent(activity,
-                                                                MinimalDraggableExampleActivity.class);
+                                                                PhotoSelectorActivity.class);
                                                         activity.startActivity(intent);
                                                         break;
                                                 //endregion

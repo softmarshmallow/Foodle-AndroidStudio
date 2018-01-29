@@ -2,21 +2,17 @@ package com.softmarshmallow.foodle.Views.PhotoSelectorView;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -25,15 +21,9 @@ import android.widget.Toast;
 
 
 import com.softmarshmallow.foodle.R;
-import com.softmarshmallow.foodle.Views.Test.DragListTest.MinimalDraggableExampleActivity;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +40,9 @@ public class PhotoSelectorFirstActivity extends AppCompatActivity {
     static BottomSheetDialog mBottomSheetDialog;
 
     private static final int MY_CAMERA_REQUEST_CODE = 100;
+    private static final int SelectPhotoByCamera_REQUEST_CODE = 1;
+    private static final int SelectPhotoByGallery_REQUEST_CODE = 2;
+
     @BindView(R.id.RightNowButton)
     FancyButton fancyButton;
     @Override
@@ -72,7 +65,7 @@ public class PhotoSelectorFirstActivity extends AppCompatActivity {
                     // Edit code here;
                 }else{
                     Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(cameraIntent, 1);
+                    startActivityForResult(cameraIntent, SelectPhotoByCamera_REQUEST_CODE);
 
                 }
             }
@@ -86,7 +79,7 @@ public class PhotoSelectorFirstActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 2);
+                startActivityForResult(intent, SelectPhotoByGallery_REQUEST_CODE);
             }
         });
 
@@ -105,7 +98,7 @@ public class PhotoSelectorFirstActivity extends AppCompatActivity {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "camera permission Accecept", Toast.LENGTH_LONG).show();
                 Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, 1);
+                startActivityForResult(cameraIntent, SelectPhotoByGallery_REQUEST_CODE);
 
             } else {
 
@@ -120,30 +113,32 @@ public class PhotoSelectorFirstActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Intent intent_ = new Intent(PhotoSelectorFirstActivity.this, MinimalDraggableExampleActivity.class);
+        Intent intent_ = new Intent(PhotoSelectorFirstActivity.this, PhotoSelectorActivity.class);
         Bitmap selectedImage = null;
         if (resultCode == RESULT_OK) {
 
-            if (requestCode == 1) {
+            if (requestCode == SelectPhotoByCamera_REQUEST_CODE) {
                 selectedImage = (Bitmap) data.getExtras().get("data");
-            } else if (requestCode == 2) {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                selectedImage.compress(Bitmap.CompressFormat.PNG, 50, stream);
+                byte[] byteArray = stream.toByteArray();
+                Log.w("", "onActivityResult: "+selectedImage);
 
+                intent_.putExtra("MainBitmap",byteArray);
+
+                startActivity(intent_);
+            } else if (requestCode == SelectPhotoByGallery_REQUEST_CODE) {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream;
                 try {
                     imageStream = getContentResolver().openInputStream(imageUri);
                     selectedImage = BitmapFactory.decodeStream(imageStream);
                 }catch (Exception e){
-
+                    Log.w("", "onActivityResult: "+e);
                 }
             }
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            selectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            byte[] byteArray = stream.toByteArray();
 
-            intent_.putExtra("MainBitmap",byteArray);
 
-            startActivity(intent_);
         }
     }
 
