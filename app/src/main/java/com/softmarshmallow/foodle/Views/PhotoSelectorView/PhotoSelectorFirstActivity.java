@@ -1,7 +1,6 @@
 package com.softmarshmallow.foodle.Views.PhotoSelectorView;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -48,13 +47,13 @@ public class PhotoSelectorFirstActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo_selector_first);
+        setContentView(R.layout.fragment_photo_queue_first);
         ButterKnife.bind(this);
         mBottomSheetDialog = new BottomSheetDialog(this);
         View sheetView = this.getLayoutInflater().inflate(R.layout.fragment_photoselecter_bottom, null);
         mBottomSheetDialog.setContentView(sheetView);
-        LinearLayout edit = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_edit);
-        edit.setOnClickListener(new View.OnClickListener() {
+        LinearLayout SelectByCamera = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_camera);
+        SelectByCamera.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
@@ -71,11 +70,10 @@ public class PhotoSelectorFirstActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayout delete = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_delete);
-        delete.setOnClickListener(new View.OnClickListener() {
+        LinearLayout SelectByGallery = (LinearLayout) sheetView.findViewById(R.id.fragment_bottomsheet_gallery);
+        SelectByGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Delete code here;
 
                 Intent intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -89,6 +87,12 @@ public class PhotoSelectorFirstActivity extends AppCompatActivity {
     void RightNowClicked(){
         selectImage();
     }
+    @OnClick(R.id.LaterButton)
+    void LaterClicked(){
+        //ToDo :: CHange Flagment
+        finish();
+    }
+
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
@@ -101,49 +105,52 @@ public class PhotoSelectorFirstActivity extends AppCompatActivity {
                 startActivityForResult(cameraIntent, SelectPhotoByGallery_REQUEST_CODE);
 
             } else {
-
                 Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
-
             }
 
     }
 
-    @SuppressLint("Assert")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        mBottomSheetDialog.hide();
         Intent intent_ = new Intent(PhotoSelectorFirstActivity.this, PhotoSelectorActivity.class);
         Bitmap selectedImage = null;
         if (resultCode == RESULT_OK) {
 
             if (requestCode == SelectPhotoByCamera_REQUEST_CODE) {
                 selectedImage = (Bitmap) data.getExtras().get("data");
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                selectedImage.compress(Bitmap.CompressFormat.PNG, 50, stream);
-                byte[] byteArray = stream.toByteArray();
-                Log.w("", "onActivityResult: "+selectedImage);
 
-                intent_.putExtra("MainBitmap",byteArray);
-
-                startActivity(intent_);
             } else if (requestCode == SelectPhotoByGallery_REQUEST_CODE) {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream;
                 try {
                     imageStream = getContentResolver().openInputStream(imageUri);
                     selectedImage = BitmapFactory.decodeStream(imageStream);
+                    Log.w("Check", "ActivityResult: "+selectedImage);
                 }catch (Exception e){
                     Log.w("", "onActivityResult: "+e);
                 }
             }
+            try {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                selectedImage.compress(Bitmap.CompressFormat.PNG, 50, stream);
+                byte[] byteArray = stream.toByteArray();
+                Log.w("", "onActivityResult: " + selectedImage);
 
+                intent_.putExtra("MainBitmap", byteArray);
 
+                startActivity(intent_);
+                          finish();
+
+            }catch (Exception e){
+                Log.w("Error", "onActivityResult: cant convert Byte Stream." );
+               // new TransactionTooLargeException();
+            }
         }
     }
 
     private void selectImage() {
-
         mBottomSheetDialog.show();
     }
 

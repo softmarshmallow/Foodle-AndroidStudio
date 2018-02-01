@@ -8,7 +8,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
         <LinearLayout
-            android:id="@+id/fragment_history_bottom_sheet_edit"
+            android:id="@+id/fragment_history_bottom_sheet_camera"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:clickable="true"
@@ -29,7 +29,7 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/fragment_history_bottom_sheet_delete"
+            android:id="@+id/fragment_bottomsheet_gallery"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:clickable="true"

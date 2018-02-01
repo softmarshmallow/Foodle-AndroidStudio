@@ -14,6 +14,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.softmarshmallow.foodle.Helpers.ContactToFoodleHelper;
 import com.softmarshmallow.foodle.Views.Mypage.ProfileEditorActivity;
+import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoQueueEditerActivity;
 import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoSelectorFirstActivity;
 import com.softmarshmallow.foodle.Views.QR_ReaderView.QR_ReaderActivity;
 import com.softmarshmallow.foodle.Views.SMSVerification.SMSVerificationActivity;
@@ -213,7 +214,7 @@ public class MainNavigationDrawer
                                                         break;
                                                 case DevOption4:
                                                         intent = new Intent(activity,
-                                                                PhotoSelectorActivity.class);
+                                                                PhotoQueueEditerActivity.class);
                                                         activity.startActivity(intent);
                                                         break;
                                                 //endregion

@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/SaveButton"
+        android:id="@+id/LaterButton"
         android:layout_width="141dp"
         android:layout_height="44dp"
         android:layout_centerVertical="true"

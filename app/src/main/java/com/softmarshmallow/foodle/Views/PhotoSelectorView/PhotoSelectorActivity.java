@@ -16,7 +16,6 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -52,6 +51,10 @@ public class PhotoSelectorActivity extends AppCompatActivity
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     private static final int SelectPhotoByCamera_REQUEST_CODE = 1;
     private static final int SelectPhotoByGallery_REQUEST_CODE = 2;
+    private static final int Plus_CODE = 2;
+    private static final int Main_CODE = 1;
+    private static final int Nomal_CODE = 0;
+
 
 
     static BottomSheetDialog mBottomSheetDialog;
@@ -66,9 +69,10 @@ public class PhotoSelectorActivity extends AppCompatActivity
         if (resultCode == RESULT_OK) {
             if (requestCode == SelectPhotoByCamera_REQUEST_CODE) {
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
-                adapter.mItems.add(new PhotoQueueItem().setId(0).setBitmap(photo));
+                addPhoto(photo);
             } else if (requestCode == SelectPhotoByGallery_REQUEST_CODE) {
                 try {
+
                     Uri imageUri = data.getData();
                     InputStream imageStream = getContentResolver().openInputStream(imageUri);
                     Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
@@ -82,14 +86,13 @@ public class PhotoSelectorActivity extends AppCompatActivity
     }
 
     private void addPhoto(Bitmap bit) {
-        adapter.mItems.add(adapter.mItems.size()-2,
-                new PhotoQueueItem().setId(0).setBitmap(bit));
+        adapter.mItems.add(adapter.mItems.size()-1,
+                new PhotoQueueItem().setId(Nomal_CODE).setBitmap(bit));
         adapter.notifyDataSetChanged();
 
     }
 
     @Override
-
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -107,15 +110,17 @@ public class PhotoSelectorActivity extends AppCompatActivity
         }
     }
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo_queue_editor);
+        setContentView(R.layout.fragment_photo_queue_editor);
         mBottomSheetDialog = new BottomSheetDialog(this);
         View sheetView = this.getLayoutInflater().inflate(R.layout.fragment_photoselecter_bottom, null);
         mBottomSheetDialog.setContentView(sheetView);
-        LinearLayout edit = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_edit);
+        LinearLayout edit = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_camera);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,13 +131,12 @@ public class PhotoSelectorActivity extends AppCompatActivity
                     // Edit code here;
                 }else{
                     Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(cameraIntent, SelectPhotoByGallery_REQUEST_CODE);
-
+                    startActivityForResult(cameraIntent, SelectPhotoByCamera_REQUEST_CODE);
                 }
             }
         });
 
-        LinearLayout delete = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_delete);
+        LinearLayout delete = (LinearLayout) sheetView.findViewById(R.id.fragment_bottomsheet_gallery);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,16 +150,14 @@ public class PhotoSelectorActivity extends AppCompatActivity
 
         recyclerView = findViewById(R.id.recycler_view);
 
-        RecyclerViewDragDropManager dragMgr = new RecyclerViewDragDropManager();
-    
+      RecyclerViewDragDropManager dragMgr = new RecyclerViewDragDropManager();
+
         dragMgr.setInitiateOnMove(false);
         dragMgr.setInitiateOnLongPress(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(dragMgr.createWrappedAdapter(adapter));
         dragMgr.attachRecyclerView(recyclerView);
-
-        Snackbar.make(findViewById(R.id.container), "TIP: Long press item to initiate Drag & Drop action!", Snackbar.LENGTH_LONG).show();
 
         Drawable vectorDrawable = ResourcesCompat.getDrawable(this.getResources(),
                 R.drawable.plus, null);
@@ -165,16 +167,17 @@ public class PhotoSelectorActivity extends AppCompatActivity
         try{
             byte[] byteArray = getIntent().getByteArrayExtra("MainBitmap");
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-            adapter.mItems.add(new PhotoQueueItem().setId(1).setBitmap(bitmap));
+            adapter.mItems.add(new PhotoQueueItem().setId(Main_CODE).setBitmap(bitmap));
         }catch (Exception e){
             Log.d("", "onCreate: "+e);
         }
-
         adapter.mItems.add(
                 new PhotoQueueItem()
-                        .setId(2)
+                        .setId(Plus_CODE)
                         .setBitmap(myLogo)
         );
+
+        adapter.notifyDataSetChanged();
     }
 
 
@@ -197,22 +200,12 @@ public class PhotoSelectorActivity extends AppCompatActivity
 
     }
 
-
-
-    //PhotoQueueAddItemViewHolder
-
-
-
-
-
-
-    //PhotoQueueItemViewHolder
-    static class PhotoQueueViewHolder extends AbstractDraggableItemViewHolder {
+    static class PhotoQueueItemViewHolder extends AbstractDraggableItemViewHolder {
         TextView textView;
         ImageView imageView;
         RoundedImageView roundedImageView;
-        int id = 0;
-        public  PhotoQueueViewHolder(final View itemView) {
+        int id;
+        public  PhotoQueueItemViewHolder(final View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.text1);
             imageView = itemView.findViewById(R.id.ImageSelecterImage);
@@ -221,8 +214,8 @@ public class PhotoSelectorActivity extends AppCompatActivity
                 @Override
                 public void onClick(View view) {
                     Log.d("TEST_CLcick", "onClick: "+id);
-                    if (id ==2)
-                        PhotoSelectorActivity.selectImage();
+                    if (id == Plus_CODE)
+                        PhotoSelecterFragment.selectImage();
                 }
             });
         }
@@ -237,7 +230,7 @@ public class PhotoSelectorActivity extends AppCompatActivity
     }
 
 
-    static class PhotoQueueItemAdapter extends RecyclerView.Adapter< PhotoQueueViewHolder> implements DraggableItemAdapter< PhotoQueueViewHolder> {
+    static class PhotoQueueItemAdapter extends RecyclerView.Adapter< PhotoQueueItemViewHolder> implements DraggableItemAdapter< PhotoQueueItemViewHolder> {
         List<PhotoQueueItem> mItems;
 
         public PhotoQueueItemAdapter() {
@@ -254,17 +247,17 @@ public class PhotoSelectorActivity extends AppCompatActivity
         }
 
         @Override
-        public  PhotoQueueViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public  PhotoQueueItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_photo_queue, parent, false);
-            return new  PhotoQueueViewHolder(v);
+            return new  PhotoQueueItemViewHolder(v);
         }
 
         @Override
-        public void onBindViewHolder( PhotoQueueViewHolder holder, int position) {
+        public void onBindViewHolder( PhotoQueueItemViewHolder holder, int position) {
             PhotoQueueItem item = mItems.get(position);
             holder.imageView.setImageBitmap(item.bitmap);
             holder.id = item.id;
-            if(item.id == 1){
+            if(item.id == Main_CODE){
                 holder.textView.setVisibility(View.VISIBLE);
                 holder.roundedImageView.setVisibility(View.VISIBLE);
             }else{
@@ -280,7 +273,7 @@ public class PhotoSelectorActivity extends AppCompatActivity
 
         @Override
         public void onMoveItem(int fromPosition, int toPosition) {
-            Log.d("TEST_CLcick", fromPosition+" _+_ " +toPosition);
+            Log.d("TEST_Click", fromPosition+" _+_ " +toPosition);
             if(toPosition == mItems.size()-1) {
                 PhotoQueueItem movedItem = mItems.remove(fromPosition);
                 mItems.add(toPosition-1, movedItem);
@@ -288,18 +281,19 @@ public class PhotoSelectorActivity extends AppCompatActivity
             }
             PhotoQueueItem movedItem = mItems.remove(fromPosition);
             mItems.add(toPosition, movedItem);
+            this.notifyDataSetChanged();
         }
 
         @Override
-        public boolean onCheckCanStartDrag( PhotoQueueViewHolder holder, int position, int x, int y) {
-            if(mItems.get(position).id == 2)
+        public boolean onCheckCanStartDrag( PhotoQueueItemViewHolder holder, int position, int x, int y) {
+            if(mItems.get(position).id == Plus_CODE)
                 return false;
             return true;
         }
 
         @Override
-        public ItemDraggableRange onGetItemDraggableRange( PhotoQueueViewHolder holder, int position) {
-            return new ItemDraggableRange(0,mItems.size()-2);
+        public ItemDraggableRange onGetItemDraggableRange( PhotoQueueItemViewHolder holder, int position) {
+            return null;
         }
 
         @Override
@@ -316,12 +310,12 @@ public class PhotoSelectorActivity extends AppCompatActivity
 
         @Override
         public void onItemDragFinished(int fromPosition, int toPosition, boolean result) {
-            for (PhotoQueueItem item:mItems) {
-                if(item.id !=2)
-                    item.id = 0;
-            }
-            mItems.get(0).id = 1;
 
+            for (PhotoQueueItem item:mItems) {
+                if(item.id !=Plus_CODE)
+                    item.id = Nomal_CODE;
+            }
+            mItems.get(0).id = Main_CODE;
         }
     }
 
