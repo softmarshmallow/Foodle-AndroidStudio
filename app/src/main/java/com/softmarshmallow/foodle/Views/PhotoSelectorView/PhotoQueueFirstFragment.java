@@ -22,6 +22,7 @@ import com.softmarshmallow.foodle.Manifest;
 import com.softmarshmallow.foodle.R;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ import butterknife.Optional;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.ContentValues.TAG;
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
 import static android.support.v4.content.ContextCompat.checkSelfPermission;
 
@@ -64,7 +66,7 @@ public class PhotoQueueFirstFragment extends Fragment {
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(getContext(), "camera permission Accecept", Toast.LENGTH_LONG).show();
             Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
-            startActivityForResult(cameraIntent, SelectPhotoByGallery_REQUEST_CODE);
+            this.startActivityForResult(cameraIntent, SelectPhotoByGallery_REQUEST_CODE);
 
         } else {
             Toast.makeText(getContext(), "camera permission denied", Toast.LENGTH_LONG).show();
@@ -83,7 +85,8 @@ public class PhotoQueueFirstFragment extends Fragment {
                             MY_CAMERA_REQUEST_CODE);
                 }else{
                     Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(cameraIntent, SelectPhotoByCamera_REQUEST_CODE);
+                    PhotoQueueEditerActivity.Instance.photoQueueFirstFragment.
+                            startActivityForResult(cameraIntent, SelectPhotoByCamera_REQUEST_CODE);
                 }
             }
         });
@@ -93,7 +96,7 @@ public class PhotoQueueFirstFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 2);
+                PhotoQueueEditerActivity.Instance.photoQueueFirstFragment.startActivityForResult(intent, SelectPhotoByGallery_REQUEST_CODE);
 
             }
         });
@@ -105,6 +108,8 @@ public class PhotoQueueFirstFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_photo_queue_first, container, false);
         ButterKnife.bind(this, view);
+
+        setupBottomSheet();
         return view;
 
     }
@@ -113,47 +118,43 @@ public class PhotoQueueFirstFragment extends Fragment {
         super.onDestroy();
     }
 
-    private void selectImage() {
-        PhotoQueueEditerActivity.Instance.mBottomSheetDialog.show();
-    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult: Is call");
+        //super.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap selectedImage = null;
         if (resultCode == RESULT_OK) {
             if (requestCode == SelectPhotoByCamera_REQUEST_CODE) {
                 selectedImage = (Bitmap) data.getExtras().get("data");
+                PhotoQueueEditerActivity.Instance.showPhotoEditerView();
+                PhotoQueueEditerActivity.Instance.photoSelecterFragment.LoadImageToFirst(selectedImage);
+
 
             } else if (requestCode == SelectPhotoByGallery_REQUEST_CODE) {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = null;
-                try {
-                    selectedImage = BitmapFactory.decodeStream(imageStream);
-                    Log.w("Check", "onActivityResult: "+selectedImage);
-                }catch (Exception e){
-                    Log.w("", "onActivityResult: "+e);
-                }
+               try {
+                   Uri imageUri = data.getData();
+                   InputStream imageStream = getContext().getContentResolver().openInputStream(imageUri);
+                   selectedImage = BitmapFactory.decodeStream(imageStream);
+                   PhotoQueueEditerActivity.Instance.showPhotoEditerView();
+                   PhotoQueueEditerActivity.Instance.photoSelecterFragment.LoadImageToFirst(selectedImage);
+
+               }catch (Exception e){
+                   Log.d(TAG, "onActivityResult: "+e);
+               }
             }
-
-
-            try {
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                selectedImage.compress(Bitmap.CompressFormat.PNG, 50, stream);
-                byte[] byteArray = stream.toByteArray();
-
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Photo", byteArray);   // Object 넘기기
-
-                PhotoQueueEditerActivity.Instance.photoSelecterFragment.setArguments(bundle);
-                PhotoQueueEditerActivity.Instance.photoSelecterFragment.LoadImageToFirst();
-            }catch (Exception e){
-
-               Log.w("Error", "onActivityResult: cant convert Byte Stream." );
-                // new TransactionTooLargeException();
-            }
-            PhotoQueueEditerActivity.Instance.showPhotoEditerView();
-
         }
+
+
+
+
     }
+    private void selectImage() {
+        PhotoQueueEditerActivity.Instance.mBottomSheetDialog.show();
+    }
+
+
+
 
 }

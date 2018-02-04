@@ -16,6 +16,8 @@ import com.softmarshmallow.foodle.Views.SMSVerification.NexmoConfig;
 public class FoodleApp extends Application
 {
         private static Context context;
+        public static final String URL = "http://52.78.115.181:7001/";
+
 
         @Override
         public void onCreate() {

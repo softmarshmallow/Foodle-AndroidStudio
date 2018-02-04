@@ -53,6 +53,10 @@ public class PhotoSelecterFragment extends Fragment {
 
 
 
+    @OnClick(R.id.UploadPhotoButton)
+    void confirm_button_Click(){
+        PhotoQueueEditerActivity.Instance.post();
+    }
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -85,14 +89,13 @@ public class PhotoSelecterFragment extends Fragment {
 
 
         setupRecyclerView();
-        setupBottomSheet();
 
         return view;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+     super.onActivityResult(requestCode, resultCode, data);
         PhotoQueueEditerActivity.Instance.mBottomSheetDialog.hide();
         if (resultCode == RESULT_OK) {
             if (requestCode == SelectPhotoByCamera_REQUEST_CODE) {
@@ -173,11 +176,8 @@ public class PhotoSelecterFragment extends Fragment {
         });
     }
 
-    public void LoadImageToFirst(){
-        Bundle bundle = getArguments();
-        byte[]  byteArray = (byte[]) bundle.getSerializable("Photo");
-        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        adapter.mItems.add(new PhotoSelectorActivity.PhotoQueueItem().setId(Main_CODE).setBitmap(bitmap));
+    public void LoadImageToFirst(Bitmap bitmap){
+        adapter.mItems.add(0,new PhotoSelectorActivity.PhotoQueueItem().setBitmap(bitmap).setId(Main_CODE));
         adapter.notifyDataSetChanged();
     }
     public static void selectImage() {
