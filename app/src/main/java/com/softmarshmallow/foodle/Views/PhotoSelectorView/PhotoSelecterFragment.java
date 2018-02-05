@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -19,14 +20,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.softmarshmallow.foodle.R;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.reflect.Field;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +42,7 @@ import butterknife.Optional;
 import static android.app.Activity.RESULT_OK;
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
 import static android.support.v4.content.ContextCompat.checkSelfPermission;
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by yuntaeil on 2018. 1. 31..
@@ -55,7 +62,29 @@ public class PhotoSelecterFragment extends Fragment {
 
     @OnClick(R.id.UploadPhotoButton)
     void confirm_button_Click(){
-        PhotoQueueEditerActivity.Instance.post();
+        File[] files = new File[]{};
+        File f3=new File(Environment.getExternalStorageDirectory()+"/inpaint/");
+        if(!f3.exists())
+            f3.mkdirs();
+        OutputStream outStream = null;
+        int i = 0;
+        try {
+            for(PhotoSelectorActivity.PhotoQueueItem item: adapter.mItems) {
+
+                File file = new File(Environment.getExternalStorageDirectory() + "/inpaint/"+i+".png");
+
+                outStream = new FileOutputStream(file);
+                item.bitmap.compress(Bitmap.CompressFormat.PNG, 85, outStream);
+                outStream.close();
+                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                files[i] = file;
+                i++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        PhotoQueueEditerActivity.Instance.SendImage(files);
     }
 
     @BindView(R.id.recycler_view)
@@ -146,6 +175,10 @@ public class PhotoSelecterFragment extends Fragment {
                         .setBitmap(myLogo)
         );
 
+        for (File item :PhotoQueueEditerActivity.Instance.GetImage()){
+            Bitmap bitmap = BitmapFactory.decodeFile(item.getAbsolutePath());
+            addPhoto(bitmap);
+        }
         adapter.notifyDataSetChanged();
     }
     public void setupBottomSheet(){

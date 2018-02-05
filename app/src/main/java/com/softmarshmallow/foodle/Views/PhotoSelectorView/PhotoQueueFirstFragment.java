@@ -135,6 +135,9 @@ public class PhotoQueueFirstFragment extends Fragment {
             } else if (requestCode == SelectPhotoByGallery_REQUEST_CODE) {
                try {
                    Uri imageUri = data.getData();
+
+                   Log.d(TAG, "URI: "+imageUri);
+                   PhotoQueueEditerActivity.Instance.Test=imageUri;
                    InputStream imageStream = getContext().getContentResolver().openInputStream(imageUri);
                    selectedImage = BitmapFactory.decodeStream(imageStream);
                    PhotoQueueEditerActivity.Instance.showPhotoEditerView();

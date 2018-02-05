@@ -2,14 +2,15 @@ package com.softmarshmallow.foodle.Views.Test;
 
 import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotofitRepo;
 
+import java.io.File;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -18,21 +19,23 @@ import retrofit2.http.QueryMap;
  */
 public interface SeverTest {
 
-    @GET("POST /photo")
-    Call<PhotofitRepo> getIndex(
+
+    @GET("/photo")
+    Call<File> getIndex(
             @Query("name") String name
     );
 
-    @GET("POST /photo")
-    Call<PhotofitRepo> getItem(
-            @QueryMap Map<String, String> option
+    @GET("/photo")
+    Call<File[]> getImage(
+           
     );
 
-    @FormUrlEncoded
-    @POST("POST /photo")
-    Call<PhotofitRepo> getPost(
-            @Field("name") String name
-    );
 
+
+
+    @POST("/photo")
+    Call<File[]> setImage(
+            @Body File images[]
+    );
 }
 

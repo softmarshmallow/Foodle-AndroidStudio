@@ -19,6 +19,7 @@ public class FoodleApp extends Application
         public static final String URL = "http://52.78.115.181:7001/";
 
 
+
         @Override
         public void onCreate() {
                 super.onCreate();

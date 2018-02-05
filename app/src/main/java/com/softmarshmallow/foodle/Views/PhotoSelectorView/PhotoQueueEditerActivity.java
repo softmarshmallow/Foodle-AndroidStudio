@@ -1,32 +1,20 @@
 package com.softmarshmallow.foodle.Views.PhotoSelectorView;
 
-import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.mobsandgeeks.saripaar.annotation.Length;
 import com.softmarshmallow.foodle.CustomViews.NonSwipeableViewPager.NonSwipeableViewPager;
 import com.softmarshmallow.foodle.FoodleApp;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.Test.SeverTest;
 
-import org.apache.http.HttpVersion;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.params.HttpParams;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PhotoQueueEditerActivity extends AppCompatActivity {
 
+        public Uri Test;
 
         @BindView(R.id.containerViewPager)
         NonSwipeableViewPager containerViewPager;
@@ -103,7 +92,7 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
         }
 
 
-    public void post() {
+    public void SendImage(File[] files) {
         Retrofit retrofit;
         retrofit = new Retrofit.Builder()
                 .baseUrl(FoodleApp.URL)
@@ -112,22 +101,52 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
 
         SeverTest retrofitService = retrofit.create(SeverTest.class);
 
-        Call<PhotofitRepo> call = retrofitService.getPost("POST /photo");
-        call.enqueue(new Callback<PhotofitRepo>() {
+        Call<File[]> call = retrofitService.setImage(files);
+        call.enqueue(new Callback<File[]>() {
             @Override
-            public void onResponse(Call<PhotofitRepo> call, Response<PhotofitRepo> response) {
-                PhotofitRepo repo = response.body();
+            public void onResponse(Call<File[]> call, Response<File[]> response) {
+                String repo = response.body().toString();
                 //Toast.makeText(this, repo+" 라고 서버가 말햇다",Toast.LENGTH_LONG).show();
-                Log.d("Sever","onResponse: "+repo+"\n"+response);
+                Log.d("Sever","Code : "+ response.code()+"\nonResponse: "+repo+"\n"+response);
 
             }
 
             @Override
-            public void onFailure(Call<PhotofitRepo> call, Throwable t) {
-                Log.d("Sever","onResponse: Fail");
+            public void onFailure(Call<File[]> call, Throwable t) {
+                Log.d("Sever","onResponse: Fail"+call+"\n"+t );
 
             }
         });
+    }
+
+    public File[] GetImage(){
+        Retrofit retrofit;
+        retrofit = new Retrofit.Builder()
+                .baseUrl(FoodleApp.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SeverTest retrofitService = retrofit.create(SeverTest.class);
+
+        File[] rtnFiles = new File[]{};
+        Call<File[]> call = retrofitService.getImage();
+        call.enqueue(new Callback<File[]>() {
+            @Override
+            public void onResponse(Call<File[]> call, Response<File[]> response) {
+                String repo = response.body().toString();
+                //Toast.makeText(this, repo+" 라고 서버가 말햇다",Toast.LENGTH_LONG).show();
+                Log.d("Sever","Code : "+ response.code()+"\nonResponse: "+repo+"\n"+response);
+
+            }
+
+            @Override
+            public void onFailure(Call<File[]> call, Throwable t) {
+                Log.d("Sever","onResponse: Fail"+call+"\n"+t );
+
+            }
+        });
+
+        return rtnFiles;
     }
 
 

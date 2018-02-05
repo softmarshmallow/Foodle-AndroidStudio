@@ -7,13 +7,13 @@ import java.io.File;
  */
 
 public class PhotofitRepo {
-    File[] images;
+    File images;
 
-    public void setImages(File[] images) {
+    public void setImages(File images) {
         this.images = images;
     }
 
-    public File[] getImages() {
+    public File getImages() {
         return images;
     }
 }
