@@ -37,27 +37,21 @@ import static android.content.ContentValues.TAG;
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
 import static android.support.v4.content.ContextCompat.checkSelfPermission;
 
-/**
- * Created by yuntaeil on 2018. 1. 31..
- */
-
 public class PhotoQueueFirstFragment extends Fragment {
-
-
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     private static final int SelectPhotoByCamera_REQUEST_CODE = 1;
     private static final int SelectPhotoByGallery_REQUEST_CODE = 2;
+
     @OnClick(R.id.RightNowButton)
     void RightNowClicked(){
         selectImage();
     }
+
     @OnClick(R.id.LaterButton)
     void LaterClicked(){
         //ToDo :: CHange Flagment
         PhotoQueueEditerActivity.Instance.finish();
     }
-
-
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -73,7 +67,6 @@ public class PhotoQueueFirstFragment extends Fragment {
         }
 
     }
-
     public void setupBottomSheet(){
         LinearLayout BottomSheet_Camera = (LinearLayout) PhotoQueueEditerActivity.Instance.sheetView.findViewById(R.id.fragment_history_bottom_sheet_camera);
         BottomSheet_Camera.setOnClickListener(new View.OnClickListener() {
@@ -103,8 +96,7 @@ public class PhotoQueueFirstFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_photo_queue_first, container, false);
         ButterKnife.bind(this, view);
@@ -113,11 +105,11 @@ public class PhotoQueueFirstFragment extends Fragment {
         return view;
 
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -156,8 +148,4 @@ public class PhotoQueueFirstFragment extends Fragment {
     private void selectImage() {
         PhotoQueueEditerActivity.Instance.mBottomSheetDialog.show();
     }
-
-
-
-
 }

@@ -22,8 +22,6 @@ public class SplashScreenActivity extends AppCompatActivity
         
         static final String TAG = "SplashScreenActivity";
         final int delayMilliSeconds = 1700;
-        
-        
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
@@ -35,26 +33,20 @@ public class SplashScreenActivity extends AppCompatActivity
 
                 Test();
         }
-        
         void Test() {
         
 
         }
-        
-        
         @Override
         protected void onResume() {
                 super.onResume();
                 StartWaiting();
         }
-
         @Override
         protected void onPause() {
                 super.onPause();
                 handler.removeCallbacks(r);
         }
-
-
         Handler handler = new Handler();
         Runnable r= new Runnable()
         {
@@ -67,9 +59,6 @@ public class SplashScreenActivity extends AppCompatActivity
                 handler.postDelayed(r , delayMilliSeconds);
 
         }
-        
-        
-
         void MoveToNextActivity() {
 
 
@@ -82,7 +71,6 @@ public class SplashScreenActivity extends AppCompatActivity
                 }
                 
         }
-
         void MoveToMainAfterAutoLogin(){
                 final SweetAlertDialog autoLoginProgressDialog;
                 autoLoginProgressDialog = new SweetAlertDialog(SplashScreenActivity.this, SweetAlertDialog.PROGRESS_TYPE)
@@ -130,12 +118,9 @@ public class SplashScreenActivity extends AppCompatActivity
                         }
                 });
         }
-        
         void MoveToMainActivity(){
                 Intent intent = new Intent(SplashScreenActivity.this, MainTabControllerActivity.class);
                 finish();
                 startActivity(intent);
         }
-        
-        
 }

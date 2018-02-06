@@ -26,8 +26,7 @@ public interface SeverTest {
     );
 
     @GET("/photo")
-    Call<File[]> getImage(
-           
+    Call<String> getImage(
     );
 
 

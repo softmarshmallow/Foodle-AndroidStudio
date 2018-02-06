@@ -25,16 +25,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 public class PhotoQueueEditerActivity extends AppCompatActivity {
-
-        public Uri Test;
-
-        @BindView(R.id.containerViewPager)
+    public Uri Test;
+    PhotoSelecterFragment photoSelecterFragment = new PhotoSelecterFragment();
+    PhotoQueueFirstFragment photoQueueFirstFragment = new PhotoQueueFirstFragment();
+    @BindView(R.id.containerViewPager)
         NonSwipeableViewPager containerViewPager;
-
-
         public static PhotoQueueEditerActivity Instance;
         public BottomSheetDialog mBottomSheetDialog;
         public View sheetView;
@@ -51,18 +50,12 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
             mBottomSheetDialog.setContentView(sheetView);
             showPhotoEditerFirstView();
         }
-
-
-        PhotoSelecterFragment photoSelecterFragment = new PhotoSelecterFragment();
-        PhotoQueueFirstFragment photoQueueFirstFragment = new PhotoQueueFirstFragment();
         Map<Integer, Fragment> pageMapping = new HashMap<Integer, Fragment>(){
             {
                 put(0, photoQueueFirstFragment);
                 put(1, photoSelecterFragment);
-
             }
         };
-
         void initContainerViewPager(){
             containerViewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager())
             {
@@ -77,22 +70,16 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
                 }
             });
         }
-
-
         public void showPhotoEditerFirstView(){
             containerViewPager.setCurrentItem(0);
             photoQueueFirstFragment.setupBottomSheet();
         }
-
-
         public void showPhotoEditerView(){
             containerViewPager.setCurrentItem(1);
             photoSelecterFragment.setupBottomSheet();
 
         }
-
-
-    public void SendImage(File[] files) {
+        public void SendImage(File[] files) {
         Retrofit retrofit;
         retrofit = new Retrofit.Builder()
                 .baseUrl(FoodleApp.URL)
@@ -118,21 +105,20 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
             }
         });
     }
-
-    public File[] GetImage(){
+        public File[] GetImage(){
         Retrofit retrofit;
         retrofit = new Retrofit.Builder()
                 .baseUrl(FoodleApp.URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 
         SeverTest retrofitService = retrofit.create(SeverTest.class);
 
         File[] rtnFiles = new File[]{};
-        Call<File[]> call = retrofitService.getImage();
-        call.enqueue(new Callback<File[]>() {
+        Call<String> call = retrofitService.getImage();
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<File[]> call, Response<File[]> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 String repo = response.body().toString();
                 //Toast.makeText(this, repo+" 라고 서버가 말햇다",Toast.LENGTH_LONG).show();
                 Log.d("Sever","Code : "+ response.code()+"\nonResponse: "+repo+"\n"+response);
@@ -140,7 +126,7 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<File[]> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.d("Sever","onResponse: Fail"+call+"\n"+t );
 
             }
@@ -148,8 +134,4 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
 
         return rtnFiles;
     }
-
-
-
-
 }

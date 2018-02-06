@@ -132,6 +132,9 @@ dependencies {
     //country
     compile 'com.hbb20:ccp:2.1.1'
 
+    //ScalarConverter
+    compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
+
     //=============
 
     //region Essential

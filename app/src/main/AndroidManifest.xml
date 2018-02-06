@@ -122,7 +122,6 @@
         <activity android:name=".Views.FoodtruckOwnerTabView.FoodtruckOwnerTabControllerActivity"/>
         <activity android:name=".Views.OrderMenu.OrderSheetActivity"/>
         <activity android:name=".Views.QR_ReaderView.QR_ReaderActivity"/>
-        <activity android:name=".Views.PhotoSelectorView.PhotoSelectorFirstActivity"/>
         <activity android:name=".Views.StoreEditorV3.StoreEditorLandingPage.StoreEditorLandingPageActivity">
         </activity>
         <activity android:name=".Views.StoreEditorV3.StoreBasicInfoFormsPage.StoreBasicFormsActivity">
@@ -133,7 +132,6 @@
         </activity>
         <activity android:name=".Views.MenuEditorV3.MenuEditorLandingPage.MenuEditorLandingPageActivity">
         </activity>
-        <activity android:name=".Views.PhotoSelectorView.PhotoSelectorActivity"/>
         <activity android:name=".Views.SMSVerification.SMSVerificationActivity">
         </activity>
         <activity android:name=".Views.MenuEditorV3.MenuBasicFormsPage.MenuBasicFormsPageActivity">

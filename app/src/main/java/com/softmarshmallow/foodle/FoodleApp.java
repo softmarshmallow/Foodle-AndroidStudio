@@ -36,13 +36,9 @@ public class FoodleApp extends Application
                 );*/
 
         }
-
         public static Context getAppContext() {
                 return FoodleApp.context;
         }
-
-
-
         public static final String TAG = FoodleApp.class.getSimpleName();
         private VerifyClient verifyClient;
         private NexmoClient nexmoClient;
@@ -50,15 +46,6 @@ public class FoodleApp extends Application
         public VerifyClient getVerifyClient() {
                 return this.verifyClient;
         }
-
-
-        /**
-         * Acquire a new verify client.
-         * If the user changes the settings shared preferences, a new verify client needs
-         * to be created to reflect the new configuration.
-         * Storing the credentials: applicationId and sharedSecretKey is up to the developer:
-         * you may choose to use SharedPreferences, a file or define meta-data in the AndroidManifest.xml
-         */
         public void acquireVerifyClient() {
             if (TextUtils.isEmpty(NexmoConfig.NexmoAppId) || TextUtils.isEmpty(NexmoConfig.NexmoSharedSecretKey)) {
                 Log.e(TAG, "You must supply valid appId and sharedSecretKey, provided by Nexmo");
