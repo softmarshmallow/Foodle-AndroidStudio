@@ -29,7 +29,7 @@
                 android:paddingLeft="@dimen/menu_name_padding"
                 android:paddingRight="@dimen/menu_name_padding"
                 android:paddingTop="@dimen/menu_name_padding"
-                android:textColor="@color/textLightDark"
+                android:textColor="@color/textDark"
                 android:textSize="@dimen/album_title"
                 />
             <TextView

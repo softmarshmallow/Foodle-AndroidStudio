@@ -26,18 +26,17 @@
 
 
     <!--region Tints-->
-    <color
-        name="colorLightDark">#525053</color>
-    <color
-        name="colorLight">#CECDCF</color>
+    <color name="colorDark">#545254</color>
+    <color name="colorLightDark">#8E8E93</color>
+    <color name="colorLight">#CECDCF</color>
     <!--endregion-->
 
 
     <!--region TextColors-->
-    <color
-        name="textLightDark">#525053</color>
-    <color
-        name="textWhite">#ffff</color>
+    <color name="textDark">#545254</color>
+    <color name="textLightDark">#8E8E93</color>
+    <color name="textLight">#CECDCF</color>
+    <color name="textWhite">#ffff</color>
     <!--endregion-->
 
 

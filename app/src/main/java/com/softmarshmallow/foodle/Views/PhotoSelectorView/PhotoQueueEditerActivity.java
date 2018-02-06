@@ -40,7 +40,7 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_photo_queue_editer);
+//            setContentView(R.layout.activity_photo_queue_editer);
             ButterKnife.bind(this);
             Instance = this;
             initContainerViewPager();

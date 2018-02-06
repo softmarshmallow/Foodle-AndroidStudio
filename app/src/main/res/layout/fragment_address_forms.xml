@@ -29,10 +29,10 @@
                 android:adjustViewBounds="true"
                 android:background="#00000000"
                 android:scaleType="fitXY"
-                android:tint="@color/colorLightDark"
+                android:tint="@color/colorDark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_left_arrow"/>
+                app:srcCompat="@drawable/ic_x"/>
 
             <TextView
                 android:id="@+id/descriptionTextView"
@@ -44,7 +44,7 @@
                 android:lines="2"
                 android:maxLines="2"
                 android:text="어디에 있나요?"
-                android:textColor="@color/textLightDark"
+                android:textColor="@color/textDark"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"

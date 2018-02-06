@@ -136,6 +136,8 @@
         </activity>
         <activity android:name=".Views.MenuEditorV3.MenuBasicFormsPage.MenuBasicFormsPageActivity">
         </activity>
+        <activity android:name=".Views.MenuEditorV3.MenuExtraSettingsFormLandingPage.MenuExtraSettingsFormLandingPageActivity">
+        </activity>
     </application>
 
 </manifest>
