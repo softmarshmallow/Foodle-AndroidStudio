@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Review Content Goes Here..."
-                android:textColor="@color/textLightDark"
+                android:textColor="@color/textDark"
                 android:textSize="@dimen/album_title"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>

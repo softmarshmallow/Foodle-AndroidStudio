@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.softmarshmallow.foodle.Views.MenuEditorV3.MenuExtraSettingsFormLandingPage.MenuExtraSettingsFormLandingPageActivity">
+
+    <ImageButton
+        android:id="@+id/exitButton2"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:background="#00000000"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_x"/>
+
+    <TextView
+        android:id="@+id/descriptionTextView4"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="24dp"
+        android:lines="2"
+        android:maxLines="2"
+        android:text="여러분의 음식을 세상에 알려주세요"
+        android:textColor="@color/textWhite"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exitButton2"/>
+</android.support.constraint.ConstraintLayout>

@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
@@ -13,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="필드 이름"
-        android:textColor="@color/textLightDark"
+        android:textColor="@color/textDark"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -31,7 +30,7 @@
         android:maxLines="4"
         android:padding="10dp"
         android:singleLine="false"
-        android:textColor="@color/textLightDark"
+        android:textColor="@color/textDark"
         android:textColorHint="@color/colorLight"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
