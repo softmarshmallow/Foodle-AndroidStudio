@@ -1,6 +1,7 @@
 package com.softmarshmallow.foodle.Views.PhotoSelectorView;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -33,10 +34,15 @@ import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropM
 import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractDraggableItemViewHolder;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.softmarshmallow.foodle.R;
+import com.softmarshmallow.foodle.Services.ApiController;
+import com.softmarshmallow.foodle.Views.Test.SeverTest;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
@@ -47,11 +53,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Optional;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
 import static android.support.v4.content.ContextCompat.checkSelfPermission;
 import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.facebook.FacebookSdk.getCacheDir;
 
 /**
  * Created by yuntaeil on 2018. 1. 31..
@@ -179,10 +190,8 @@ public class PhotoSelecterFragment extends Fragment {
                         .setBitmap(myLogo)
         );
 
-        for (File item :PhotoQueueEditerActivity.Instance.GetImage()){
-            Bitmap bitmap = BitmapFactory.decodeFile(item.getAbsolutePath());
-            addPhoto(bitmap);
-        }
+        PhotoQueueEditerActivity.Instance.GetImage();
+
         adapter.notifyDataSetChanged();
     }
     public void setupBottomSheet(){
@@ -219,7 +228,47 @@ public class PhotoSelecterFragment extends Fragment {
     public static void selectImage() {
         PhotoQueueEditerActivity.Instance.mBottomSheetDialog.show();
     }
+    public static void addPhotoonSever(String[] str){
+        SeverTest retrofitService = ApiController.getRetrofit_amazon().create(SeverTest.class);
 
+        for (String item :str){
+            Call<File> call = retrofitService.getImageFile(item);
+            call.enqueue(new Callback<File>() {
+                @Override
+                public void onResponse(Call<File> call, Response<File> response) {
+                    Log.d("Sever_Photo","Code : "+ response.code()+"\nonResponse: "+response+"\n"+response);
+
+
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                    File file = response.body();
+
+                    Bitmap bitmap = null;
+                    try {
+                        File outputDir = getApplicationContext().getCacheDir(); // context being the Activity pointer
+                        File tmp = File.createTempFile("tmp.jpeg",null, outputDir);
+                        FileOutputStream fileOutputStream = new FileOutputStream(tmp);
+                        fileOutputStream.write(convertFileToByteArray(file));
+                        fileOutputStream.close();
+
+
+
+                        bitmap = BitmapFactory.decodeFile(tmp.getPath());
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    PhotoQueueEditerActivity.Instance.photoSelecterFragment.addPhoto(bitmap);
+                }
+                @Override
+                public void onFailure(Call<File> call, Throwable throwable) {
+                    Log.d("Sever_Photo","onResponse: Fail"+call+"\n"+throwable );
+
+                }
+            });
+
+        }
+    }
     private void addPhoto(Bitmap bit) {
         adapter.mItems.add(adapter.mItems.size()-1,
                 new PhotoQueueItem().setId(Nomal_CODE).setBitmap(bit));
@@ -353,6 +402,31 @@ public class PhotoSelecterFragment extends Fragment {
             }
             mItems.get(0).id = Main_CODE;
         }
+    }
+
+    //Use File -> byte convert
+    public static byte[] convertFileToByteArray(File f)
+    {
+        byte[] byteArray = null;
+        try
+        {
+            InputStream inputStream = new FileInputStream(f);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] b = new byte[1024*8];
+            int bytesRead =0;
+
+            while ((bytesRead = inputStream.read(b)) != -1)
+            {
+                bos.write(b, 0, bytesRead);
+            }
+
+            byteArray = bos.toByteArray();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return byteArray;
     }
 
 

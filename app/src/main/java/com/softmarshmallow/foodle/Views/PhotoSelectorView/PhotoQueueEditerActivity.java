@@ -10,8 +10,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.softmarshmallow.foodle.CustomViews.NonSwipeableViewPager.NonSwipeableViewPager;
-import com.softmarshmallow.foodle.FoodleApp;
 import com.softmarshmallow.foodle.R;
+import com.softmarshmallow.foodle.Services.ApiController;
 import com.softmarshmallow.foodle.Views.Test.SeverTest;
 
 import java.io.File;
@@ -23,24 +23,22 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 public class PhotoQueueEditerActivity extends AppCompatActivity {
+    public String[] filenames;
     public Uri Test;
     PhotoSelecterFragment photoSelecterFragment = new PhotoSelecterFragment();
     PhotoQueueFirstFragment photoQueueFirstFragment = new PhotoQueueFirstFragment();
     @BindView(R.id.containerViewPager)
-        NonSwipeableViewPager containerViewPager;
+    NonSwipeableViewPager containerViewPager;
         public static PhotoQueueEditerActivity Instance;
         public BottomSheetDialog mBottomSheetDialog;
         public View sheetView;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-//            setContentView(R.layout.activity_photo_queue_editer);
+            setContentView(R.layout.activity_photo_queue_editer);
             ButterKnife.bind(this);
             Instance = this;
             initContainerViewPager();
@@ -80,21 +78,15 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
 
         }
         public void SendImage(File[] files) {
-        Retrofit retrofit;
-        retrofit = new Retrofit.Builder()
-                .baseUrl(FoodleApp.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        SeverTest retrofitService = retrofit.create(SeverTest.class);
+        SeverTest retrofitService = ApiController.getRetrofit().create(SeverTest.class);
 
         Call<File[]> call = retrofitService.setImage(files);
         call.enqueue(new Callback<File[]>() {
             @Override
             public void onResponse(Call<File[]> call, Response<File[]> response) {
-                String repo = response.body().toString();
                 //Toast.makeText(this, repo+" 라고 서버가 말햇다",Toast.LENGTH_LONG).show();
-                Log.d("Sever","Code : "+ response.code()+"\nonResponse: "+repo+"\n"+response);
+                Log.d("Sever","Code : "+ response.code()+"\nonResponse: "+response.body()+"\n"+response);
 
             }
 
@@ -105,33 +97,29 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
             }
         });
     }
-        public File[] GetImage(){
-        Retrofit retrofit;
-        retrofit = new Retrofit.Builder()
-                .baseUrl(FoodleApp.URL)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
-
-        SeverTest retrofitService = retrofit.create(SeverTest.class);
-
-        File[] rtnFiles = new File[]{};
-        Call<String> call = retrofitService.getImage();
-        call.enqueue(new Callback<String>() {
+        public void GetImage(){
+        SeverTest retrofitService = ApiController.getRetrofit().create(SeverTest.class);
+        String[] rtnFiles = new String[]{};
+        Call<String[]> call = retrofitService.getImageLink();
+        call.enqueue(new Callback<String[]>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String repo = response.body().toString();
+            public void onResponse(Call<String[]> call, Response<String[]> response) {
                 //Toast.makeText(this, repo+" 라고 서버가 말햇다",Toast.LENGTH_LONG).show();
-                Log.d("Sever","Code : "+ response.code()+"\nonResponse: "+repo+"\n"+response);
+                //Log.d("Sever","Code : "+ response.code()+"\nonResponse: "+response.body()+"\n"+response);
+                PhotoQueueEditerActivity.Instance.photoSelecterFragment.addPhotoonSever(response.body());
+                for(String i : response.body()){
+                    Log.d("Odd Loop", "onResponse_Loop: "+i);
+                }
 
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<String[]> call, Throwable t) {
                 Log.d("Sever","onResponse: Fail"+call+"\n"+t );
 
             }
+
         });
 
-        return rtnFiles;
     }
 }

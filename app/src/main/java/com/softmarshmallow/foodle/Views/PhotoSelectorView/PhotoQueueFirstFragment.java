@@ -78,8 +78,10 @@ public class PhotoQueueFirstFragment extends Fragment {
                             MY_CAMERA_REQUEST_CODE);
                 }else{
                     Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
+                    cameraIntent.setType("image/*");
+
                     PhotoQueueEditerActivity.Instance.photoQueueFirstFragment.
-                            startActivityForResult(cameraIntent, SelectPhotoByCamera_REQUEST_CODE);
+                    startActivityForResult(cameraIntent, SelectPhotoByCamera_REQUEST_CODE);
                 }
             }
         });
@@ -87,10 +89,10 @@ public class PhotoQueueFirstFragment extends Fragment {
         BottomSheet_Gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK,
+                Intent gallery_intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                PhotoQueueEditerActivity.Instance.photoQueueFirstFragment.startActivityForResult(intent, SelectPhotoByGallery_REQUEST_CODE);
-
+                gallery_intent.setType("image/*");
+                PhotoQueueEditerActivity.Instance.photoQueueFirstFragment.startActivityForResult(gallery_intent, SelectPhotoByGallery_REQUEST_CODE);
             }
         });
     }

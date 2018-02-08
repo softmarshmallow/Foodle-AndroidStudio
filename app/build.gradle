@@ -135,6 +135,14 @@ dependencies {
     //ScalarConverter
     compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
 
+    //amazon S3
+    compile ('com.amazonaws:aws-android-sdk-mobile-client:2.6.7@aar') { transitive = true; }
+
+
+    compile 'com.amazonaws:aws-android-sdk-s3:2.6.+'
+    compile 'com.amazonaws:aws-android-sdk-cognito:2.6.+'
+
+
     //=============
 
     //region Essential
