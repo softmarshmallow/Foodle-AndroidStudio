@@ -22,7 +22,7 @@ public class ApiController
 
         public static Retrofit retrofit = null;
         public static Retrofit retrofit_amazon = null;
-
+        public static String AmazonUrl = "https://s3.ap-northeast-2.amazonaws.com/foodle-cdn-server/";
 
         public static Retrofit getRetrofit() {
                 if(retrofit == null){

@@ -36,6 +36,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.ApiController;
 import com.softmarshmallow.foodle.Views.Test.SeverTest;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -143,22 +144,51 @@ public class PhotoSelecterFragment extends Fragment {
         PhotoQueueEditerActivity.Instance.mBottomSheetDialog.hide();
         if (resultCode == RESULT_OK) {
             if (requestCode == SelectPhotoByCamera_REQUEST_CODE) {
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
-                addPhoto(photo);
+                File f3=new File(Environment.getExternalStorageDirectory()+"/inpaint/");
+                if(!f3.exists())
+                    f3.mkdirs();
+                OutputStream outStream = null;
+                int i = 0;
+                try {
+                    File outputDir = getApplicationContext().getCacheDir(); // context being the Activity pointer
+                    File tmp = File.createTempFile("tmp.jpeg",null, outputDir);
+                    outStream = new FileOutputStream(tmp);
+                        ((Bitmap) data.getExtras().get("data")).compress(Bitmap.CompressFormat.PNG, 85, outStream);
+                    outStream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else if (requestCode == SelectPhotoByGallery_REQUEST_CODE) {
                 try {
+                    File f3=new File(Environment.getExternalStorageDirectory()+"/inpaint/");
 
-                    Uri imageUri = data.getData();
-                    InputStream imageStream = getContext().getContentResolver().openInputStream(imageUri);
-                    Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                    addPhoto(selectedImage);
-                } catch (FileNotFoundException e) {
+                    if(!f3.exists())
+                        f3.mkdirs();
+                    OutputStream outStream = null;
+                    try {
+                        File outputDir = getApplicationContext().getCacheDir(); // context being the Activity pointer
+                        File tmp = File.createTempFile("tmp.jpeg",null, outputDir);
+                        outStream = new FileOutputStream(tmp);
+                        ((Bitmap) data.getExtras().get("data")).compress(Bitmap.CompressFormat.PNG, 85, outStream);
+                        outStream.close();
+                        PhotoQueueEditerActivity.Instance.SendImage(tmp);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception  e) {
                     e.printStackTrace();
                 }
             }
 
         }
     }
+
+    private void addPhoto(String s) {
+        adapter.mItems.add(adapter.mItems.size()-1,
+                new PhotoQueueItem().setId(Nomal_CODE).setUrl(s));
+        adapter.notifyDataSetChanged();
+    }
+
     public void setupRecyclerView(){
         RecyclerViewDragDropManager dragMgr = new RecyclerViewDragDropManager();
 
@@ -181,7 +211,6 @@ public class PhotoSelecterFragment extends Fragment {
 //        }catch (Exception e){
 //            Log.d("", "onCreate: "+e);
 //        }
-        //TODO:: GET Bundle Code
 
 
         adapter.mItems.add(
@@ -229,44 +258,8 @@ public class PhotoSelecterFragment extends Fragment {
         PhotoQueueEditerActivity.Instance.mBottomSheetDialog.show();
     }
     public static void addPhotoonSever(String[] str){
-        SeverTest retrofitService = ApiController.getRetrofit_amazon().create(SeverTest.class);
-
-        for (String item :str){
-            Call<File> call = retrofitService.getImageFile(item);
-            call.enqueue(new Callback<File>() {
-                @Override
-                public void onResponse(Call<File> call, Response<File> response) {
-                    Log.d("Sever_Photo","Code : "+ response.code()+"\nonResponse: "+response+"\n"+response);
-
-
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                    File file = response.body();
-
-                    Bitmap bitmap = null;
-                    try {
-                        File outputDir = getApplicationContext().getCacheDir(); // context being the Activity pointer
-                        File tmp = File.createTempFile("tmp.jpeg",null, outputDir);
-                        FileOutputStream fileOutputStream = new FileOutputStream(tmp);
-                        fileOutputStream.write(convertFileToByteArray(file));
-                        fileOutputStream.close();
-
-
-
-                        bitmap = BitmapFactory.decodeFile(tmp.getPath());
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    PhotoQueueEditerActivity.Instance.photoSelecterFragment.addPhoto(bitmap);
-                }
-                @Override
-                public void onFailure(Call<File> call, Throwable throwable) {
-                    Log.d("Sever_Photo","onResponse: Fail"+call+"\n"+throwable );
-
-                }
-            });
-
+        for (String item : str) {
+            PhotoQueueEditerActivity.Instance.photoSelecterFragment.addPhoto(item);
         }
     }
     private void addPhoto(Bitmap bit) {
@@ -281,7 +274,7 @@ public class PhotoSelecterFragment extends Fragment {
     static class PhotoQueueItem {
         public int id;
         public Bitmap bitmap;
-
+        public String Url;
 
         public PhotoQueueItem setId(int id) {
             this.id = id;
@@ -291,6 +284,10 @@ public class PhotoSelecterFragment extends Fragment {
         public PhotoQueueItem setBitmap(Bitmap bitmap) {
             this.bitmap = bitmap;
             return this;
+        }
+        public PhotoQueueItem setUrl(String str){
+            this.Url = str;
+            return  this;
         }
 
     }
@@ -304,6 +301,7 @@ public class PhotoSelecterFragment extends Fragment {
             textView = itemView.findViewById(R.id.text1);
             imageView = itemView.findViewById(R.id.ImageSelecterImage);
             roundedImageView = itemView.findViewById(R.id.TextBG);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -322,9 +320,6 @@ public class PhotoSelecterFragment extends Fragment {
             setHasStableIds(true); // this is required for D&D feature.
 
             mItems = new ArrayList<>();
-//            for (int i = 0; i < 20; i++) {
-//                mItems.add(new MyItem(i, "Item " + i, ));
-//            }
         }
         @Override
         public long getItemId(int position) {
@@ -340,7 +335,11 @@ public class PhotoSelecterFragment extends Fragment {
         @Override
         public void onBindViewHolder( PhotoQueueItemViewHolder holder, int position) {
             PhotoQueueItem item = mItems.get(position);
-            holder.imageView.setImageBitmap(item.bitmap);
+            if(item.id == Plus_CODE)
+                holder.imageView.setImageResource(R.drawable.plus);
+            else
+                Picasso.with(getApplicationContext()).load(ApiController.AmazonUrl+item.Url).into(holder.imageView);
+
             holder.id = item.id;
             if(item.id == Main_CODE){
                 holder.textView.setVisibility(View.VISIBLE);
@@ -355,6 +354,7 @@ public class PhotoSelecterFragment extends Fragment {
         public int getItemCount() {
             return mItems.size();
         }
+
 
         @Override
         public void onMoveItem(int fromPosition, int toPosition) {

@@ -30,9 +30,10 @@ public interface SeverTest {
     Call<String[]> getImageLink(
     );
 
-    @GET("/{filename}")
+    @GET("{id}/{filename}")
     Call<File> getImageFile(
-            @Path("filename") String FileName
+            @Path("filename") String filename,
+            @Path("id") int id
     );
 
     @POST("/photo")

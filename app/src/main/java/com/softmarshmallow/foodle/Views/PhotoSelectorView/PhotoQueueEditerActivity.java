@@ -77,6 +77,10 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
             photoSelecterFragment.setupBottomSheet();
 
         }
+        public String SendImage(File file){
+            SendImage(new File[] {file});
+            return file.getName();
+        }
         public void SendImage(File[] files) {
 
         SeverTest retrofitService = ApiController.getRetrofit().create(SeverTest.class);
@@ -107,9 +111,7 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
                 //Toast.makeText(this, repo+" 라고 서버가 말햇다",Toast.LENGTH_LONG).show();
                 //Log.d("Sever","Code : "+ response.code()+"\nonResponse: "+response.body()+"\n"+response);
                 PhotoQueueEditerActivity.Instance.photoSelecterFragment.addPhotoonSever(response.body());
-                for(String i : response.body()){
-                    Log.d("Odd Loop", "onResponse_Loop: "+i);
-                }
+
 
             }
 
