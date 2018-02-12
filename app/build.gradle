@@ -18,6 +18,7 @@ android {
 
 
     }
+    flavorDimensions "default"
 
     dexOptions {
         javaMaxHeapSize "4g"
@@ -205,6 +206,10 @@ dependencies {
     compile 'com.google.android.gms:play-services-places:11.6.0'
     compile 'com.google.android.gms:play-services:11.6.0'
 
+    //Google Login
+    compile 'com.google.firebase:firebase-auth:11.2.0'
+    compile 'com.google.android.gms:play-services-auth:11.6.0'
+
     // Firebase
     compile 'com.google.firebase:firebase-database:11.6.0'
     compile 'com.google.firebase:firebase-auth:11.6.0'
@@ -217,7 +222,6 @@ dependencies {
 
 
 }
-
 
 
 

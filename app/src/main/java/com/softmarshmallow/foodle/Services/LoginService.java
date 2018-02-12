@@ -44,16 +44,23 @@ public class LoginService
                         case Facebook:
                                 LoginWithFacebook(LoginPreferences.getFacebookToken(), authResultOnCompleteListener);
                                 break;
+                        case Google:
+                                LoginWithGoogle(LoginPreferences.getFacebookToken(), authResultOnCompleteListener);
+                                break;
                 }
                 
         }
-        
+
         public static void LoginWithFacebook(String token, OnCompleteListener onCompleteListener){
-        
+
                 AuthCredential credential = FacebookAuthProvider.getCredential(token);
                 LoginWithCredential(credential, onCompleteListener);
         }
-        
+        public static void LoginWithGoogle(String token, OnCompleteListener onCompleteListener){
+                AuthCredential credential = FacebookAuthProvider.getCredential(token);
+                LoginWithCredential(credential, onCompleteListener);
+        }
+
         public static void LoginWithCredential(AuthCredential credential, OnCompleteListener onCompleteListener){
                 mAuth.signInWithCredential(credential)
                         .addOnCompleteListener(onCompleteListener);

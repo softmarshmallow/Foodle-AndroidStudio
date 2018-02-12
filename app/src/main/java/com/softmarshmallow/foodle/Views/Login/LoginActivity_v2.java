@@ -3,10 +3,9 @@ package com.softmarshmallow.foodle.Views.Login;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +17,12 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.softmarshmallow.foodle.Helpers.LoginHelpers.LoginPreferences;
@@ -35,9 +40,10 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class LoginActivity extends AppCompatActivity
+public class LoginActivity_v2 extends AppCompatActivity
 {
         static final String TAG = "LoginActivity";
+        public int Goole_SIGN_IN;
 
         static final Class nextActivity = MainTabControllerActivity.class;
         // UI references.
@@ -160,14 +166,14 @@ public class LoginActivity extends AppCompatActivity
                                 }
                                
                                 // move to next activity
-                                Intent intent = new Intent(LoginActivity.this,
+                                Intent intent = new Intent(LoginActivity_v2.this,
                                         nextActivity);
                                 startActivity(intent);
                 
                                 finish();
                         } else {
                                 Exception exception = task.getException();
-                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialog(LoginActivity_v2.this, SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("로그인 오류")
                                         .setContentText(exception.getMessage())
                                         .show();
@@ -213,7 +219,7 @@ public class LoginActivity extends AppCompatActivity
                         });
 
                 if (loginProgressDialog == null){
-                        loginProgressDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE)
+                        loginProgressDialog = new SweetAlertDialog(LoginActivity_v2.this, SweetAlertDialog.PROGRESS_TYPE)
                                 .setTitleText("접속중...");
                 }
 
@@ -231,7 +237,7 @@ public class LoginActivity extends AppCompatActivity
         
         @OnClick(R.id.moveToSignupButton)
         void OnMoveToSignupClick() {
-                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                Intent intent = new Intent(LoginActivity_v2.this, SignupActivity.class);
                 startActivityForResult(intent, ShowSignupRequestCode);
         }
         
@@ -250,7 +256,7 @@ public class LoginActivity extends AppCompatActivity
                 {
                         @Override
                         public void onClick(View view) {
-                                loginManager.logInWithReadPermissions(LoginActivity.this, Arrays.asList("email", "public_profile"));
+                                loginManager.logInWithReadPermissions(LoginActivity_v2.this, Arrays.asList("email", "public_profile"));
                         }
                 });
                 AccessToken.setCurrentAccessToken(null);
@@ -266,7 +272,7 @@ public class LoginActivity extends AppCompatActivity
                         public void onSuccess(LoginResult loginResult) {
                                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
                                 handleFacebookAccessToken(loginResult.getAccessToken());
-                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                new SweetAlertDialog(LoginActivity_v2.this, SweetAlertDialog.SUCCESS_TYPE)
                                         .setTitleText("성공")
                                         .setContentText("페이스북으로 로그인 하였습니다.")
                                         .show();
@@ -274,7 +280,7 @@ public class LoginActivity extends AppCompatActivity
         
                         @Override
                         public void onCancel() {
-                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialog(LoginActivity_v2.this, SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("취소")
                                         .setContentText("사용자에 의해 취소되었습니다.")
                                         .show();
@@ -284,7 +290,7 @@ public class LoginActivity extends AppCompatActivity
         
                         @Override
                         public void onError(FacebookException error) {
-                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                new SweetAlertDialog(LoginActivity_v2.this, SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("오류")
                                         .setContentText("로그인중 오류가 발생하였습니다. error : " + error)
                                         .show();
@@ -297,7 +303,9 @@ public class LoginActivity extends AppCompatActivity
                 
 //                loginButton.registerCallback(mCallbackManager, callback);
         }
-        
+
+
+
         
         @Override
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -318,4 +326,30 @@ public class LoginActivity extends AppCompatActivity
         }
         
         //endregion
+
+        //region Google login by tae-il
+        GoogleSignInOptions gso;
+        GoogleSignInClient mGoogleSignInClient;
+        void initGoogleLogin(){
+                gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestIdToken(getString(R.string.default_web_client_id))
+                        .requestEmail()
+                        .build();
+                mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+
+                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+//                updateUI(account);
+
+                FancyButton GoogleLoginButton = findViewById(R.id.google_login);
+                GoogleLoginButton.setOnClickListener(new View.OnClickListener()
+                {
+                        @Override
+                        public void onClick(View view) {
+                                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                                startActivityForResult(signInIntent, Goole_SIGN_IN);
+                        }
+                });
+                AccessToken.setCurrentAccessToken(null);
+        }
 }

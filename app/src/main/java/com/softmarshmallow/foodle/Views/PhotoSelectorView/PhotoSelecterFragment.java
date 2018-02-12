@@ -342,6 +342,7 @@ public class PhotoSelecterFragment extends Fragment {
 
             holder.id = item.id;
             if(item.id == Main_CODE){
+
                 holder.textView.setVisibility(View.VISIBLE);
                 holder.roundedImageView.setVisibility(View.VISIBLE);
             }else{

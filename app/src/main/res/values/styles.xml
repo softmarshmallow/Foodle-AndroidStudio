@@ -30,11 +30,11 @@
     </style>
 
     <style name="AppTheme.FullScreen"
-           parent="AppTheme">
-        <item
-            name="android:windowFullscreen">true
-        </item>
-    </style>
+    parent="AppTheme">
+    <item
+        name="android:windowFullscreen">true
+    </item>
+</style>
 
 
     <style name="ActionBar" parent="@style/Widget.AppCompat.ActionBar">

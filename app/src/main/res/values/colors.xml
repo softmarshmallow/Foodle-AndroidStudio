@@ -20,6 +20,7 @@
     <color
         name="viewBg">#ffffff</color>
 
+    <color name="nomaltext">#525252</color>
     <!--region Dividers-->
     <color name="dividerLight">#CBCBCB</color>
     <!--endregion-->

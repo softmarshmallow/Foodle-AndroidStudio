@@ -1,5 +1,6 @@
 package com.softmarshmallow.foodle.Views.Test;
 
+import com.softmarshmallow.foodle.Models.RegistrationApplicationModel;
 import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotofitRepo;
 
 import java.io.File;
@@ -39,6 +40,11 @@ public interface SeverTest {
     @POST("/photo")
     Call<File[]> setImage(
             @Body File images[]
+    );
+
+    @POST("/apply/store")
+    Call sendRegistrationApplication(
+        @Body RegistrationApplicationModel Data
     );
 }
 

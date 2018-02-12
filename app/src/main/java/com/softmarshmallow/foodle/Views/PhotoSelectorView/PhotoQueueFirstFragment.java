@@ -103,6 +103,7 @@ public class PhotoQueueFirstFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_photo_queue_first, container, false);
         ButterKnife.bind(this, view);
 
+
         setupBottomSheet();
         return view;
 
