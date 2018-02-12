@@ -10,6 +10,10 @@
         <attr name="titleText"/>
         <attr name="hintText" format="string"/>
     </declare-styleable>
+    <declare-styleable name="OptionItemView">
+        <attr name="optionNameText" format="string"/>
+        <attr name="optionImage" format="reference|integer"/>
+    </declare-styleable>
 
 
 

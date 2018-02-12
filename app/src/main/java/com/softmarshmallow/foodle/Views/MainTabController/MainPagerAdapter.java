@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
-import com.softmarshmallow.foodle.Views.ExtraOptions.ExtraOptionsViewFragment;
+import com.softmarshmallow.foodle.Views.ExtraOptions_Deprecated.ExtraOptionsViewFragment;
 import com.softmarshmallow.foodle.Views.FeaturedViewV2.FeaturedViewFragment;
 import com.softmarshmallow.foodle.Views.Mypage.MypageFragment;
 import com.softmarshmallow.foodle.Views.NotificationsPage.NotificationsViewFragment;

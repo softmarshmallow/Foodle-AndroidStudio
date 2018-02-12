@@ -1,4 +1,4 @@
-package com.softmarshmallow.foodle.Views.ExtraOptions;
+package com.softmarshmallow.foodle.Views.ExtraOptions_Deprecated;
 
 
 import android.content.Intent;

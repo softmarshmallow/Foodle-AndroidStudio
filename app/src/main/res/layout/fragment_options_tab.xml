@@ -1,0 +1,80 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.softmarshmallow.foodle.Views.OptionsTabPage.OptionsTabFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="200dp"
+            android:layout_marginStart="22dp"
+            android:text="USERNAME"
+            android:textAppearance="@style/TextAppearance.h2"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="50dp"/>
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilePhotoImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/app_icon_red_v3"
+            tools:layout_editor_absoluteX="228dp"
+            tools:layout_editor_absoluteY="39dp"/>
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="프로필 보기"
+            tools:layout_editor_absoluteX="22dp"
+            tools:layout_editor_absoluteY="99dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="241dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginStart="22dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="180dp">
+
+            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:optionImage="@drawable/ic_x"
+                app:optionNameText="설정"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"/>
+            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:optionImage="@drawable/ic_x"
+                app:optionNameText="설정"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"/>
+            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:optionImage="@drawable/ic_x"
+                app:optionNameText="설정"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"/>
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>
