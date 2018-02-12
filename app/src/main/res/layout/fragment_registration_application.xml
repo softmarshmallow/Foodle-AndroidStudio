@@ -28,84 +28,38 @@
                 android:textColor="@color/nomaltext"
                 android:textSize="26dp" />
 
-            <TextView
+            <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+                android:id="@+id/registration_store_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:text="가게 이름"
-                android:textColor="@color/nomaltext"
-                android:textSize="13dp" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    android:id="@+id/registration_store_Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
+                app:titleText="가게 이름"
+                >
+            </com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView>
+            <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+                android:id="@+id/registration_store_Description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:text="가게 설명"
-                android:textColor="@color/nomaltext"
-                android:textSize="13dp" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    android:id="@+id/registration_store_Description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
+                app:titleText="가게 설명"
+                >
+            </com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView>
+            <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+                android:id="@+id/registration_store_Tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:text="가게 전화 번호"
-                android:textColor="@color/nomaltext"
-                android:textSize="13dp" />
+                app:titleText="가게 번호"
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:inputType="phone"
+                >
+            </com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView>
 
-                <EditText
-                    android:id="@+id/registration_store_Tel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
+            <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+                android:id="@+id/registration_Tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:text="휴대폰 번호"
-                android:textColor="@color/nomaltext"
-                android:textSize="13dp" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/text_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    android:id="@+id/registration_Tel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    />
-            </android.support.design.widget.TextInputLayout>
-
+                app:titleText="휴대폰 번호"
+                android:inputType="phone"
+                >
+            </com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView>
 
             <LinearLayout
                 android:layout_width="wrap_content"

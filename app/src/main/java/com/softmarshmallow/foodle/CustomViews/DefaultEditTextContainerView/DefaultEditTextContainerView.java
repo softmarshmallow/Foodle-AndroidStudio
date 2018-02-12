@@ -74,5 +74,6 @@ public class DefaultEditTextContainerView extends ConstraintLayout
                 titleText.setText(mTitleText);
                 contentEditText.setHint(mHintText);
         }
-        
+
+
 }

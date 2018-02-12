@@ -2,6 +2,7 @@ package com.softmarshmallow.foodle.Views.Test;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,19 @@ import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.EditText;
 
+import com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView;
 import com.softmarshmallow.foodle.Models.RegistrationApplicationModel;
 import com.softmarshmallow.foodle.R;
+import com.softmarshmallow.foodle.Services.ApiController;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by yuntaeil on 2018. 2. 12..
@@ -22,13 +30,13 @@ import butterknife.OnClick;
 
 public class Fragment_Registration_Application extends Fragment {
     @BindView (R.id.registration_store_Description)
-    EditText Store_Description;
+    DefaultEditTextContainerView Store_Description;
     @BindView (R.id.registration_store_Name)
-    EditText Store_Name;
+    DefaultEditTextContainerView Store_Name;
     @BindView (R.id.registration_store_Tel)
-    EditText Store_Tel;
+    DefaultEditTextContainerView Store_Tel;
     @BindView (R.id.registration_Tel)
-    EditText Tel;
+    DefaultEditTextContainerView Tel;
     @BindView (R.id.registration_store_isOwn)
     CheckBox IsOwn;
 
@@ -37,6 +45,7 @@ public class Fragment_Registration_Application extends Fragment {
         GotoAddressForm();
     }
 
+    final String TAG = "Registration_Application";
     RegistrationApplicationModel ApplyData;
 
     @Override
@@ -51,15 +60,46 @@ public class Fragment_Registration_Application extends Fragment {
     }
 
     public void GotoAddressForm(){
+        if (CheckFieldisEmpty()){
+            return;
+        }
+        BindingAll();
+        SeverTest retrofitService = ApiController.getRetrofit().create(SeverTest.class);
 
+        Call<RegistrationApplicationModel> call = retrofitService.sendRegistrationApplication(ApplyData);
+        call.enqueue(new Callback<RegistrationApplicationModel>() {
+            @Override
+            public void onResponse(Call<RegistrationApplicationModel> call, Response<RegistrationApplicationModel> response) {
+                //Toast.makeText(this, repo+" 라고 서버가 말햇다",Toast.LENGTH_LONG).show();
+                Log.d("Sever","Code : "+ response.code()+"\nonResponse: "+response.body()+"\n"+response);
+
+            }
+
+            @Override
+            public void onFailure(Call<RegistrationApplicationModel>  call, Throwable t) {
+                Log.d("Sever","onResponse: Fail"+call+"\n"+t );
+
+            }
+        });
 
     }
     public void BindingAll(){
-        ApplyData.setStoreName(String.valueOf(Store_Name.getText()))
-                 .setStoreDescription(String.valueOf(Store_Description.getText()))
-                 .setTel(String.valueOf(Tel.getText()))
-                 .setStoreTel(String.valueOf(Store_Tel.getText()))
-                 .setOwn(IsOwn.isChecked());
+        ApplyData.setStoreName(String.valueOf(Store_Name.contentEditText.getText()))
+                 .setStoreDescription(String.valueOf(Store_Description.contentEditText.getText()))
+                 .setTel(String.valueOf(Tel.contentEditText.getText()))
+                 .setStoreTel(String.valueOf(Store_Tel.contentEditText.getText()))
+                 .setOwn(IsOwn.isChecked())
+                 .setLat(0)
+                 .setLat(0)
+                 .setLocationDescription("TEST");
+    }
 
+    public boolean CheckFieldisEmpty(){
+        if(String.valueOf(Store_Name.contentEditText.getText()).isEmpty()){
+            Store_Name.contentEditText.setError("Enter your store name");
+            return true;
+        }
+
+        return false;
     }
 }

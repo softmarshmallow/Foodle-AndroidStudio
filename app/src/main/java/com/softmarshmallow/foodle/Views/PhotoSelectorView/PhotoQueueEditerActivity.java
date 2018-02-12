@@ -12,6 +12,7 @@ import android.view.View;
 import com.softmarshmallow.foodle.CustomViews.NonSwipeableViewPager.NonSwipeableViewPager;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.ApiController;
+import com.softmarshmallow.foodle.Views.Test.Fragment_Registration_Application;
 import com.softmarshmallow.foodle.Views.Test.SeverTest;
 
 import java.io.File;
@@ -30,6 +31,9 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
     public Uri Test;
     PhotoSelecterFragment photoSelecterFragment = new PhotoSelecterFragment();
     PhotoQueueFirstFragment photoQueueFirstFragment = new PhotoQueueFirstFragment();
+
+    Fragment_Registration_Application fragment_registration_application = new Fragment_Registration_Application();
+
     @BindView(R.id.containerViewPager)
     NonSwipeableViewPager containerViewPager;
         public static PhotoQueueEditerActivity Instance;
@@ -46,12 +50,14 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
             mBottomSheetDialog = new BottomSheetDialog(this);
             sheetView = this.getLayoutInflater().inflate(R.layout.fragment_photoselecter_bottom, null);
             mBottomSheetDialog.setContentView(sheetView);
-            showPhotoEditerFirstView();
+            containerViewPager.setCurrentItem(2);
+
         }
         Map<Integer, Fragment> pageMapping = new HashMap<Integer, Fragment>(){
             {
                 put(0, photoQueueFirstFragment);
                 put(1, photoSelecterFragment);
+                put(2,fragment_registration_application);
             }
         };
         void initContainerViewPager(){

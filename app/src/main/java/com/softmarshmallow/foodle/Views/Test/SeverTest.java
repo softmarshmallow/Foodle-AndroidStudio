@@ -43,7 +43,7 @@ public interface SeverTest {
     );
 
     @POST("/apply/store")
-    Call sendRegistrationApplication(
+    Call<RegistrationApplicationModel> sendRegistrationApplication(
         @Body RegistrationApplicationModel Data
     );
 }
