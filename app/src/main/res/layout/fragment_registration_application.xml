@@ -42,15 +42,6 @@
                 app:titleText="가게 설명"
                 >
             </com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView>
-            <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
-                android:id="@+id/registration_store_Tel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:titleText="가게 번호"
-
-                android:inputType="phone"
-                >
-            </com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView>
 
             <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
                 android:id="@+id/registration_Tel"

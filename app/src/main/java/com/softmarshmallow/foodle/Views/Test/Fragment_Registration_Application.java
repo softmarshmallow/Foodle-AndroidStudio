@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.Checkable;
-import android.widget.EditText;
 
 import com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView;
 import com.softmarshmallow.foodle.Models.RegistrationApplicationModel;
@@ -33,8 +31,6 @@ public class Fragment_Registration_Application extends Fragment {
     DefaultEditTextContainerView Store_Description;
     @BindView (R.id.registration_store_Name)
     DefaultEditTextContainerView Store_Name;
-    @BindView (R.id.registration_store_Tel)
-    DefaultEditTextContainerView Store_Tel;
     @BindView (R.id.registration_Tel)
     DefaultEditTextContainerView Tel;
     @BindView (R.id.registration_store_isOwn)
@@ -84,10 +80,10 @@ public class Fragment_Registration_Application extends Fragment {
 
     }
     public void BindingAll(){
-        ApplyData.setStoreName(String.valueOf(Store_Name.contentEditText.getText()))
+        ApplyData.setImages(new File[]{})
+                 .setStoreName(String.valueOf(Store_Name.contentEditText.getText()))
                  .setStoreDescription(String.valueOf(Store_Description.contentEditText.getText()))
-                 .setTel(String.valueOf(Tel.contentEditText.getText()))
-                 .setStoreTel(String.valueOf(Store_Tel.contentEditText.getText()))
+                 .setStoreTel(String.valueOf(Tel.contentEditText.getText()))
                  .setOwn(IsOwn.isChecked())
                  .setLat(0)
                  .setLat(0)

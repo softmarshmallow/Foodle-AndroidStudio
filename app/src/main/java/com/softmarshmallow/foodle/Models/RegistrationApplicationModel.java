@@ -11,17 +11,20 @@ public class RegistrationApplicationModel {
     public String storeName;
     public String storeDescription;
     public String storeTel;
-    public String tel;
     public boolean own;
     public double lat;
     public double lon;
     public String locationDescription;
 
+
     public RegistrationApplicationModel setImages(File[] images) {
         this.images = images;
         return this;
     }
-
+    public RegistrationApplicationModel setFile(File[] file){
+        this.images = file;
+        return this;
+    }
     public RegistrationApplicationModel setLat(double lat) {
         this.lat = lat;
         return this;
@@ -52,13 +55,9 @@ public class RegistrationApplicationModel {
         return this;
     }
 
+
     public RegistrationApplicationModel setStoreTel(String storeTel) {
         this.storeTel = storeTel;
-        return this;
-    }
-
-    public RegistrationApplicationModel setTel(String tel) {
-        this.tel = tel;
         return this;
     }
 }
