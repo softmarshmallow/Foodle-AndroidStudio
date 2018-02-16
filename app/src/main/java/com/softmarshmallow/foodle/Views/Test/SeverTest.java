@@ -1,20 +1,15 @@
 package com.softmarshmallow.foodle.Views.Test;
 
-import com.softmarshmallow.foodle.Models.RegistrationApplicationModel;
-import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotofitRepo;
+import com.softmarshmallow.foodle.Models.StoreUploadRequestModel;
 
 import java.io.File;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
 
 /**
  * Created by yuntaeil on 2018. 2. 3..
@@ -43,8 +38,8 @@ public interface SeverTest {
     );
 
     @POST("/apply/store")
-    Call<RegistrationApplicationModel> sendRegistrationApplication(
-        @Body RegistrationApplicationModel Data
+    Call<StoreUploadRequestModel> sendRegistrationApplication(
+        @Body StoreUploadRequestModel Data
     );
 }
 

@@ -6,58 +6,60 @@ import java.io.File;
  * Created by yuntaeil on 2018. 2. 12..
  */
 
-public class RegistrationApplicationModel {
+public class StoreUploadRequestModel
+{
     public File[] images;
     public String storeName;
     public String storeDescription;
     public String storeTel;
     public String tel;
-    public boolean own;
+    //요청에 대한 소유권을 나타내는 것이 아님.
+    public boolean IsOwn;
     public double lat;
     public double lon;
     public String locationDescription;
 
-    public RegistrationApplicationModel setImages(File[] images) {
+    public StoreUploadRequestModel setImages(File[] images) {
         this.images = images;
         return this;
     }
 
-    public RegistrationApplicationModel setLat(double lat) {
+    public StoreUploadRequestModel setLat(double lat) {
         this.lat = lat;
         return this;
     }
 
-    public RegistrationApplicationModel setLocationDescription(String locationDescription) {
+    public StoreUploadRequestModel setLocationDescription(String locationDescription) {
         this.locationDescription = locationDescription;
         return this;
     }
 
-    public RegistrationApplicationModel setLon(double lon) {
+    public StoreUploadRequestModel setLon(double lon) {
         this.lon = lon;
         return this;
     }
 
-    public RegistrationApplicationModel setOwn(boolean own) {
-        this.own = own;
+    public StoreUploadRequestModel setOwn(boolean own) {
+        this.IsOwn = own;
         return this;
     }
 
-    public RegistrationApplicationModel setStoreDescription(String storeDescription) {
+    public StoreUploadRequestModel setStoreDescription(String storeDescription) {
         this.storeDescription = storeDescription;
         return this;
     }
 
-    public RegistrationApplicationModel setStoreName(String storeName) {
+    public StoreUploadRequestModel setStoreName(String storeName) {
         this.storeName = storeName;
         return this;
     }
 
-    public RegistrationApplicationModel setStoreTel(String storeTel) {
+    public StoreUploadRequestModel setStoreTel(String storeTel) {
         this.storeTel = storeTel;
         return this;
     }
 
-    public RegistrationApplicationModel setTel(String tel) {
+    public StoreUploadRequestModel setTel(String tel) {
         this.tel = tel;
         return this;
     }

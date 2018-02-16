@@ -12,9 +12,9 @@ import com.softmarshmallow.foodle.Helpers.ContactToFoodleHelper;
 import com.softmarshmallow.foodle.Helpers.LoginHelpers.LoginPreferences;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.LoginService;
-import com.softmarshmallow.foodle.Views.Festival.FestivalCreatorActivity;
 import com.softmarshmallow.foodle.Views.Login.LoginActivity;
 import com.softmarshmallow.foodle.Views.StoreEditor_Deprecated.StoreCreatorActivity;
+import com.softmarshmallow.foodle.Views.StoreUploadRequestView.StoreUploadRequestActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -74,10 +74,10 @@ public class ExtraOptionsViewFragment extends Fragment
         }
         
         
-        @OnClick(R.id.CreateNewFestivalButton)
-        void OnCreateNewFestivalButtonClicked() {
+        @OnClick(R.id.StoreUploadRequestButton)
+        void OnStoreUploadRequestButtonClicked() {
                 getActivity().startActivity(
-                        new Intent(getContext(), FestivalCreatorActivity.class));
+                        new Intent(getContext(), StoreUploadRequestActivity.class));
         }
         
         

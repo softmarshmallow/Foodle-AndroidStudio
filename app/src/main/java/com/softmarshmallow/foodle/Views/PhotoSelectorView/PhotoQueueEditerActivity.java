@@ -12,7 +12,7 @@ import android.view.View;
 import com.softmarshmallow.foodle.CustomViews.NonSwipeableViewPager.NonSwipeableViewPager;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.ApiController;
-import com.softmarshmallow.foodle.Views.Test.Fragment_Registration_Application;
+import com.softmarshmallow.foodle.Views.StoreUploadRequestView.StoreUploadRequestViewFragment;
 import com.softmarshmallow.foodle.Views.Test.SeverTest;
 
 import java.io.File;
@@ -32,7 +32,7 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
     PhotoSelecterFragment photoSelecterFragment = new PhotoSelecterFragment();
     PhotoQueueFirstFragment photoQueueFirstFragment = new PhotoQueueFirstFragment();
 
-    Fragment_Registration_Application fragment_registration_application = new Fragment_Registration_Application();
+    StoreUploadRequestViewFragment storeUploadRequestViewFragment_ = new StoreUploadRequestViewFragment();
 
     @BindView(R.id.containerViewPager)
     NonSwipeableViewPager containerViewPager;
@@ -57,7 +57,7 @@ public class PhotoQueueEditerActivity extends AppCompatActivity {
             {
                 put(0, photoQueueFirstFragment);
                 put(1, photoSelecterFragment);
-                put(2,fragment_registration_application);
+                put(2, storeUploadRequestViewFragment_);
             }
         };
         void initContainerViewPager(){
