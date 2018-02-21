@@ -52,7 +52,7 @@ public class MainTabControllerActivity_v2 extends AppCompatActivity
 
 
         private void InitTabBar() {
-                PagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager());
+                PagerAdapter adapter = new MainPagerAdapter_v2(getSupportFragmentManager());
                 viewPager.setAdapter(adapter);
                 
                 final String[] colors = getResources().getStringArray(R.array.default_preview);

@@ -66,6 +66,9 @@ dependencies {
         transitive = true
     }
 
+    //TagView
+    compile 'me.gujun.android.taggroup:library:1.4@aar'
+
     // discreteSeekBar
     compile 'org.adw.library:discrete-seekbar:1.0.1'
 

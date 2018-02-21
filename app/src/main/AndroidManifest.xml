@@ -78,6 +78,9 @@
             android:name=".Views.MainTabController.MainTabControllerActivity"
             android:screenOrientation="portrait"/>
         <activity
+        android:name=".Views.MainTabController.MainTabcontrollerV2.MainTabControllerActivity_v2"
+        android:screenOrientation="portrait"/>
+        <activity
             android:name=".Views.Festival.FestivalCreatorActivity"
             android:screenOrientation="portrait"/>
         <activity

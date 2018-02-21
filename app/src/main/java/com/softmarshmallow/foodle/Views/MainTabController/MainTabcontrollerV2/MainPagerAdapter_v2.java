@@ -1,4 +1,4 @@
-package com.softmarshmallow.foodle.Views.MainTabController;
+package com.softmarshmallow.foodle.Views.MainTabController.MainTabcontrollerV2;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,16 +8,17 @@ import android.util.Log;
 import com.softmarshmallow.foodle.Views.ExtraOptions_Deprecated.ExtraOptionsViewFragment;
 import com.softmarshmallow.foodle.Views.FeaturedViewV2.FeaturedViewFragment;
 import com.softmarshmallow.foodle.Views.FeaturedViewV3.FeaturedViewFragmentV3;
+import com.softmarshmallow.foodle.Views.MainTabController.MainTabsType;
 import com.softmarshmallow.foodle.Views.Mypage.MypageFragment;
 import com.softmarshmallow.foodle.Views.NotificationsPage.NotificationsViewFragment;
 import com.softmarshmallow.foodle.Views.Search.IntegratedSearchViewFragment;
 
-public class MainPagerAdapter extends FragmentStatePagerAdapter
+public class MainPagerAdapter_v2 extends FragmentStatePagerAdapter
 {
 
         private static final String TAG = "MainPagerAdapter";
 
-        public MainPagerAdapter(FragmentManager fm) {
+        public MainPagerAdapter_v2(FragmentManager fm) {
                 super(fm);
         }
 
@@ -27,7 +28,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter
                 return MainTabsType.values().length;
         }
         
-        Fragment featuredViewFragment = new FeaturedViewFragment();
+        Fragment featuredViewFragment = new FeaturedViewFragmentV3();
         
         // Fragment testFragment = new TestFragment();
         Fragment storeSearchViewFragment = new IntegratedSearchViewFragment();
