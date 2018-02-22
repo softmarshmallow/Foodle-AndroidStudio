@@ -52,7 +52,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <include
-
         layout="@layout/fragment_featured_inside_view_v3"
         ></include>
     <android.support.design.widget.FloatingActionButton

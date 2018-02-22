@@ -16,11 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
-import com.softmarshmallow.foodle.CustomViews.PromotionSlider.PromotionSliderView;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
@@ -42,6 +37,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.functions.Consumer;
+import me.gujun.android.taggroup.TagGroup;
 
 public class FeaturedViewFragmentV3 extends Fragment
 {
@@ -60,10 +56,16 @@ public class FeaturedViewFragmentV3 extends Fragment
         View view2;
         @BindView(R.id.view3)
         View view3;
+        @BindView(R.id.tag_group)
+        TagGroup tagview;
+
         List<StoreContainerModel> storeDatas = new ArrayList<>();
         List<MenuModel> MenuDatas = new ArrayList<>();
         FeaturedStoresAdapter featuredStoresAdapter;
         FeaturedMenusAdapter featuredMenusAdapter;
+
+
+        List<String> taglist = new ArrayList<>();
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,7 +76,7 @@ public class FeaturedViewFragmentV3 extends Fragment
 
                 initFeaturedMenus();
                 initFeaturedStores();
-
+initTagView();
                 return view;
         }
 
@@ -110,6 +112,23 @@ public class FeaturedViewFragmentV3 extends Fragment
                 TextView sub = (TextView) view2.findViewById(R.id.subtitleText);
                 sub.setText("스테이크도 이제 길거리 음식이다.");
         }
+        void initTagView(){
+
+                taglist.add("along");
+                taglist.add("test");
+                taglist.add("t@eil");
+
+                tagview.setTags(taglist);
+                tagview.setOnTagClickListener(new TagGroup.OnTagClickListener() {
+                        @Override
+                        public void onTagClick(String s) {
+                                //TODO:: AFTER CLICK TAG
+
+                        }
+                });
+
+        }
+
 
         void updateFeaturedStores(){
                 Log.d(TAG, "updateFeaturedStores");

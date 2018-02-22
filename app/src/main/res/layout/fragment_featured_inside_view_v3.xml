@@ -28,8 +28,11 @@
                 android:id="@+id/view3"
                 layout="@layout/view_default_recycler_container_view"/>
 
-            <!--<me.gujun.android.taggroup.TagGroup-->
-                <!--android:id="@+id/TagView"-->
-                <!--/>-->
+
+            <me.gujun.android.taggroup.TagGroup
+                android:id="@+id/tag_group"
+                style="@style/TagGroup"
+                android:layout_marginTop="10dp" />
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
