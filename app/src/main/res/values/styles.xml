@@ -25,7 +25,14 @@
         <item name="android:textColor">@color/textDark</item>
 
     </style>
+    <style name="Widget.Design.TextInputLayout" parent="AppTheme">
 
+        <item name="colorControlActivated">@color/loginColor</item>
+        <item name="android:textColor">@color/loginColor</item>
+        <item name="colorPrimary">@color/loginColor</item>
+        <item name="colorPrimaryDark">@color/loginColor</item>
+        <item name="colorControlNormal">@color/loginColor</item>
+    </style>
     <style name="AppTheme.WithActionBar" parent="AppTheme">
         <item name="android:windowActionBar">true</item>
         <item name="android:windowNoTitle">false</item>

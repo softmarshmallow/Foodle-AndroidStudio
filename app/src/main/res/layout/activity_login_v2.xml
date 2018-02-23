@@ -12,15 +12,6 @@
         android:src="@drawable/splash4_background_blured"
         android:scaleType="centerCrop" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:padding="0dp"
-        android:src="@drawable/foodle_text_logo"
-        android:text="Toolbar Title"/>
 
     <LinearLayout
         android:id="@+id/login_form"
@@ -31,6 +22,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
+
+        <TextView
+            android:layout_marginLeft="23dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="REGISTER"
+            android:textColor="@color/loginColor"
+            android:textSize="36dp"
+            android:textStyle="bold"
+            />
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
@@ -44,13 +45,17 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="Widget.Design.TextInputLayout"
+
+                >
 
                 <EditText
                     android:id="@+id/emailEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"/>
+                    style="Widget.Design.TextInputLayout"
+                    />
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
@@ -68,18 +73,21 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/text_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="Widget.Design.TextInputLayout"
+                >
 
                 <EditText
                     android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"/>
+                    android:hint="@string/prompt_password"
+                    style="Widget.Design.TextInputLayout"
+                    />
             </android.support.design.widget.TextInputLayout>
 
 
         </LinearLayout>
-
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/loginButton"
@@ -88,13 +96,15 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="10dp"
-            app:fb_defaultColor="@color/colorPrimaryDark"
+            app:fb_defaultColor="@color/loginColor"
             app:fb_radius="30dp"
             app:fb_text="@string/btn_login"
-            app:fb_textColor="#fff"
+            app:fb_textColor="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,49 +112,22 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             >
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/facebook_login"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                app:fb_defaultColor="#39579B"
-                app:fb_focusColor="#6183d2"
-                app:fb_fontIconResource="&#xf230;"
-                app:fb_fontIconSize="20sp"
-                app:fb_iconPaddingRight="10dp"
-                app:fb_iconPosition="left"
-                app:fb_radius="30dp"
-                app:fb_text="@string/btn_facebook_login"
-                app:fb_textColor="#ffffff"
-                app:fb_textSize="16sp"/>
-
-            <mehdi.sakout.fancybuttons.FancyButton
+            <ImageButton
                 android:id="@+id/google_login"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                app:fb_defaultColor="#d34836"
-                app:fb_focusColor="#e53935"
-                app:fb_fontIconResource="&#xf230;"
-                app:fb_fontIconSize="20sp"
-                app:fb_iconPaddingRight="10dp"
-                app:fb_iconPosition="left"
-                app:fb_radius="30dp"
-                app:fb_text="@string/btn_facebook_login"
-                app:fb_textColor="#ffffff"
-                app:fb_textSize="16sp" />
+                android:src="@drawable/googleoval"
+                android:background="#00000000"
+                android:layout_margin="9dp"
+                />
+            <ImageButton
+                android:id="@+id/facebook_login"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/facebookoval"
+                android:background="#00000000"
+                />
+
         </LinearLayout>
 
 

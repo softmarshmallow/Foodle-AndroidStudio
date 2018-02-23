@@ -270,12 +270,6 @@ public class LoginActivity extends AppCompatActivity
                                         .setTitleText("성공")
                                         .setContentText("페이스북으로 로그인 하였습니다.")
                                         .show();
-
-
-                                // move to next activity
-                                Intent intent = new Intent(LoginActivity.this,
-                                        nextActivity);
-                                startActivity(intent);
                         }
         
                         @Override

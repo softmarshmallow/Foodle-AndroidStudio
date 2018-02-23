@@ -118,12 +118,12 @@ initTagView();
                 taglist.add("test");
                 taglist.add("t@eil");
 
+
                 tagview.setTags(taglist);
                 tagview.setOnTagClickListener(new TagGroup.OnTagClickListener() {
                         @Override
                         public void onTagClick(String s) {
                                 //TODO:: AFTER CLICK TAG
-
                         }
                 });
 

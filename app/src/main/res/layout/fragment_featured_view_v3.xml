@@ -54,13 +54,15 @@
     <include
         layout="@layout/fragment_featured_inside_view_v3"
         ></include>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="148dp"
+        android:layout_height="36dp"
         android:layout_margin="@dimen/fab_margin"
+        android:tooltipText="지도에서 찾기"
         app:layout_anchor="@+id/app_bar"
         app:layout_anchorGravity="left|bottom"
-        app:srcCompat="@android:drawable/ic_dialog_info" />
+        />
 
 </android.support.design.widget.CoordinatorLayout>
