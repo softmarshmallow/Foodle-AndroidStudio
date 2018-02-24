@@ -78,6 +78,9 @@
             android:name=".Views.MainTabController.MainTabControllerActivity"
             android:screenOrientation="portrait"/>
         <activity
+        android:name=".Views.MainTabController.MainTabcontrollerV2.MainTabControllerActivity_v2"
+        android:screenOrientation="portrait"/>
+        <activity
             android:name=".Views.Festival.FestivalCreatorActivity"
             android:screenOrientation="portrait"/>
         <activity
@@ -138,6 +141,9 @@
         </activity>
         <activity android:name=".Views.MenuEditorV3.MenuExtraSettingsFormLandingPage.MenuExtraSettingsFormLandingPageActivity">
         </activity>
+        <activity
+            android:name=".Views.StoreUploadRequestView.StoreUploadRequestActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

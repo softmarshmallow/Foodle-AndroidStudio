@@ -24,7 +24,7 @@
     <!--region Dividers-->
     <color name="dividerLight">#CBCBCB</color>
     <!--endregion-->
-
+<color name="loginColor">#FFFFFF</color>
 
     <!--region Tints-->
     <color name="colorDark">#545254</color>

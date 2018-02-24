@@ -13,6 +13,7 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.softmarshmallow.foodle.Helpers.ContactToFoodleHelper;
+import com.softmarshmallow.foodle.Views.MainTabController.MainTabcontrollerV2.MainTabControllerActivity_v2;
 import com.softmarshmallow.foodle.Views.Mypage.ProfileEditorActivity;
 import com.softmarshmallow.foodle.Views.PhotoSelectorView.PhotoQueueEditerActivity;
 import com.softmarshmallow.foodle.Views.QR_ReaderView.QR_ReaderActivity;
@@ -133,7 +134,8 @@ public class MainNavigationDrawer
                                 //region DevOptions
                                 new SecondaryDrawerItem().withIdentifier(NavigationItemType.DevOption1.getValue()).withName("Dev1 - StoreEditorV3"),
                                 new SecondaryDrawerItem().withIdentifier(NavigationItemType.DevOption2.getValue()).withName("Dev2 - SMS_Verification"),
-                                new SecondaryDrawerItem().withIdentifier(NavigationItemType.DevOption4.getValue()).withName("Dev3 - PhotoUpload")
+                                new SecondaryDrawerItem().withIdentifier(NavigationItemType.DevOption4.getValue()).withName("Dev3 - PhotoUpload"),
+                                new SecondaryDrawerItem().withIdentifier(NavigationItemType.DevOption4.getValue()).withName("Dev4 - NewTabActivity")
                                 //endregion
 
 
@@ -212,7 +214,7 @@ public class MainNavigationDrawer
                                                 case DevOption4:
 
                                                     intent = new Intent(activity,
-                                                            PhotoQueueEditerActivity.class);
+                                                            MainTabControllerActivity_v2.class);
                                                     activity.startActivity(intent);
                                                         break;
                                                 //endregion

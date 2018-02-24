@@ -42,7 +42,6 @@ public class FoodleApp extends Application
         public static final String TAG = FoodleApp.class.getSimpleName();
         private VerifyClient verifyClient;
         private NexmoClient nexmoClient;
-
         public VerifyClient getVerifyClient() {
                 return this.verifyClient;
         }

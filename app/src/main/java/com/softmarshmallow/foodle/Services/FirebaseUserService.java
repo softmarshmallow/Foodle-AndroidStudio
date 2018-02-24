@@ -31,6 +31,7 @@ public class FirebaseUserService
         
         public static String GetUserUID(){
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                Log.d(TAG, String.valueOf(FirebaseAuth.getInstance()));
                 return user.getUid();
         }
         

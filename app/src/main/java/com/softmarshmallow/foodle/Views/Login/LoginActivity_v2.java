@@ -40,7 +40,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class LoginActivity_v2 extends AppCompatActivity
+public class
+LoginActivity_v2 extends AppCompatActivity
 {
         static final String TAG = "LoginActivity";
         public int Goole_SIGN_IN;
