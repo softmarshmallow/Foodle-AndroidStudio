@@ -1,4 +1,4 @@
-package com.softmarshmallow.foodle.Views.FeaturedViewV2;
+package com.softmarshmallow.foodle.Views.FeaturedViewV3;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -20,9 +20,9 @@ import java.util.List;
  * Created by uzu on 9/23/17.
  */
 
-public class FeaturedMenusAdapter extends BaseMenusAdapter
+public class FeaturedMenusAdapterV3 extends BaseMenusAdapter
 {
-        public FeaturedMenusAdapter(Context mContext, List<MenuModel> menuDatas) {
+        public FeaturedMenusAdapterV3(Context mContext, List<MenuModel> menuDatas) {
                 super(mContext, menuDatas);
         }
         
@@ -31,7 +31,7 @@ public class FeaturedMenusAdapter extends BaseMenusAdapter
                 View itemView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.card_featured_menu_v3, parent, false);
         
-                return new FeaturedMenusAdapter.MenuItemViewHolder(itemView, context);
+                return new FeaturedMenusAdapterV3.MenuItemViewHolder(itemView, context);
         }
         
         @Override

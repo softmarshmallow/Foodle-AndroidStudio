@@ -43,13 +43,20 @@
                 />
 
             <TextView
-                android:id="@+id/menlocationTextView"
+                android:id="@+id/locationText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vadodara"
                 android:textColor="#a5a5a5"
                 android:textSize="11sp" />
 
+<!-- It gone new Design -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/captionText"
+                android:visibility="gone"
+                />
         </LinearLayout>
 
 

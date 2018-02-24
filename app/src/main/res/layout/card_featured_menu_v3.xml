@@ -48,12 +48,24 @@
         />
 
     <TextView
-        android:id="@+id/menlocationTextView"
+        android:id="@+id/baseStoreNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Vadodara"
         android:textColor="#a5a5a5"
         android:textSize="11sp" />
+
+    <!--It is gone new Design-->
+    <TextView
+        android:id="@+id/menuPriceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#373737"
+        android:textSize="15.3dp"
+        android:text="Rs 350"
+        android:layout_marginTop="13.7dp"
+        android:visibility="gone"/>
+
 
 </LinearLayout>
 

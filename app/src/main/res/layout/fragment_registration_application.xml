@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="80dp"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
 
 
         <LinearLayout
@@ -44,9 +45,16 @@
                 app:titleText="가게 설명"
                 >
             </com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView>
-
             <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
                 android:id="@+id/registration_Tel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:titleText="휴대폰 번호"
+                android:inputType="phone"
+                />
+
+            <com.softmarshmallow.foodle.CustomViews.DefaultEditTextContainerView.DefaultEditTextContainerView
+                android:id="@+id/registration_Store_Tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:titleText="휴대폰 번호"

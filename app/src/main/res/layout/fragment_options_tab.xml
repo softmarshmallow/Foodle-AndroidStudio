@@ -56,22 +56,35 @@
             <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:optionImage="@drawable/ic_x"
+                app:optionImage="@drawable/ic_setting"
                 app:optionNameText="설정"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp"/>
             <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:optionImage="@drawable/ic_x"
-                app:optionNameText="설정"
+                app:optionImage="@drawable/ic_question"
+                app:optionNameText="도움말"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"/>
+            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:optionImage="@drawable/ic_random"
+                app:optionNameText="스토어 계정 전환"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp"/>
             <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:optionImage="@drawable/ic_x"
-                app:optionNameText="설정"
+                app:optionNameText="스토어 등록 요청"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"/>
+            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:optionNameText="버그 보고 &amp; 피드백"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp"/>
         </LinearLayout>

@@ -30,7 +30,7 @@ public class StoreUploadRequestViewFragment extends Fragment {
     DefaultEditTextContainerView Store_Description;
     @BindView (R.id.registration_store_Name)
     DefaultEditTextContainerView Store_Name;
-    @BindView (R.id.registration_store_Tel)
+    @BindView (R.id.registration_Store_Tel)
     DefaultEditTextContainerView Store_Tel;
     @BindView (R.id.registration_Tel)
     DefaultEditTextContainerView Tel;
@@ -88,12 +88,12 @@ public class StoreUploadRequestViewFragment extends Fragment {
             Store_Description.contentEditText.setError("Enter your store Description");
             return false;
         }
-    
+
         if(String.valueOf(Store_Tel.contentEditText.getText()).isEmpty()){
             Store_Tel.contentEditText.setError("Enter your store Tel");
             return false;
         }
-    
+
         if(String.valueOf(Tel.contentEditText.getText()).isEmpty()){
             Tel.contentEditText.setError("Enter your Phone");
             return false;

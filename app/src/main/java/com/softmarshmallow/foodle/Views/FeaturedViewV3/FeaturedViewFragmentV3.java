@@ -16,6 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
@@ -61,9 +64,10 @@ public class FeaturedViewFragmentV3 extends Fragment
 
         List<StoreContainerModel> storeDatas = new ArrayList<>();
         List<MenuModel> MenuDatas = new ArrayList<>();
-        FeaturedStoresAdapter featuredStoresAdapter;
-        FeaturedMenusAdapter featuredMenusAdapter;
+        FeaturedStoresAdapterV3 featuredStoresAdapter;
+        FeaturedMenusAdapterV3 featuredMenusAdapter;
 
+        FloatingActionButton floatingActionButton;
 
         List<String> taglist = new ArrayList<>();
 
@@ -73,10 +77,18 @@ public class FeaturedViewFragmentV3 extends Fragment
                 // Inflate the layout for this fragment
                 View view = inflater.inflate(R.layout.fragment_featured_view_v3, container, false);
                 unbinder = ButterKnife.bind(this, view);
+                floatingActionButton = view.findViewById(R.id.customFAB);
+                floatingActionButton.setText("show");
+                floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                });
+
 
                 initFeaturedMenus();
                 initFeaturedStores();
-initTagView();
+                initTagView();
                 return view;
         }
 
@@ -86,7 +98,7 @@ initTagView();
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 storeDatas.add(new StoreContainerModel());
                 storeDatas.add(new StoreContainerModel());
-                featuredStoresAdapter = new FeaturedStoresAdapter(getContext(), storeDatas);
+                featuredStoresAdapter = new FeaturedStoresAdapterV3(getContext(), storeDatas);
                 recyclerView.setAdapter(featuredStoresAdapter);
                 featuredStoresAdapter.notifyDataSetChanged();
                 TextView textView = (TextView) view1.findViewById(R.id.titleText);
@@ -102,9 +114,8 @@ initTagView();
                 RecyclerView recyclerView = (RecyclerView) view2.findViewById(R.id.recyclerView);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
-                MenuDatas.add(new MenuModel());
 
-                featuredMenusAdapter = new FeaturedMenusAdapter(getContext(), MenuDatas);
+                featuredMenusAdapter = new FeaturedMenusAdapterV3(getContext(), MenuDatas);
                 recyclerView.setAdapter(featuredMenusAdapter);
                 featuredMenusAdapter.notifyDataSetChanged();
                 TextView textView = (TextView) view2.findViewById(R.id.titleText);

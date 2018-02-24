@@ -55,14 +55,40 @@
         layout="@layout/fragment_featured_inside_view_v3"
         ></include>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="148dp"
-        android:layout_height="36dp"
         android:layout_margin="@dimen/fab_margin"
-        android:tooltipText="지도에서 찾기"
+        app:fabColor="#ffffff"
+        app:fabIcon="@drawable/ic_location"
+        app:fabIconColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:fabIconPosition="start"
+        app:fabSizes="normal"
+        app:fabTextAllCaps="true"
+        app:fabType="roundedSquare"
         app:layout_anchor="@+id/app_bar"
         app:layout_anchorGravity="left|bottom"
         />
+
+    <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+        android:id="@+id/customFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:fabColor="#acdace"
+        app:fabElevation="5dp"
+        app:fabIcon="@drawable/ic_location"
+        app:fabIconColor="#123098"
+        app:fabIconPosition="start"
+        app:fabSizes="normal"
+        app:fabTextAllCaps="true"
+        app:fabType="circle"
+        app:layout_anchor="@+id/app_bar"
+        app:layout_anchorGravity="left|center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </android.support.design.widget.CoordinatorLayout>
