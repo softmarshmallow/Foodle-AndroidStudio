@@ -64,6 +64,7 @@ public class Option_Tab_Fragment extends Fragment
                 ButterKnife.bind(this, view);
                 InitButtons();
 
+                //
                 return view;
         }
 

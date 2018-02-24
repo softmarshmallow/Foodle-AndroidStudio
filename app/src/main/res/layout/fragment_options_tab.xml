@@ -5,7 +5,6 @@
              android:layout_height="match_parent"
              tools:context="com.softmarshmallow.foodle.Views.OptionsTabPage.OptionsTabFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -41,7 +40,8 @@
             android:layout_height="wrap_content"
             android:text="프로필 보기"
             tools:layout_editor_absoluteX="22dp"
-            tools:layout_editor_absoluteY="99dp"/>
+            tools:layout_editor_absoluteY="99dp"
+            tools:ignore="MissingConstraints" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -51,7 +51,8 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="180dp">
+            tools:layout_editor_absoluteY="180dp"
+            tools:ignore="MissingConstraints">
 
             <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
                 android:id="@+id/option_setting"
