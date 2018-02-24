@@ -5,8 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
-import com.softmarshmallow.foodle.Views.ExtraOptions_Deprecated.ExtraOptionsViewFragment;
-import com.softmarshmallow.foodle.Views.FeaturedViewV2.FeaturedViewFragment;
+import com.softmarshmallow.foodle.Views.ExtraOptions_Deprecated.Option_Tab_Fragment;
 import com.softmarshmallow.foodle.Views.FeaturedViewV3.FeaturedViewFragmentV3;
 import com.softmarshmallow.foodle.Views.MainTabController.MainTabsType;
 import com.softmarshmallow.foodle.Views.Mypage.MypageFragment;
@@ -34,7 +33,7 @@ public class MainPagerAdapter_v2 extends FragmentStatePagerAdapter
         Fragment storeSearchViewFragment = new IntegratedSearchViewFragment();
         Fragment mypageFragment = new MypageFragment();
         Fragment notificationsPageFragment = new NotificationsViewFragment();
-        Fragment extraOptionsViewFragment = new ExtraOptionsViewFragment();
+        Fragment option_tab_fragment = new Option_Tab_Fragment();
 
 
         @Override
@@ -55,7 +54,7 @@ public class MainPagerAdapter_v2 extends FragmentStatePagerAdapter
                         case Notifications:
                                 return notificationsPageFragment;
                         case More:
-                                return extraOptionsViewFragment;
+                                return option_tab_fragment;
                         default:
                                 return null;
                 }

@@ -77,13 +77,13 @@ public class FeaturedViewFragmentV3 extends Fragment
                 // Inflate the layout for this fragment
                 View view = inflater.inflate(R.layout.fragment_featured_view_v3, container, false);
                 unbinder = ButterKnife.bind(this, view);
-                floatingActionButton = view.findViewById(R.id.customFAB);
-                floatingActionButton.setText("show");
-                floatingActionButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                        }
-                });
+//                floatingActionButton = view.findViewById(R.id.fab);
+//                floatingActionButton.setText("show");
+//                floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                        }
+//                });
 
 
                 initFeaturedMenus();

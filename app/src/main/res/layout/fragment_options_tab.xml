@@ -54,13 +54,15 @@
             tools:layout_editor_absoluteY="180dp">
 
             <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                android:id="@+id/option_setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:optionImage="@drawable/ic_setting"
                 app:optionNameText="설정"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp"/>
-            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemVie
+                android:id="@+id/option_help"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:optionImage="@drawable/ic_question"
@@ -68,6 +70,7 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp"/>
             <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                android:id="@+id/option_change"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:optionImage="@drawable/ic_random"
@@ -75,6 +78,7 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp"/>
             <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                android:id="@+id/option_storeupload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:optionImage="@drawable/ic_x"
@@ -82,6 +86,7 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp"/>
             <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                android:id="@+id/option_feedback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:optionNameText="버그 보고 &amp; 피드백"
