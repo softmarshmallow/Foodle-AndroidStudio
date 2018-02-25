@@ -118,8 +118,8 @@ public class Option_Tab_Fragment extends Fragment
                 img.setImageResource(R.drawable.ic_random);
 
 
-                TextView text_change =(TextView)option_change.findViewById(R.id.optionNameTextView);
-                text.setText("스토어 계정 전환");
+                TextView text_up =(TextView)option_storeupload.findViewById(R.id.optionNameTextView);
+                text_up.setText("푸드트럭 업로드 신청");
                 option_storeupload.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
