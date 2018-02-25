@@ -16,31 +16,39 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="200dp"
             android:layout_marginStart="22dp"
+            android:layout_marginTop="48dp"
             android:text="USERNAME"
             android:textAppearance="@style/TextAppearance.h2"
             android:textSize="36sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.206"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="50dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profilePhotoImageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="48dp"
             android:src="@drawable/app_icon_red_v3"
-            tools:layout_editor_absoluteX="228dp"
-            tools:layout_editor_absoluteY="39dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.446"
+            app:layout_constraintStart_toEndOf="@+id/textView22"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:text="프로필 보기"
-            tools:layout_editor_absoluteX="22dp"
-            tools:layout_editor_absoluteY="99dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView22"
             tools:ignore="MissingConstraints" />
 
         <LinearLayout
@@ -48,51 +56,34 @@
             android:layout_height="241dp"
             android:layout_marginEnd="22dp"
             android:layout_marginStart="22dp"
+            android:layout_marginTop="192dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="180dp"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints">
 
-            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
-                android:id="@+id/option_setting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:optionImage="@drawable/ic_setting"
-                app:optionNameText="설정"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp"/>
-            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemVie
+            <include
                 android:id="@+id/option_help"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:optionImage="@drawable/ic_question"
-                app:optionNameText="도움말"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp"/>
-            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                layout="@layout/view_option_item" />
+
+            <include
+                android:id="@+id/option_setting"
+                layout="@layout/view_option_item" />
+
+            <include
                 android:id="@+id/option_change"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:optionImage="@drawable/ic_random"
-                app:optionNameText="스토어 계정 전환"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp"/>
-            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                layout="@layout/view_option_item" />
+
+            <include
                 android:id="@+id/option_storeupload"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:optionImage="@drawable/ic_x"
-                app:optionNameText="스토어 등록 요청"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp"/>
-            <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
+                layout="@layout/view_option_item" />
+
+            <include
                 android:id="@+id/option_feedback"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:optionNameText="버그 보고 &amp; 피드백"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp"/>
+                layout="@layout/view_option_item" />
+
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>

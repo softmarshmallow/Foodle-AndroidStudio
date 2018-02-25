@@ -35,15 +35,15 @@ public class Option_Tab_Fragment extends Fragment
 
 
         @BindView(R.id.option_setting)
-        OptionItemView option_setting;
+        View option_setting;
         @BindView(R.id.option_help)
-        OptionItemView option_help;
+        View option_help;
         @BindView(R.id.option_change)
-        OptionItemView option_change;
+        View option_change;
         @BindView(R.id.option_storeupload)
-        OptionItemView option_storeupload;
+        View option_storeupload;
         @BindView(R.id.option_feedback)
-        OptionItemView option_feedback;
+        View option_feedback;
 
 
 
@@ -119,41 +119,5 @@ public class Option_Tab_Fragment extends Fragment
 
         }
 
-        @OnClick(R.id.ContactButton)
-        public void onContactButtonClicked() {
-                ContactToFoodleHelper.SendEmailToFoodle(getContext());
-        }
-        
-        
-        @OnClick(R.id.checkPolicyButton)
-        public void onCheckPolicyButtonClicked() {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("준비중")
-                        .setContentText("준비중입니다.")
-                        .show();
-        }
-        
-        @OnClick(R.id.locationBasedServicePolicyButton)
-        public void onLocationBasedServicePolicyButtonClicked() {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("준비중")
-                        .setContentText("준비중입니다.")
-                        .show();
-        }
-        
-        @OnClick(R.id.checkPrivacyPolicyButton)
-        public void onCheckPrivacyPolicyButtonClicked() {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("준비중")
-                        .setContentText("준비중입니다.")
-                        .show();
-        }
-        
-        @OnClick(R.id.checkVersionButton)
-        public void onCheckVersionButtonClicked() {
-                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("v0.7.x")
-                        .setContentText("축하드립니다. 최신 버전이군요!")
-                        .show();
-        }
+
 }

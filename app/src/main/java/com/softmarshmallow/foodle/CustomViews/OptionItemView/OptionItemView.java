@@ -20,9 +20,9 @@ import butterknife.ButterKnife;
 public class OptionItemView extends ConstraintLayout
 {
         @BindView(R.id.optionImageView)
-        ImageView optionImageView;
+        public ImageView optionImageView;
         @BindView(R.id.optionNameTextView)
-        TextView optionNameTextView;
+        public TextView optionNameTextView;
         
         public OptionItemView(Context context) {
                 super(context);

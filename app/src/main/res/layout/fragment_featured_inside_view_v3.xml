@@ -29,7 +29,7 @@
                 layout="@layout/view_default_recycler_container_view"/>
             <include
                 android:layout_marginTop="40dp"
-
+android:visibility="gone"
                 android:id="@+id/view3"
                 layout="@layout/view_default_recycler_container_view"/>
 
