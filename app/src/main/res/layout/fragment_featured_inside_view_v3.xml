@@ -45,12 +45,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <me.gujun.android.taggroup.TagGroup
+                android:paddingTop="30dp"
                 android:id="@+id/tag_group"
-                style="@style/TagGroup.Beauty_Red"
-                atg_borderColor ="#ee5555"
-                atg_textColor="ee5555"
-                app:atg_textSize="45dp"
-                android:layout_marginTop="20dp"
+                style="@style/TagGroup.Featured"
                 />
 
 
