@@ -116,6 +116,8 @@ public class Option_Tab_Fragment extends Fragment
 
                 ImageView  img_change = (ImageView)option_change.findViewById(R.id.optionImageView);
                 img.setImageResource(R.drawable.ic_random);
+
+
                 TextView text_change =(TextView)option_change.findViewById(R.id.optionNameTextView);
                 text.setText("스토어 계정 전환");
                 option_storeupload.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +128,9 @@ public class Option_Tab_Fragment extends Fragment
 
                         }
                 });
+
+                TextView text_feedback =(TextView)option_feedback.findViewById(R.id.optionNameTextView);
+                text_feedback.setText("스토어 계정 전환");
                 option_feedback.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
