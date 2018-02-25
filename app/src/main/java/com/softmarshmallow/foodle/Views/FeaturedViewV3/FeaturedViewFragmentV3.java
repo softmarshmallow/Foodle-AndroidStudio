@@ -60,8 +60,8 @@ public class FeaturedViewFragmentV3 extends Fragment
         View view2;
         @BindView(R.id.view3)
         View view3;
-        @BindView(R.id.tag_group)
-        TagGroup tagview;
+//        @BindView(R.id.tag_group)
+//        TagGroup tagview;
 
         List<StoreContainerModel> storeDatas = new ArrayList<>();
         List<MenuModel> MenuDatas = new ArrayList<>();
@@ -90,7 +90,7 @@ public class FeaturedViewFragmentV3 extends Fragment
 
                 initFeaturedMenus();
                 initFeaturedStores();
-                initTagView();
+//                initTagView();
                 return view;
         }
 
@@ -125,21 +125,21 @@ public class FeaturedViewFragmentV3 extends Fragment
                 TextView sub = (TextView) view2.findViewById(R.id.subtitleText);
                 sub.setText("스테이크도 이제 길거리 음식이다.");
         }
-        void initTagView(){
-
-                taglist.add("along");
-                taglist.add("test");
-                taglist.add("t@eil");
-
-                tagview.setTags(taglist);
-                tagview.setOnTagClickListener(new TagGroup.OnTagClickListener() {
-                        @Override
-                        public void onTagClick(String s) {
-                                //TODO:: AFTER CLICK TAG
-                        }
-                });
-
-        }
+//        void initTagView(){
+//
+//                taglist.add("along");
+//                taglist.add("test");
+//                taglist.add("t@eil");
+//
+//                tagview.setTags(taglist);
+//                tagview.setOnTagClickListener(new TagGroup.OnTagClickListener() {
+//                        @Override
+//                        public void onTagClick(String s) {
+//                                //TODO:: AFTER CLICK TAG
+//                        }
+//                });
+//
+//        }
 
 
         void updateFeaturedStores(){

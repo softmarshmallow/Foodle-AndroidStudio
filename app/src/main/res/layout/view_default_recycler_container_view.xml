@@ -15,24 +15,24 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/titleText"
+            android:id="@+id/subtitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:text="필드 이름"
-            android:textColor="@color/textDark"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textColor="@color/textLightDark"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/subtitleText"
+            android:id="@+id/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="필드 이름"
-            android:textColor="@color/textLightDark"
-            android:textSize="12sp"
+            android:textColor="@color/textDark"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

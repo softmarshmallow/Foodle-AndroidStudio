@@ -14,6 +14,7 @@ import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Services.LoginService;
 import com.softmarshmallow.foodle.Views.Login.LoginActivity;
 import com.softmarshmallow.foodle.Views.MainTabController.MainTabControllerActivity;
+import com.softmarshmallow.foodle.Views.MainTabController.MainTabcontrollerV2.MainTabControllerActivity_v2;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -119,7 +120,7 @@ public class SplashScreenActivity extends AppCompatActivity
                 });
         }
         void MoveToMainActivity(){
-                Intent intent = new Intent(SplashScreenActivity.this, MainTabControllerActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this, MainTabControllerActivity_v2.class);
                 finish();
                 startActivity(intent);
         }

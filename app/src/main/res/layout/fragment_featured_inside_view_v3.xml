@@ -33,22 +33,22 @@
                 android:id="@+id/view3"
                 layout="@layout/view_default_recycler_container_view"/>
 
-            <TextView
-                android:id="@+id/titleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textStyle="bold"
-                android:text="핫!한 태그"
-                android:textColor="@color/textDark"
-                android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <me.gujun.android.taggroup.TagGroup
-                android:paddingTop="30dp"
-                android:id="@+id/tag_group"
-                style="@style/TagGroup.Featured"
-                />
+            <!--<TextView-->
+                <!--android:id="@+id/titleText"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:text="핫!한 태그"-->
+                <!--android:textColor="@color/textDark"-->
+                <!--android:textSize="18dp"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+            <!--<me.gujun.android.taggroup.TagGroup-->
+                <!--android:paddingTop="30dp"-->
+                <!--android:id="@+id/tag_group"-->
+                <!--style="@style/TagGroup.Featured"-->
+                <!--/>-->
 
 
         </LinearLayout>
