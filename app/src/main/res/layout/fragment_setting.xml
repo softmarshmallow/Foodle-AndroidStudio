@@ -72,7 +72,7 @@
                     tools:layout_editor_absoluteY="0dp"/>
 
                 <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
-                    android:id="@+id/StoreUploadRequestButton"
+                    android:id="@+id/LogoutButton"
                     android:layout_width="match_parent"
                     android:background="@android:color/white"
                     android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="0dp"/>
                 <com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView
-                    android:id="@+id/StoreUploadRequestButton"
+                    android:id="@+id/CheckButton"
                     android:layout_width="match_parent"
                     android:background="@android:color/white"
                     android:layout_height="wrap_content"
