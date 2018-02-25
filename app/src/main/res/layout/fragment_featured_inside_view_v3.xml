@@ -18,27 +18,41 @@
 
 
             <include
-                android:layout_marginTop="40dp"
                 android:id="@+id/view1"
                 layout="@layout/view_default_recycler_container_view"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"/>
+
+                />
             <include
-                android:layout_marginTop="40dp"
                 android:id="@+id/view2"
                 layout="@layout/view_default_recycler_container_view"/>
             <include
                 android:layout_marginTop="40dp"
-android:visibility="gone"
+                android:visibility="gone"
                 android:id="@+id/view3"
                 layout="@layout/view_default_recycler_container_view"/>
 
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:text="핫!한 태그"
+                android:textColor="@color/textDark"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <me.gujun.android.taggroup.TagGroup
                 android:id="@+id/tag_group"
                 style="@style/TagGroup.Large"
                 atg_borderColor ="#ee5555"
                 atg_textColor="ee5555"
-                android:layout_marginTop="20dp" />
+                app:atg_textSize="20dp"
+                app:atg_borderStrokeWidth="30dp"
+                android:layout_marginTop="20dp"
+                />
 
 
         </LinearLayout>
