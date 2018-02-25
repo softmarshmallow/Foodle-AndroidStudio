@@ -6,13 +6,6 @@
               android:minWidth="25px"
               android:minHeight="25px">
 
-    <Button
-        android:id="@+id/Scan"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_weight="1"
-        android:text="Button" />
-
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"

@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.softmarshmallow.foodle.CustomViews.OptionItemView.OptionItemView;
 import com.softmarshmallow.foodle.Helpers.ContactToFoodleHelper;
@@ -16,6 +18,8 @@ import com.softmarshmallow.foodle.Services.LoginService;
 import com.softmarshmallow.foodle.Views.Login.LoginActivity;
 import com.softmarshmallow.foodle.Views.StoreEditor_Deprecated.StoreCreatorActivity;
 import com.softmarshmallow.foodle.Views.StoreUploadRequestView.StoreUploadRequestActivity;
+
+import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,6 +83,10 @@ public class Option_Tab_Fragment extends Fragment
 
                         }
                 });
+                ImageView img = (ImageView)option_setting.findViewById(R.id.optionImageView);
+                img.setImageResource(R.drawable.ic_setting);
+                TextView text =(TextView)option_setting.findViewById(R.id.optionNameTextView);
+                text.setText("설정");
                 option_help.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -89,6 +97,12 @@ public class Option_Tab_Fragment extends Fragment
 
                         }
                 });
+
+                ImageView img_help = (ImageView)option_help.findViewById(R.id.optionImageView);
+                img.setImageResource(R.drawable.ic_question);
+                TextView text_hep =(TextView)option_help.findViewById(R.id.optionNameTextView);
+                text.setText("도움말");
+
                 option_change.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -99,6 +113,11 @@ public class Option_Tab_Fragment extends Fragment
 
                         }
                 });
+
+                ImageView  img_change = (ImageView)option_change.findViewById(R.id.optionImageView);
+                img.setImageResource(R.drawable.ic_random);
+                TextView text_change =(TextView)option_change.findViewById(R.id.optionNameTextView);
+                text.setText("스토어 계정 전환");
                 option_storeupload.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

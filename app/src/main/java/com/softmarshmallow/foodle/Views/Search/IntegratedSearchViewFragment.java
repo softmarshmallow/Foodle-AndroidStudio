@@ -189,16 +189,6 @@ public class IntegratedSearchViewFragment extends Fragment
 
         }
 
-
-        @OnClick(R.id.Scan)
-        void OnClick(){
-//                IntentIntegrator.forFragment(()).initiateScan(); // `this` is the current Fragment
-                Log.d("Error", "SEX");
-                StoreDetailViewActivity.ShowStoreDetailWithData(getContext(),MockDataSource.getTestStore_1());
-
-
-        }
-
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
 //                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
