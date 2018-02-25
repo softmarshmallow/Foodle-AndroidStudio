@@ -52,8 +52,11 @@
         android:layout_height="50dp"
         android:layout_margin="@dimen/fab_margin"
         android:tooltipText="지도에서 찾기"
+        android:backgroundTint="@color/ms_white"
         app:layout_anchor="@+id/app_bar"
-        app:layout_anchorGravity="left|bottom">
+        app:layout_anchorGravity="left|bottom"
+android:elevation="2dp"
+        >
 
     </android.support.design.widget.FloatingActionButton>
 

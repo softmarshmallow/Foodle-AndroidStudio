@@ -2,8 +2,10 @@ package com.softmarshmallow.foodle.Views.FeaturedViewV3;
 
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -18,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.R;
@@ -67,6 +68,7 @@ public class FeaturedViewFragmentV3 extends Fragment
         FeaturedStoresAdapterV3 featuredStoresAdapter;
         FeaturedMenusAdapterV3 featuredMenusAdapter;
 
+
         FloatingActionButton floatingActionButton;
 
         List<String> taglist = new ArrayList<>();
@@ -77,13 +79,13 @@ public class FeaturedViewFragmentV3 extends Fragment
                 // Inflate the layout for this fragment
                 View view = inflater.inflate(R.layout.fragment_featured_view_v3, container, false);
                 unbinder = ButterKnife.bind(this, view);
-//                floatingActionButton = view.findViewById(R.id.fab);
-//                floatingActionButton.setText("show");
-//                floatingActionButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                        }
-//                });
+                floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab);
+                floatingActionButton.setImageResource(R.drawable.ic_location);
+                floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                });
 
 
                 initFeaturedMenus();
