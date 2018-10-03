@@ -22,7 +22,7 @@ public class StoreDownloadModel extends StoreTransferBaseModel
                 return StoreOwnerId.equals( FirebaseUserService.GetUserUID());
         }
         public List<String> StorePhotoUrls = new ArrayList<String>();//{{add("https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png");}};
-        public Map<String, String> MenusIds = new HashMap<>();
+        public List<String> MenusIds = new ArrayList<>();
         public Map<String, String> StoreReviewsIds = new HashMap<>();
         
         
@@ -47,7 +47,7 @@ public class StoreDownloadModel extends StoreTransferBaseModel
                 return this;
         }
         
-        public StoreDownloadModel setMenusIds(Map<String, String> menusIds) {
+        public StoreDownloadModel setMenusIds(List<String> menusIds) {
                 MenusIds = menusIds;
                 return this;
         }

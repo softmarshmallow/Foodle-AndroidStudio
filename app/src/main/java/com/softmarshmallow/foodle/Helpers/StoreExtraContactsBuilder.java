@@ -37,14 +37,18 @@ public class StoreExtraContactsBuilder
                 HashMap data = new HashMap<String, String>();
                 
                 String[] entries = extraContactsRawString.split(entrySeperator);
-                for (String entry : entries){
-                        String[] entrySet = entry.split(seperator);
-                        String socialName = entrySet[0];
-                        String socialLink = entrySet[1];
+                try {
+                        for (String entry : entries){
+                                String[] entrySet = entry.split(seperator);
+                                String socialName = entrySet[0];
+                                String socialLink = entrySet[1];
+                                
+                                data.put(socialName, socialLink);
+                        }
                         
-                        data.put(socialName, socialLink);
+                }catch (ArrayIndexOutOfBoundsException a){
+                        data.put("links", "None");
                 }
-                
                 return data;
         }
 }

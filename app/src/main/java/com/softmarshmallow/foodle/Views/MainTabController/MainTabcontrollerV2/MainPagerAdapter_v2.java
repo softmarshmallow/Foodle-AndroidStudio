@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import com.softmarshmallow.foodle.Views.ExtraOptions_Deprecated.Option_Tab_Fragment;
+import com.softmarshmallow.foodle.Views.FeaturedViewV2.FeaturedViewFragment;
 import com.softmarshmallow.foodle.Views.FeaturedViewV3.FeaturedViewFragmentV3;
 import com.softmarshmallow.foodle.Views.MainTabController.MainTabsType;
 import com.softmarshmallow.foodle.Views.Mypage.MypageFragment;
@@ -27,7 +28,8 @@ public class MainPagerAdapter_v2 extends FragmentStatePagerAdapter
                 return MainTabsType.values().length;
         }
         
-        Fragment featuredViewFragment = new FeaturedViewFragmentV3();
+//        Fragment featuredViewFragment = new FeaturedViewFragmentV3();
+        Fragment featuredViewFragment = new FeaturedViewFragment();
         
         // Fragment testFragment = new TestFragment();
         Fragment storeSearchViewFragment = new IntegratedSearchViewFragment();

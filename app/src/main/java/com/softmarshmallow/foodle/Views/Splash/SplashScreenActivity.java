@@ -22,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity
 {
         
         static final String TAG = "SplashScreenActivity";
-        final int delayMilliSeconds = 1700;
+        final int delayMilliSeconds = 750;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);

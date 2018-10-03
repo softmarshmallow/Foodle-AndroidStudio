@@ -284,8 +284,7 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
 
                 
                 storeDataToDisplay.Menus = new ArrayList<>();
-                for (String keyToMenuId : storeDataToDisplay.MenusIds.keySet()) {
-                        String menuId = storeDataToDisplay.MenusIds.get(keyToMenuId);
+                for (String menuId : storeDataToDisplay.MenusIds) {
                         MenuService.GetMenu(
                                 menuId,
                                 new Consumer<MenuModel>()
@@ -370,9 +369,15 @@ public class StoreDetailViewActivity extends AppCompatActivity implements OnMapR
                 
                 // SET extra contacts
                 Map<String, String> contacts = StoreExtraContactsBuilder.Parse(storeDataToDisplay.StoreExtraContacts);
-                
-                storeFacebookLinkTextView.setText(contacts.get(StoreExtraContactsBuilder.facebookKey));
-                storeInstagramLinkTextView.setText(contacts.get(StoreExtraContactsBuilder.instagramKey));
+                try {
+                        storeFacebookLinkTextView.setText(
+                                contacts.get(StoreExtraContactsBuilder.facebookKey));
+                        storeInstagramLinkTextView.setText(
+                                contacts.get(StoreExtraContactsBuilder.instagramKey));
+                }catch (Exception e){
+                        // Do Nothing
+                        // No Contact Info
+                }
         }
         
         //endregion
