@@ -31,7 +31,7 @@
     <!--FACEBOOK-->
 
     <!--QUIT APP-->
-    <string name="quit_app_title">quit</string>
+    <string name="quit_app_title">Quit</string>
     <string name="quit_app_content">Sure want to leave?</string>
     <string name="quit_app_cancel">maybe later?</string>
     <string name="quit_app_confirm">Yup!</string>
@@ -39,14 +39,22 @@
 
 
     <string name="action_view_on_map">View on map</string>
-    <string name="featured_store_recommendation">recommended for you</string>
+    <string name="featured_store_recommendation">Recommended for you</string>
     <string name="action_see_all">See all</string>
-    <string name="featured_menu_recommendation">these are great!</string>
+    <string name="featured_menu_recommendation">These are great!</string>
     <string name="action_request_catering">Catering</string>
     <string name="action_share">Share</string>
     <string name="action_write_review">Review</string>
     <string name="promt_phone">Phone</string>
     <string name="prompt_location">Location</string>
+
+
+    <!--Dummy Texts-->
+    <string name="dummy_content_lorem" translatable="false">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.</string>
+    <string name="dummy_content_cicero" translatable="false">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia</string>
+    <string name="dummy_title_lorem" translatable="false">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</string>
+    <string name="dummy_title_cicero" translatable="false">Sed ut perspiciatis unde omnis iste natus error sit</string>
+    <!--Dummy Texts-->
 
 
 </resources>

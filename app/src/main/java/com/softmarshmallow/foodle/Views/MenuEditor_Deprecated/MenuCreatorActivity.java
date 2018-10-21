@@ -6,7 +6,8 @@ import android.util.Log;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.Services.MenuService;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
+//import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.functions.Consumer;
 
 public class MenuCreatorActivity extends MenuEditorBaseActivity

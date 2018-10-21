@@ -16,7 +16,8 @@ import com.softmarshmallow.foodle.Services.StoreUploadRequestService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.pedant.SweetAlert.SweetAlertDialog;
+//import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.functions.Consumer;
 
 import static android.text.InputType.TYPE_CLASS_PHONE;

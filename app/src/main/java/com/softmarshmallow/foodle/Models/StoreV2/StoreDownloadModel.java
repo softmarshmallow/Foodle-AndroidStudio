@@ -22,6 +22,8 @@ public class StoreDownloadModel extends StoreTransferBaseModel
                 return StoreOwnerId.equals( FirebaseUserService.GetUserUID());
         }
         public List<String> StorePhotoUrls = new ArrayList<String>();//{{add("https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png");}};
+        
+        // FIXME This raises deserialize error, consider hashmap
         public List<String> MenusIds = new ArrayList<>();
         public Map<String, String> StoreReviewsIds = new HashMap<>();
         

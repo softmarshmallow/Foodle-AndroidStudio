@@ -165,6 +165,7 @@ public class StoreService
                         public void onDataChange(DataSnapshot dataSnapshot) {
                                 List<StoreContainerModel> allStores = new ArrayList<StoreContainerModel>();
                                 for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                        Log.d(TAG, "child:: " + child);
                                         StoreContainerModel value = child.getValue(StoreContainerModel.class);
                                         value.Id = child.getKey();
                                         allStores.add(value);

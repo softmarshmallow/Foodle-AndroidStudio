@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.softmarshmallow.foodle.Models.Menus.MenuModel;
 import com.softmarshmallow.foodle.R;
 import com.softmarshmallow.foodle.Views.MenuDetailPage.MenuDetailActivity;
@@ -72,8 +73,11 @@ public class FeaturedMenusAdapter extends BaseMenusAdapter
                 
                 public void BindViewWithData(MenuModel menuData){
                         this.menuData = menuData;
-                        
-                        Glide.with(context).load(menuData.MenuMainPhotoUrl).into(menuImageView);
+                        Glide.with(context)
+                            .load(menuData.MenuMainPhotoUrl)
+                            .apply(new RequestOptions()
+                                .placeholder(R.drawable.loading))
+                            .into(menuImageView);
                         menuNameTextView.setText(menuData.MenuName);
                         priceTextView.setText(String.valueOf(menuData.MenuPrice));
                 }

@@ -3,10 +3,12 @@ package com.softmarshmallow.foodle.Views.StoreEditor_Deprecated;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import com.softmarshmallow.foodle.Models.StoreV2.StoreContainerModel;
 import com.softmarshmallow.foodle.Services.StoreService;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
+//import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.functions.Consumer;
 
 public class StoreCreatorActivity extends StoreEditorBaseActivity

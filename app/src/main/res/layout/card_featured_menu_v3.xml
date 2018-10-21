@@ -3,73 +3,106 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".Views.FeaturedViewV2.FeaturedMenusAdapter.MenuItemViewHolder">
 
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginEnd="30dp"
-        android:background="@drawable/dish_rectangle">
+        android:layout_marginRight="30dp"
+        android:background="@drawable/dish_rectangle"
+        android:orientation="vertical"
+        >
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/menuImageView"
-            app:riv_corner_radius="8dp"
-            android:layout_width="125dp"
+            android:layout_width="129dp"
             android:layout_height="173.7dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:scaleType="centerCrop"
-            android:src="@color/colorPrimaryDark"/>
+            android:src="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="4dp"/>
 
         <TextView
             android:id="@+id/menuNameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:maxLength="25"
+            android:maxLines="2"
+            android:singleLine="false"
+            android:text="@string/dummy_title_lorem"
             android:textColor="#373737"
             android:textSize="18dp"
-            android:text="Thai Cusine"
-            android:layout_marginTop="6.7dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menuImageView"/>
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menuNameTextView"
+            android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="7dp"
-        android:layout_height="10dp"
-        android:src="@drawable/ic_location"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="4dp"
-        />
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_location"
+                />
 
-    <TextView
-        android:id="@+id/baseStoreNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vadodara"
-        android:textColor="#a5a5a5"
-        android:textSize="11sp" />
+            <TextView
+                android:id="@+id/baseStoreNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxWidth="64dp"
+                android:maxLength="120"
+                android:maxLines="2"
+                android:text="@string/dummy_content_lorem"
+                android:textColor="#a5a5a5"
+                android:textSize="11sp"/>
 
-    <!--It is gone new Design-->
-    <TextView
-        android:id="@+id/menuPriceText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#373737"
-        android:textSize="15.3dp"
-        android:text="Rs 350"
-        android:layout_marginTop="13.7dp"
-        android:visibility="gone"/>
+            <!--It is gone new Design-->
+            <TextView
+                android:id="@+id/menuPriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13.7dp"
+                android:text="Rs 350"
+                android:textColor="#373737"
+                android:textSize="15.3dp"
+                android:visibility="gone"/>
 
 
-</LinearLayout>
+        </LinearLayout>
 
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

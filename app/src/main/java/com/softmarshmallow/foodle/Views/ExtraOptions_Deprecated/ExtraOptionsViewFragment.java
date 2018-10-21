@@ -18,8 +18,8 @@ import com.softmarshmallow.foodle.Views.StoreUploadRequestView.StoreUploadReques
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
+//import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -60,8 +60,7 @@ public class ExtraOptionsViewFragment extends Fragment
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
                                         sweetAlertDialog.dismiss();
-                                        LoginPreferences.clearLoginPreference();
-                                        LoginService.Logout();
+                                        LoginService.Logout(true);
                                         startActivity(
                                                 new Intent(getContext(), LoginActivity.class));
                                         getActivity().finish();

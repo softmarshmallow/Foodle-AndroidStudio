@@ -21,8 +21,8 @@ import com.softmarshmallow.foodle.Services.LoginService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
+//import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 /**
  * A login screen that offers login via email/password.
  */
