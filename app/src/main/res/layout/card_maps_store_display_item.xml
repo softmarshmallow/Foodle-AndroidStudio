@@ -13,22 +13,24 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical"
-        android:background="@drawable/roundwhite"
+        android:background="@drawable/roundwhite_4dp"
         >
+
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/storeImage"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:scaleType="fitCenter"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/demo_menu_real_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:riv_corner_radius="10dp"/>
+            app:layout_constraintVertical_bias="0.0"
+            app:riv_corner_radius="4dp"/>
 
         <TextView
             android:id="@+id/storeNameTextView"
@@ -41,7 +43,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toRightOf="@+id/storeImage"
-            android:layout_marginLeft="8dp"/>
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
 
 
         <TextView
@@ -58,7 +61,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginStart="8dp"/>
 
         <TextView
             android:id="@+id/locationText"
@@ -70,7 +74,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/storeNameTextView"
             app:layout_constraintLeft_toRightOf="@+id/storeImage"
-            android:layout_marginLeft="8dp"/>
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -80,7 +85,8 @@
             android:layout_marginLeft="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="8dp"
-            android:id="@+id/linearLayout">
+            android:id="@+id/linearLayout"
+            android:layout_marginStart="8dp">
 
             <me.zhanghai.android.materialratingbar.MaterialRatingBar
                 android:layout_width="wrap_content"

@@ -23,63 +23,66 @@ import java.util.List;
 
 public class FeaturedMenusAdapter extends BaseMenusAdapter
 {
-        public FeaturedMenusAdapter(Context mContext, List<MenuModel> menuDatas) {
-                super(mContext, menuDatas);
-        }
+    public FeaturedMenusAdapter(Context mContext, List<MenuModel> menuDatas) {
+        super(mContext, menuDatas);
+    }
+    
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.card_featured_menu_v3, parent, false);
         
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                View itemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.card_featured_menu_v3, parent, false);
+        return new FeaturedMenusAdapter.MenuItemViewHolder(itemView, context);
+    }
+    
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         
-                return new FeaturedMenusAdapter.MenuItemViewHolder(itemView, context);
-        }
+        MenuModel menuData = menuDatas.get(position);
+        MenuItemViewHolder menuItemViewHolder = (MenuItemViewHolder) holder;
+        menuItemViewHolder.BindViewWithData(menuData);
+    }
+    
+    class MenuItemViewHolder extends RecyclerView.ViewHolder
+    {
         
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
-                MenuModel menuData = menuDatas.get(position);
-                MenuItemViewHolder menuItemViewHolder = (MenuItemViewHolder)holder;
-                menuItemViewHolder.BindViewWithData(menuData);
-        }
+        ImageView menuImageView;
+        TextView menuNameTextView;
+        TextView priceTextView;
+        TextView baseStoreName;
+        private final Context context;
+        private MenuModel menuData;
         
-        class MenuItemViewHolder extends RecyclerView.ViewHolder{
-                
-                ImageView menuImageView;
-                TextView menuNameTextView;
-                TextView priceTextView;
-                TextView baseStoreName;
-                private final Context context;
-                private MenuModel menuData;
-        
-                public MenuItemViewHolder(View view, final Context context) {
-                        super(view);
-                        this.context = context;
-        
-                        menuImageView = (ImageView) view.findViewById(R.id.menuImageView);
-                        menuNameTextView = (TextView) view.findViewById(R.id.menuNameTextView);
-                        priceTextView = (TextView) view.findViewById(R.id.menuPriceText);
-                        baseStoreName = (TextView) view.findViewById(R.id.baseStoreNameTextView);
-                
-                        view.setOnClickListener(new View.OnClickListener()
-                        {
-                                @Override
-                                public void onClick(View view) {
-                                        MenuDetailActivity.ShowMenuDetail(menuData, context);
-                                }
-                        });
-                        
+        public MenuItemViewHolder(View view, final Context context) {
+            super(view);
+            this.context = context;
+            
+            menuImageView = (ImageView) view.findViewById(R.id.menuImageView);
+            menuNameTextView = (TextView) view.findViewById(R.id.menuNameTextView);
+            priceTextView = (TextView) view.findViewById(R.id.menuPriceText);
+            baseStoreName = (TextView) view.findViewById(R.id.baseStoreNameTextView);
+            
+            view.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view) {
+                    MenuDetailActivity.ShowMenuDetail(menuData, context);
                 }
-                
-                public void BindViewWithData(MenuModel menuData){
-                        this.menuData = menuData;
-                        Glide.with(context)
-                            .load(menuData.MenuMainPhotoUrl)
-                            .apply(new RequestOptions()
-                                .placeholder(R.drawable.loading))
-                            .into(menuImageView);
-                        menuNameTextView.setText(menuData.MenuName);
-                        priceTextView.setText(String.valueOf(menuData.MenuPrice));
-                }
+            });
+            
         }
+        
+        public void BindViewWithData(MenuModel menuData) {
+            this.menuData = menuData;
+            Glide.with(context)
+                .load(menuData.MenuMainPhotoUrl)
+                .thumbnail(Glide.with(context)
+                    .load(R.drawable.loading))
+                .apply(new RequestOptions()
+                    .placeholder(R.drawable.loading))
+                .into(menuImageView);
+            menuNameTextView.setText(menuData.MenuName);
+            priceTextView.setText(String.valueOf(menuData.MenuPrice));
+        }
+    }
 }
